@@ -16,17 +16,10 @@ export default {
   color: {
     primary: "#262626",
     secundary: "#c4bafd",
-    light: "#E8E9F2",
     background: "#ffffff",
     error: "#ea4335",
     warning: "#F6B817",
     complete: "#58d466",
-    border: "#d7d7d8",
-    wrapper: "rgba(255, 255, 255, 0.35)",
-    button: "#262626",
-    modal: "#ffffff",
-    form: "#c4bafd",
-    skeleton: "#E8E9F2",
     transparency: "rgba(255, 255, 255, 0.1)",
   },
 

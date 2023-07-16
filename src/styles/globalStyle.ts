@@ -11,17 +11,10 @@ export default createGlobalStyle<GlobalStyleProps>`
     /* Colors */
     --primary: ${(props) => props.theme.color.primary};
     --secundary: ${(props) => props.theme.color.secundary};
-    --light: ${(props) => props.theme.color.light};
     --background: ${(props) => props.theme.color.background};
     --error: ${(props) => props.theme.color.error};
     --warning: ${(props) => props.theme.color.warning};
     --complete: ${(props) => props.theme.color.complete};
-    --border: ${(props) => props.theme.color.border};
-    --wrapper: ${(props) => props.theme.color.wrapper};
-    --button: ${(props) => props.theme.color.button};
-    --modal: ${(props) => props.theme.color.modal};
-    --form: ${(props) => props.theme.color.form};
-    --skeleton: ${(props) => props.theme.color.skeleton};
     --transparency: ${(props) => props.theme.color.transparency};
 
     /* Texts */

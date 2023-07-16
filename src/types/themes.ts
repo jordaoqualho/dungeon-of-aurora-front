@@ -14,17 +14,10 @@ export default interface Theme {
   color: {
     primary: string;
     secundary: string;
-    light: string;
     background: string;
     error: string;
     warning: string;
     complete: string;
-    border: string;
-    wrapper: string;
-    button: string;
-    modal: string;
-    form: string;
-    skeleton: string;
     transparency: string;
   };
   text: {
