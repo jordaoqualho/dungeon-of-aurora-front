@@ -6,7 +6,6 @@ interface GlobalStyleProps {
 }
 
 export default createGlobalStyle<GlobalStyleProps>`
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
   :root {
     /* Colors */
     --primary: ${(props) => props.theme.color.primary};
@@ -15,6 +14,7 @@ export default createGlobalStyle<GlobalStyleProps>`
     --error: ${(props) => props.theme.color.error};
     --warning: ${(props) => props.theme.color.warning};
     --complete: ${(props) => props.theme.color.complete};
+    --border: ${(props) => props.theme.color.border};
     --transparency: ${(props) => props.theme.color.transparency};
 
     /* Texts */
@@ -44,8 +44,6 @@ export default createGlobalStyle<GlobalStyleProps>`
     --slow: ${(props) => props.theme.transition.slow};
   }
 
-
-
   body {
     margin: 0;
   }
@@ -71,11 +69,14 @@ export default createGlobalStyle<GlobalStyleProps>`
 
   * {
     font-family: var(--main);
+    position: relative;
+    box-sizing: border-box;
     outline: none;
     margin: 0;
     border: none;
   }
-
+  
+/* 
   input:-webkit-autofill,
   input:-webkit-autofill:hover, 
   input:-webkit-autofill:focus,
@@ -85,15 +86,15 @@ export default createGlobalStyle<GlobalStyleProps>`
   select:-webkit-autofill,
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px var(--background) inset;
+    -webkit-box-shadow: 0 0 0px 1000px var(--primary) inset;
     transition: background-color 5000s ease-in-out 0s;
-  }
+  } */
 
   .flex {
     display: flex;
   }
 
-  .flex_cc {
+  .flex_ccr {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -106,14 +107,14 @@ export default createGlobalStyle<GlobalStyleProps>`
     flex-direction: column;
   }
 
-  .flex_ccs {
+  .flex_scc {
     display: flex;
     align-items: flex-start;
     justify-content: center;    
     flex-direction: column;
   }
 
-  .flex_cs {
+  .flex_csr {
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -125,13 +126,19 @@ export default createGlobalStyle<GlobalStyleProps>`
     justify-content: space-between;
   }
 
-  .flex_cb {
+  .flex_sbr {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
   }
   
-  .flex_ss {
+  .flex_ssr {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  
+  .flex_ssc {
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -144,42 +151,51 @@ export default createGlobalStyle<GlobalStyleProps>`
     justify-content: space-between;
   }
 
-  .flex-column {
-    display: flex;
-    flex-direction: column;
+  .w100 {
+    width: 100%;
+  }
+
+  .wfc {
+    width: 100%;
+  }
+
+  .wv100 {
+    width: 100vw;
+  }
+
+  .wfs {
+    width: -webkit-fill-available;
+  }
+
+  .hfs {
+    height: -webkit-fill-available;
   }
 
   .test {
-    border: 1px solid red;
+    border: 1px solid gray;
+    border-radius: 20px;
   }
 
   form {
     margin: 50px 0;
   }
 
+  button, a, input {
+    transition: var(--fast);
+  }
+
+
+  button:hover{
+    cursor: pointer;
+    opacity: 0.75;
+  }
+
   input,
   select {
-    font-size: var(--medium);
-    font-weight: 500;
-    background-color: #fff;
     outline: none;
     width: 100%;
-    padding-left: 20px !important;
-    border: 1px solid transparent;
   }
 
-  input::placeholder,
-  select::placeholder {
-    font-size: var(--large);
-    font-weight: 700;
-    color: var(--primary);
-  }
-
-  select:focus,
-  input:focus {
-    border: 1px solid var(--primary);
-  }
-  
   h3,
   h2 {
     font-size: 70px;
@@ -188,7 +204,7 @@ export default createGlobalStyle<GlobalStyleProps>`
   
   span {
     font-size: var(--large);
-    padding: 10px 30px;
     font-weight: 500;
+    padding: 10px ;
   }
 `;
