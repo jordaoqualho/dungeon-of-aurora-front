@@ -18,6 +18,7 @@ export default interface Theme {
     error: string;
     warning: string;
     complete: string;
+    border: string;
     transparency: string;
   };
   text: {

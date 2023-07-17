@@ -2,7 +2,7 @@ export default {
   title: "dark",
 
   font: {
-    family: "Inter",
+    family: "Poppins",
     micro: "1rem",
     small: "1.2rem",
     medium: "1.6rem",
@@ -14,19 +14,20 @@ export default {
   },
 
   color: {
-    primary: "#DADA55",
-    secundary: "#DCCFAC",
-    background: "#000118",
-    error: "#6967F9",
+    primary: "#874EFE",
+    secundary: "#FE852C",
+    background: "#22252E",
+    error: "#D81F26",
     warning: "#FD8744",
-    complete: "#5DD4DC",
+    complete: "#53A24C",
+    border: "#2B2E37",
     transparency: "rgba(32, 32, 44, 0.25)",
   },
 
   text: {
-    basic: "#ffffff",
-    contrast: "#565753",
-    bright: "#565753",
+    basic: "#EEEEEF",
+    contrast: "#161922",
+    bright: "#53565F",
   },
 
   shadow: {
