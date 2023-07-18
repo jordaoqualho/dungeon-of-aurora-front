@@ -17,7 +17,7 @@ export default function Checkbox() {
           type="checkbox"
           className="checked"
           checked={isChecked}
-          onClick={() => setIsChecked(!isChecked)}
+          onChange={() => setIsChecked(!isChecked)}
           onKeyDown={handleKeyDown}
         />
         <div className="control__indicator" />
