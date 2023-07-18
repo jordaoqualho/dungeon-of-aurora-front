@@ -12,7 +12,7 @@ export const Container = styled.div`
   }
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   gap: 10px;
 
   img {

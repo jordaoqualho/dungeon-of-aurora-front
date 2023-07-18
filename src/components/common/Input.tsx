@@ -1,6 +1,6 @@
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HttpsIcon from "@mui/icons-material/Https";
-import { Container } from "./InputStyle";
+import { Container } from "./InputStyles";
 
 type InputProps = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
