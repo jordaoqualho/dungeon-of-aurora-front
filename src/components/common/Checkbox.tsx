@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Container } from "./CheckboxStyle";
+import { Container } from "./CheckboxStyles";
 
 export default function Checkbox() {
   const [isChecked, setIsChecked] = useState<boolean>(true);
