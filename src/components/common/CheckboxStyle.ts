@@ -22,7 +22,7 @@ export const Container = styled.label`
   }
   .control:hover input ~ .control__indicator,
   .control input:focus ~ .control__indicator {
-    background: var(--bright);
+    border: 1px solid var(--basic);
   }
   .control input:checked ~ .control__indicator {
     background: var(--primary);
