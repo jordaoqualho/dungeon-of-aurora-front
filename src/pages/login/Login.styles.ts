@@ -16,15 +16,17 @@ export const Form = styled.form`
   gap: 10px;
 
   .castle_img {
-    width: 370px;
+    width: 450px;
     height: 100%;
     background: var(--bright);
+    box-shadow: var(--normalShadow);
     border-radius: 20px;
     object-fit: cover;
   }
 `;
 
 export const Modal = styled.div`
+  box-shadow: var(--normalShadow);
   background-color: var(--contrast);
   border-radius: 40px;
   padding: 50px;
@@ -73,7 +75,11 @@ export const Divisor = styled.div`
 
 export const login_btn = {
   background: "var(--priGrad)",
-  margin: "40px 0",
+  margin: "40px 0 15px 0",
+};
+
+export const signin_btn = {
+  background: "var(--secGrad)",
 };
 
 export const google_btn = {

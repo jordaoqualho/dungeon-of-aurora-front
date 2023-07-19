@@ -26,7 +26,7 @@ export default {
 
   gradient: {
     priGrad: "linear-gradient(0deg, rgba(135, 78, 254, 0.56) 0%, rgba(135, 78, 254, 0.86) 50%, #874efe 100%)",
-    secGrad: "linear-gradient(180deg, rgba(254, 133, 44, 0.56) 0%, rgba(254, 133, 44, 0.86) 50%, #FE852C 100%);",
+    secGrad: "linear-gradient(0deg, rgba(254, 133, 44, 0.56) 0%, rgba(254, 133, 44, 0.86) 50%, #FE852C 100%);",
     bacGrad: "linear-gradient(180deg, rgba(54, 57, 70, 0.86) 0%, #2d2f38 51.04%, #262834 100%)",
   },
 
@@ -38,8 +38,8 @@ export default {
 
   shadow: {
     basic: "0px 5px 5px rgb(0 0 0 / 5%)",
+    normal: "rgba(0, 0, 0, 0.35) 0px 5px 15px;",
     dark: "0px 5px 5px rgb(0 0 0 / 10%)",
-    normal: "2px 2px 10px 5px rgb(0 0 0 / 5%)",
   },
 
   transition: {
