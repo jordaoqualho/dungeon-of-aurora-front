@@ -1,9 +1,10 @@
+import castle from "@/assets/images/castle.png";
+import Checkbox from "@/components/common/Checkbox";
+import Input from "@/components/common/Input";
+import { Container, Form, Modal } from "@/pages/login/Styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import castle from "../../assets/images/castle.png";
-import Checkbox from "../../components/common/Checkbox";
-import Input from "../../components/common/Input";
-import { Container, Form, Modal } from "./Styles";
+import { toast } from "react-toastify";
 
 type LoginData = {
   user: string;
@@ -14,10 +15,43 @@ export default function Login() {
   const [loginData, setLoginData] = useState<LoginData>({ user: "", password: "" });
   const navigate = useNavigate();
 
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log(loginData.user, loginData.password);
-    // navigate("/home");
+    toast.promise(validadeLogin, {
+      pending: "Promise is pending",
+      success: {
+        render({ data }) {
+          navigate("/home");
+          return `${data.message}`;
+        },
+      },
+      error: {
+        render({ data }) {
+          return `${data.message}`;
+        },
+      },
+    });
+
+    // await validadeLogin()
+    //   .then((res: any) => {
+    //     toast(res.message, { type: "success" });
+    //     navigate("/home");
+    //   })
+    //   .catch((error) =>
+    //     toast(error.message, {
+    //       type: "error",
+    //     })
+    //   );
+  };
+
+  const validadeLogin = async () => {
+    const { user, password } = loginData;
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (user === "admin" && password === "admin") resolve({ success: true, message: "Successfully authenticated" });
+        reject({ success: false, message: "Invalid login info" });
+      }, 1000);
+    });
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
