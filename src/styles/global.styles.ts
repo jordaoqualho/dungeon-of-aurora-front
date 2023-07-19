@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import Theme from "../types/themes";
+import Theme from "@/types/themes";
 
 interface GlobalStyleProps {
   theme: Theme; // Add the Theme interface as a prop
