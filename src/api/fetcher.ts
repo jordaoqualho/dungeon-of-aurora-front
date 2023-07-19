@@ -1,3 +1,4 @@
+import config from "@/config";
 import axios from "axios";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
@@ -7,8 +8,7 @@ type RequestConfig = {
 };
 
 const api = axios.create({
-  // baseURL: process.env.REACT_APP_BACKEND_URL,
-  baseURL: "https://animechan.xyz/api",
+  baseURL: config.backendUrl,
 });
 
 export const fetcher = <T>(requestConfig: RequestConfig) => {
