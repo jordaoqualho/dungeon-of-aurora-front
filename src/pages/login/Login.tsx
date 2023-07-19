@@ -1,12 +1,22 @@
+import { google_logo } from "@/assets";
 import castle from "@/assets/images/castle.png";
 import { Button } from "@/components/common/Button";
 import Checkbox from "@/components/common/Checkbox";
 import Input from "@/components/common/Input";
-import { Container, Divisor, Form, Modal, Remember, google_btn, login_btn } from "@/pages/login/Login.styles";
+import TiltBox from "@/components/common/TiltBox";
+import {
+  Container,
+  Divisor,
+  Form,
+  Modal,
+  Remember,
+  google_btn,
+  login_btn,
+  signin_btn,
+} from "@/pages/login/Login.styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { google_logo } from "@/assets";
 
 type LoginData = {
   user: string;
@@ -58,7 +68,7 @@ export default function Login() {
               <h1>Eae blz? 👋</h1>
               <p>Bota suas informação de login aqui embaixo pra entrar.</p>
             </div>
-            <Input placeholder="Seu usuário" onChange={handleChange} name="user" />
+            <Input placeholder="Seu usuário" onChange={handleChange} name="user" autoFocus />
             <Input type="password" placeholder="Sua senha" onChange={handleChange} name="password" />
             <Remember title="remember" className="flex_sbr">
               <div className="check-box  flex_ssr">
@@ -68,6 +78,11 @@ export default function Login() {
               <a href="">Esqueceu a senha?</a>
             </Remember>
             <Button style={login_btn} type="submit" text="Entrar" />
+            <Button
+              style={signin_btn}
+              text="Criar uma conta"
+              onClick={() => toast("Cadastro indisponível", { type: "error" })}
+            />
             <Divisor title="divisor" className="flex_ccr">
               <div className="line" />
               <span>ou</span>
@@ -80,7 +95,9 @@ export default function Login() {
               type="submit"
             />
           </Modal>
-          <img className="castle_img" src={castle} alt="castle" />
+          <TiltBox>
+            <img className="castle_img" src={castle} alt="castle" />
+          </TiltBox>
         </Form>
       </div>
     </Container>
