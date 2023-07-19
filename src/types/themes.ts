@@ -21,6 +21,11 @@ export default interface Theme {
     border: string;
     transparency: string;
   };
+  gradient: {
+    priGrad: string;
+    secGrad: string;
+    bacGrad: string;
+  };
   text: {
     basic: string;
     contrast: string;

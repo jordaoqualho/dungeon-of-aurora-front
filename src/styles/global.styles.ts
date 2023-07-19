@@ -17,6 +17,11 @@ export default createGlobalStyle<GlobalStyleProps>`
     --border: ${(props) => props.theme.color.border};
     --transparency: ${(props) => props.theme.color.transparency};
 
+    /* Gradients */
+    --priGrad: ${(props) => props.theme.gradient.priGrad};
+    --secGrad: ${(props) => props.theme.gradient.secGrad};
+    --bacGrad: ${(props) => props.theme.gradient.bacGrad};
+
     /* Texts */
     --basic: ${(props) => props.theme.text.basic};
     --contrast: ${(props) => props.theme.text.contrast};
