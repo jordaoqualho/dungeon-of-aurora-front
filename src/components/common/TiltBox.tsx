@@ -36,10 +36,10 @@ class TiltBox extends Component<Props, State> {
 
   private settings = {
     reverse: false,
-    max: 35,
-    perspective: 5000,
+    max: 10,
+    perspective: 500,
     easing: "cubic-bezier(.03,.98,.52,.99)",
-    scale: "1.1",
+    scale: "1.0",
     speed: "1000",
     transition: true,
     axis: null,
@@ -51,7 +51,7 @@ class TiltBox extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      style: {},
+      style: { height: "100%" },
     };
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
@@ -182,17 +182,3 @@ class TiltBox extends Component<Props, State> {
 }
 
 export default TiltBox;
-
-/* usage
-
-const options = {
-  max: 10,
-  perspective: 1000,
-  scale: "1.05",
-};
-
-<TiltBox options={options}>
-  <img src={castle} alt="castle" />
-</TiltBox> 
-
-*/
