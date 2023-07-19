@@ -1,10 +1,12 @@
 import castle from "@/assets/images/castle.png";
+import { Button } from "@/components/common/Button";
 import Checkbox from "@/components/common/Checkbox";
 import Input from "@/components/common/Input";
-import { Container, Form, Modal } from "@/pages/login/Styles";
+import { Container, Divisor, Form, Modal, Remember, google_btn, login_btn } from "@/pages/login/Login.styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { google_logo } from "@/assets";
 
 type LoginData = {
   user: string;
@@ -17,31 +19,16 @@ export default function Login() {
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    toast.promise(validadeLogin, {
-      pending: "Promise is pending",
-      success: {
-        render({ data }) {
-          navigate("/home");
-          return `${data.message}`;
-        },
-      },
-      error: {
-        render({ data }) {
-          return `${data.message}`;
-        },
-      },
-    });
-
-    // await validadeLogin()
-    //   .then((res: any) => {
-    //     toast(res.message, { type: "success" });
-    //     navigate("/home");
-    //   })
-    //   .catch((error) =>
-    //     toast(error.message, {
-    //       type: "error",
-    //     })
-    //   );
+    await validadeLogin()
+      .then((res: any) => {
+        toast(res.message, { type: "success" });
+        navigate("/home");
+      })
+      .catch((error) =>
+        toast(error.message, {
+          type: "error",
+        })
+      );
   };
 
   const validadeLogin = async () => {
@@ -68,27 +55,32 @@ export default function Login() {
         <Form title="form" className="flex_ssr" onSubmit={handleLogin}>
           <Modal title="modal">
             <div className="title">
-              <h1>Faça Login</h1>
-              <p>Acesse sua conta com suas informações</p>
+              <h1>Eae blz? 👋</h1>
+              <p>Bota suas informação de login aqui embaixo pra entrar.</p>
             </div>
-            <Input placeholder="Nome do usuário" onChange={handleChange} name="user" />
-            <Input type="password" placeholder="Senha de acesso" onChange={handleChange} name="password" />
-            <div className="remember flex_sbr">
+            <Input placeholder="Seu usuário" onChange={handleChange} name="user" />
+            <Input type="password" placeholder="Sua senha" onChange={handleChange} name="password" />
+            <Remember title="remember" className="flex_sbr">
               <div className="check-box  flex_ssr">
                 <Checkbox />
                 <label htmlFor="">Continuar conectado</label>
               </div>
               <a href="">Esqueceu a senha?</a>
-            </div>
-            <button className="login_btn">Login</button>
-            <div className="divisor flex_ccr">
-              <div className="line"></div>
+            </Remember>
+            <Button style={login_btn} type="submit" text="Entrar" />
+            <Divisor title="divisor" className="flex_ccr">
+              <div className="line" />
               <span>ou</span>
-              <div className="line"></div>
-            </div>
-            <button className="google">Login com google</button>
+              <div className="line" />
+            </Divisor>
+            <Button
+              icon={{ src: google_logo, alt: "google_logo" }}
+              text="Entrar com Google"
+              style={google_btn}
+              type="submit"
+            />
           </Modal>
-          <img src={castle} alt="castle" />
+          <img className="castle_img" src={castle} alt="castle" />
         </Form>
       </div>
     </Container>
