@@ -15,7 +15,7 @@ type ButtonProps = {
 };
 
 export function Button(props: ButtonProps) {
-  const { onClick, type, style, text, loading, icon } = props;
+  const { onClick, type = "button", style, text, loading, icon } = props;
   return (
     <Container>
       <button onClick={onClick} type={type} style={style} className="flex_ccr">
