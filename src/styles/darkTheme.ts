@@ -24,6 +24,12 @@ export default {
     transparency: "rgba(32, 32, 44, 0.25)",
   },
 
+  gradient: {
+    priGrad: "linear-gradient(0deg, rgba(135, 78, 254, 0.56) 0%, rgba(135, 78, 254, 0.86) 50%, #874efe 100%)",
+    secGrad: "linear-gradient(180deg, rgba(254, 133, 44, 0.56) 0%, rgba(254, 133, 44, 0.86) 50%, #FE852C 100%);",
+    bacGrad: "linear-gradient(180deg, rgba(54, 57, 70, 0.86) 0%, #2d2f38 51.04%, #262834 100%)",
+  },
+
   text: {
     basic: "#EEEEEF",
     contrast: "#161922",
