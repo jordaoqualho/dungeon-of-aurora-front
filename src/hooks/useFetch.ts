@@ -1,14 +1,13 @@
-import { fetcher } from "@/api/fetcher";
+import { fetcher } from "@/providers/fetcherProvider";
+import { HttpMethod } from "@/types/fetcher";
 import { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
 export type UseFetchState<T> = {
   data: T | unknown;
   loading: boolean;
-  error: AxiosError | null;
-};
+  error: AxiosError | null;};
 
-export type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 
 export function useFetch<T = any>(url: string, method: HttpMethod = "GET") {
   const [state, setState] = useState<UseFetchState<AxiosResponse>>({
@@ -45,11 +44,3 @@ export function useFetch<T = any>(url: string, method: HttpMethod = "GET") {
 
   return [{ ...state }, refetch];
 }
-
-/*
-usage
-
-const [data, loading, error] = useFetch("/random");
-
-
-*/

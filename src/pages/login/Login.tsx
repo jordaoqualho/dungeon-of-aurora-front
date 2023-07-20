@@ -14,9 +14,9 @@ import {
   login_btn,
   signin_btn,
 } from "@/pages/login/Login.styles";
+import { showToast } from "@/providers/toasterProvider";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 
 type LoginData = {
   user: string;
@@ -29,16 +29,13 @@ export default function Login() {
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     await validadeLogin()
       .then((res: any) => {
-        toast(res.message, { type: "success" });
+        showToast(res.message, "success");
         navigate("/home");
       })
-      .catch((error) =>
-        toast(error.message, {
-          type: "error",
-        })
-      );
+      .catch((error) => showToast(error.message));
   };
 
   const validadeLogin = async () => {
@@ -78,11 +75,7 @@ export default function Login() {
               <a href="">Esqueceu a senha?</a>
             </Remember>
             <Button style={login_btn} type="submit" text="Entrar" />
-            <Button
-              style={signin_btn}
-              text="Criar uma conta"
-              onClick={() => toast("Cadastro indisponível", { type: "error" })}
-            />
+            <Button style={signin_btn} text="Criar uma conta" onClick={() => showToast("Cadastro indisponível")} />
             <Divisor title="divisor" className="flex_ccr">
               <div className="line" />
               <span>ou</span>
