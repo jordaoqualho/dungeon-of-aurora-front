@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
 import Theme from "@/types/themes";
+import { createGlobalStyle } from "styled-components";
 
 interface GlobalStyleProps {
   theme: Theme; // Add the Theme interface as a prop
@@ -13,7 +13,7 @@ export default createGlobalStyle<GlobalStyleProps>`
     --background: ${(props) => props.theme.color.background};
     --error: ${(props) => props.theme.color.error};
     --warning: ${(props) => props.theme.color.warning};
-    --complete: ${(props) => props.theme.color.complete};
+    --success: ${(props) => props.theme.color.success};
     --border: ${(props) => props.theme.color.border};
     --transparency: ${(props) => props.theme.color.transparency};
 
@@ -47,6 +47,13 @@ export default createGlobalStyle<GlobalStyleProps>`
     --fast: ${(props) => props.theme.transition.fast};
     --normal: ${(props) => props.theme.transition.normal};
     --slow: ${(props) => props.theme.transition.slow};
+
+    --toastify-color-light: var(--basic);
+    --toastify-color-dark: var(--contrast);
+    --toastify-color-info: var(--primary);
+    --toastify-color-success: var(--success);
+    --toastify-color-warning: var(--warning);
+    --toastify-color-error: var(--error);
   }
 
   body {

@@ -17,7 +17,7 @@ export default interface Theme {
     background: string;
     error: string;
     warning: string;
-    complete: string;
+    success: string;
     border: string;
     transparency: string;
   };
