@@ -6,6 +6,7 @@ export const Container = styled.div`
     color: var(--background);
     border-radius: 15px;
     color: var(--basic);
+    min-height: 65px;
     font-weight: 600;
     padding: 20px;
     width: 100%;
@@ -24,7 +25,7 @@ export const Container = styled.div`
 export const Loader = styled.span`
   width: 20px;
   height: 20px;
-  border: 2px solid var(--background);
+  border: 2px solid var(--basic);
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;
