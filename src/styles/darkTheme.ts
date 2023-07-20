@@ -31,7 +31,7 @@ export default {
   },
 
   text: {
-    basic: "#EEEEEF",
+    basic: "#e9e9e9",
     contrast: "#161922",
     bright: "#53565F",
   },

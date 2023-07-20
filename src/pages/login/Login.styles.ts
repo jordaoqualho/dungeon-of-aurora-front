@@ -79,9 +79,10 @@ export const login_btn = {
 };
 
 export const signin_btn = {
-  background: "var(--secGrad)",
+  background: "var(--bacGrad)",
 };
 
 export const google_btn = {
-  background: "var(--bacGrad)",
+  background: "var(--basic)",
+  color: "var(--background)",
 };
