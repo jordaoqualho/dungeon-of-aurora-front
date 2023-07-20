@@ -25,25 +25,28 @@ type LoginData = {
 
 export default function Login() {
   const [loginData, setLoginData] = useState<LoginData>({ user: "", password: "" });
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
+    if (loading) return showToast("Já esta carrgando");
+    setLoading(true);
     await validadeLogin()
       .then((res: any) => {
         showToast(res.message, "success");
         navigate("/home");
       })
-      .catch((error) => showToast(error.message));
+      .catch((error) => showToast(error.message))
+      .finally(() => setLoading(false));
   };
 
   const validadeLogin = async () => {
     const { user, password } = loginData;
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (user === "admin" && password === "admin") resolve({ success: true, message: "Successfully authenticated" });
-        reject({ success: false, message: "Invalid login info" });
+        if (user === "admin" && password === "admin") resolve({ success: true, message: "Você está logado!" });
+        reject({ success: false, message: "Usuário ou senha inválido" });
       }, 1000);
     });
   };
@@ -74,8 +77,12 @@ export default function Login() {
               </div>
               <a href="">Esqueceu a senha?</a>
             </Remember>
-            <Button style={login_btn} type="submit" text="Entrar" />
-            <Button style={signin_btn} text="Criar uma conta" onClick={() => showToast("Cadastro indisponível")} />
+            <Button style={login_btn} type="submit" text="Entrar" loading={loading} />
+            <Button
+              style={signin_btn}
+              text="Criar uma conta"
+              onClick={() => showToast("Cadastro indisponível", "warning")}
+            />
             <Divisor title="divisor" className="flex_ccr">
               <div className="line" />
               <span>ou</span>
