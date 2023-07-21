@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/unbound-method */
-import { CSSProperties, Component, MouseEvent, ReactNode } from "react";
+import { CSSProperties, Component, MouseEvent, ReactNode, createRef } from "react";
 import { findDOMNode } from "react-dom";
 
 interface Props {
@@ -33,6 +33,7 @@ class TiltBox extends Component<Props, State> {
   private transitionTimeout: number | null = null;
   private updateCall: number | null = null;
   private element: Element | Text | null = null;
+  private elementRef: React.RefObject<HTMLDivElement>;
 
   private settings = {
     reverse: false,
@@ -56,10 +57,12 @@ class TiltBox extends Component<Props, State> {
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handleMouseMove = this.handleMouseMove.bind(this);
     this.handleMouseLeave = this.handleMouseLeave.bind(this);
+    this.elementRef = createRef(); // Initialize the ref
   }
 
   componentDidMount() {
-    this.element = findDOMNode(this);
+    // this.element = findDOMNode(this);
+    this.element = this.elementRef.current;
   }
 
   componentWillUnmount() {
@@ -170,6 +173,7 @@ class TiltBox extends Component<Props, State> {
 
     return (
       <div
+        ref={this.elementRef}
         style={style}
         onMouseEnter={this.handleMouseEnter}
         onMouseMove={this.handleMouseMove}
