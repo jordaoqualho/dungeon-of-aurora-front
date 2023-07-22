@@ -1,15 +1,15 @@
 import { fetcher } from "@/providers/fetcherProvider";
-import { HttpMethod } from "@/types/fetcher";
+import { HttpHeaders, HttpMethod } from "@/types/fetcher";
 import { AxiosError, AxiosResponse } from "axios";
 import { useEffect, useState } from "react";
 
 export type UseFetchState<T> = {
   data: T | unknown;
   loading: boolean;
-  error: AxiosError | null;};
+  error: AxiosError | null;
+};
 
-
-export function useFetch<T = any>(url: string, method: HttpMethod = "GET") {
+export function useFetch<T = any>(url: string, method: HttpMethod = "GET", headers: HttpHeaders) {
   const [state, setState] = useState<UseFetchState<AxiosResponse>>({
     data: null,
     loading: false,
@@ -22,6 +22,7 @@ export function useFetch<T = any>(url: string, method: HttpMethod = "GET") {
     const requestConfig = {
       url,
       method,
+      headers,
       data,
     };
 
