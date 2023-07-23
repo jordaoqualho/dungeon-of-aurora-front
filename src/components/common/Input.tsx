@@ -8,13 +8,14 @@ type InputProps = {
   autoFocus?: boolean;
   type?: string;
   name: string;
+  inputError: boolean;
 };
 
 export default function Input(props: InputProps) {
-  const { placeholder, name, type = "text", autoFocus = false, onChange } = props;
+  const { placeholder, name, type = "text", autoFocus = false, onChange, inputError = false } = props;
 
   return (
-    <Container title="input">
+    <Container title="input" error={inputError}>
       {type === "text" ? <AccountCircleIcon className="icon" /> : <HttpsIcon className="icon" />}
       <input
         type={type}
