@@ -15,7 +15,8 @@ import {
   signin_btn,
 } from "@/pages/login/Login.styles";
 import { showToast } from "@/providers/toasterProvider";
-import { useGoogleOneTapLogin } from "@react-oauth/google";
+import { useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google";
+import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -24,14 +25,16 @@ type LoginData = {
   password: string;
 };
 
-type ErrorData = {
+type LoginError = {
   user: boolean;
   password: boolean;
 };
 
 export default function Login() {
   const [loginData, setLoginData] = useState<LoginData>({ user: "", password: "" });
-  const [error, setError] = useState<ErrorData>({ user: false, password: false });
+  const [error, setError] = useState<LoginError>({ user: false, password: false });
+  // const [profile, setProfile] = useLocalStorage("userProfile");
+  // const [user, setUser] = useState<any>();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -79,17 +82,58 @@ export default function Login() {
     setError((prevError) => ({ ...prevError, [name]: value === "" }));
   };
 
-  useGoogleOneTapLogin({
-    onSuccess: (credentialResponse) => {
-      console.log(credentialResponse);
-      // clientId: "636941607196-v894p5a30tc9r0hau15turo1hcqhvj22.apps.googleusercontent.com";
-      // credential: "eyJhbGciOiJSUzI1NiIsImtpZCI6ImEzYmRiZmRlZGUzYmFiYjI2NTFhZmNhMjY3OGRkZThjMGIzNWRmNzYiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJuYmYiOjE2ODk5OTg5MTEsImF1ZCI6IjYzNjk0MTYwNzE5Ni12ODk0cDVhMzB0YzlyMGhhdTE1dHVybzFoY3FodmoyMi5hcHBzLmdvb2dsZXVzZXJjb250ZW50LmNvbSIsInN1YiI6IjExNTk4NDg5NjM1MzI3MzYzMzg1MyIsImVtYWlsIjoiam9yZGFvcXVhbGhvQGdtYWlsLmNvbSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJhenAiOiI2MzY5NDE2MDcxOTYtdjg5NHA1YTMwdGM5cjBoYXUxNXR1cm8xaGNxaHZqMjIuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJuYW1lIjoiSm9yZMOjbyBRdWFsaG8iLCJwaWN0dXJlIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUFjSFR0ZEk0ZXRzaVN6TkxPeUFuSUJVN1VGVHBKQ2xvMWFEZHB1ekNJaVFTSkR0X1J1eD1zOTYtYyIsImdpdmVuX25hbWUiOiJKb3Jkw6NvIiwiZmFtaWx5X25hbWUiOiJRdWFsaG8iLCJpYXQiOjE2ODk5OTkyMTEsImV4cCI6MTY5MDAwMjgxMSwianRpIjoiMDZhYmJhMjQ0MDZmZjVkNjZlNDI5M2I0MTZkOTVkNGI1MjZjZmI4YyJ9.ZMyKGpidQ4Mh8LZ8y0_kBnWceJ2eDLb2zv87Ozwj91XRf98igvntB2OaR6UesIQwTxmVnCXViOpmYBLjzhKPzJR3POtJinZheQ_TdfApuukLcxqq06kbf9Ta2FGvIn6-rjmd3c9vNIeU9Cyv0xnKxGCKBusHLMlR50C5y7O-WexowS-uggSjagm9knxsJRwZL_idvB9O5O1TaOlzHdYeDcpFIQSAadArzQXqL2V9gNlXG8MnIcGRPvZXbYYcrlxSxPogwnhsPNZvdjK0Xm_SEkFyRGv330JqcM9EU5oGYCxCc8sisN0GlvZIIvPQ_HufSv7DR7yd2H1ofPdpVH9CSQ";
-      // select_by: "user_1tap";
+  const loginWithGoogle = useGoogleLogin({
+    onSuccess: (tokenResponse) => {
+      getGoogleProfile(tokenResponse.access_token);
+      showToast("Você está logado!", "success");
+      navigate("/home");
     },
     onError: () => {
       showToast("Login com google falhou");
     },
   });
+
+  const getGoogleProfile = async (access_token: string) => {
+    console.log(access_token);
+
+    const url = `${access_token}`;
+    await axios
+      .get(url)
+      .then((res) => console.log(res.data))
+      .catch((error) => showToast(error));
+  };
+
+  function parseJwt(token: string | undefined) {
+    if (!token) return "";
+    var base64Url = token.split(".")[1];
+    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+    var jsonPayload = decodeURIComponent(
+      atob(base64)
+        .split("")
+        .map(function (c) {
+          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+        })
+        .join("")
+    );
+
+    return JSON.parse(jsonPayload);
+  }
+
+  useGoogleOneTapLogin({
+    onSuccess: (response) => {
+      console.log(parseJwt(response.credential));
+      showToast("Você está logado!", "success");
+      navigate("/home");
+    },
+    onError: () => {
+      showToast("Login com google falhou");
+    },
+  });
+
+  // const logOut = () => {
+  //   googleLogout();
+  //   setProfile(null);
+  // };
 
   return (
     <Container title="container">
@@ -126,7 +170,12 @@ export default function Login() {
               <span>ou</span>
               <div className="line" />
             </Divisor>
-            <Button icon={{ src: google_logo, alt: "google_logo" }} text="Entrar com Google" style={google_btn} />
+            <Button
+              icon={{ src: google_logo, alt: "google_logo" }}
+              onClick={() => loginWithGoogle()}
+              text="Entrar com Google"
+              style={google_btn}
+            />
           </Modal>
           <TiltBox>
             <img className="castle_img" src={castle} alt="castle" />
