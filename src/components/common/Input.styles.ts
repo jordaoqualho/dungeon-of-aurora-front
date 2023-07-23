@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 interface ContainerProps {
-  error?: boolean;
+  $error?: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -21,7 +21,7 @@ export const Container = styled.div<ContainerProps>`
     border-radius: 15px;
     padding: 15px 0 15px 50px;
     margin-bottom: 15px;
-    border: ${(props) => (props.error ? "1px solid var(--error) !important" : "1px solid var(--border)")};
+    border: ${(props) => (props.$error ? "1px solid var(--error) !important" : "1px solid var(--border)")};
 
     &::placeholder {
       color: var(--bright);
