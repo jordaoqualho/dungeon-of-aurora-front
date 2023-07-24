@@ -15,6 +15,7 @@ import {
   signin_btn,
 } from "@/pages/login/Login.styles";
 import { showToast } from "@/providers/toasterProvider";
+import { parseJwt } from "@/utils/jwtParser";
 import { useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useState } from "react";
@@ -33,8 +34,6 @@ type LoginError = {
 export default function Login() {
   const [loginData, setLoginData] = useState<LoginData>({ user: "", password: "" });
   const [error, setError] = useState<LoginError>({ user: false, password: false });
-  // const [profile, setProfile] = useLocalStorage("userProfile");
-  // const [user, setUser] = useState<any>();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -103,22 +102,6 @@ export default function Login() {
       .catch((error) => showToast(error));
   };
 
-  function parseJwt(token: string | undefined) {
-    if (!token) return "";
-    var base64Url = token.split(".")[1];
-    var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-    var jsonPayload = decodeURIComponent(
-      atob(base64)
-        .split("")
-        .map(function (c) {
-          return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
-        })
-        .join("")
-    );
-
-    return JSON.parse(jsonPayload);
-  }
-
   useGoogleOneTapLogin({
     onSuccess: (response) => {
       console.log(parseJwt(response.credential));
@@ -142,7 +125,7 @@ export default function Login() {
           <Modal title="modal">
             <div className="title">
               <h1>Eae blz? 👋</h1>
-              <p>Bota suas informação de login aqui embaixo pra entrar.</p>
+              <p>Bota suas informações de login aqui embaixo pra entrar.</p>
             </div>
             <Input placeholder="Seu usuário" onChange={handleChange} name="user" autoFocus inputError={error.user} />
             <Input
