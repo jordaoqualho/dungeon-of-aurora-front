@@ -188,10 +188,6 @@ export default createGlobalStyle<GlobalStyleProps>`
     border-radius: 20px;
   }
 
-  form {
-    margin: 50px 0;
-  }
-
   button, a, input {
     transition: var(--fast);
   }
