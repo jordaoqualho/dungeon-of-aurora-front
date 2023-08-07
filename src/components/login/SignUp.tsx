@@ -1,44 +1,53 @@
-import { google_logo } from "@/assets";
-import { showToast } from "@/providers/toasterProvider";
-import { SignUpData, SignUpError } from "@/types";
-import { parseJwt } from "@/utils/jwtParser";
-import { useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google";
-import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "../common/Button";
-import Input from "../common/Input";
-import { Modal, google_btn, login_btn } from "./Sign.styles";
+import { google_logo } from "@/assets"
+import { showToast } from "@/providers"
+import { ApiResponse, SignUpData, SignUpError } from "@/types"
+import { parseJwt } from "@/utils/jwtParser"
+import { useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google"
+import axios from "axios"
+import { CSSProperties, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { Button } from "../common/Button"
+import Input from "../common/Input"
+import { Modal, google_btn, login_btn } from "./Sign.styles"
 
-export default function SignUp({ style }: any) {
-  const [signUpData, setSignUpData] = useState<SignUpData>({ user: "", password: "", passwordRepeat: "", email: "" });
+type SignUpProps = {
+  style?: CSSProperties | undefined
+}
+
+export default function SignUp({ style }: SignUpProps) {
+  const [signUpData, setSignUpData] = useState<SignUpData>({ user: "", password: "", passwordRepeat: "", email: "" })
   const [error, setError] = useState<SignUpError>({
     user: false,
     password: false,
     passwordRepeat: false,
     email: false,
-  });
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  })
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
-  const handleSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (loading) return showToast("Já esta carregando");
-    if (!validateFields()) return showToast("Preencha todos os campos!");
-    setLoading(true);
-    await validadeSignUpInfo()
-      .then((res: any) => {
-        showToast(res.message, "success");
-        navigate("/home");
+  const handleSignUp = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    if (loading) return showToast("Já está carregando")
+    if (!validateFields()) return showToast("Preencha todos os campos!")
+    setLoading(true)
+
+    validadeSignUpInfo()
+      .then((res: ApiResponse) => {
+        showToast(res.message, "success")
+        navigate("/home")
       })
-      .catch((error) => showToast(error.message))
-      .finally(() => setLoading(false));
-  };
+      .catch((error) => {
+        showToast((error as Error).message)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }
 
   const validateFields = () => {
-    const { user, password, email, passwordRepeat } = signUpData;
-    const invalidFields = user === "" || password === "" || email === "" || passwordRepeat === "";
-    const diferentPassword = password !== passwordRepeat;
+    const { user, password, email, passwordRepeat } = signUpData
+    const invalidFields = user === "" || password === "" || email === "" || passwordRepeat === ""
+    const diferentPassword = password !== passwordRepeat
 
     setError((prevError) => ({
       ...prevError,
@@ -46,60 +55,60 @@ export default function SignUp({ style }: any) {
       password: password === "",
       email: email === "",
       passwordRepeat: passwordRepeat === "" || diferentPassword,
-    }));
+    }))
 
-    return !invalidFields && !diferentPassword;
-  };
+    return !invalidFields && !diferentPassword
+  }
 
-  const validadeSignUpInfo = async () => {
+  const validadeSignUpInfo = async (): Promise<ApiResponse> => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve({ success: true, message: "Deu bom, conta criada!" });
-        reject({ success: false, message: "Não deu bom, tenta denovo" });
-      }, 1000);
-    });
-  };
+        resolve({ success: true, message: "Deu bom, conta criada!" })
+        reject({ success: false, message: "Não deu bom, tenta denovo" })
+      }, 1000)
+    })
+  }
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     setSignUpData({
       ...signUpData,
       [name]: value,
-    });
-    setError((prevError) => ({ ...prevError, [name]: value === "" }));
-  };
+    })
+    setError((prevError) => ({ ...prevError, [name]: value === "" }))
+  }
 
   const googleSignIn = useGoogleLogin({
     onSuccess: (tokenResponse) => {
-      getGoogleProfile(tokenResponse.access_token);
-      showToast("Você está logado!", "success");
-      navigate("/home");
+      getGoogleProfile(tokenResponse.access_token)
+      showToast("Você está logado!", "success")
+      navigate("/home")
     },
     onError: () => {
-      showToast("Login com google falhou");
+      showToast("Login com google falhou")
     },
-  });
+  })
 
-  const getGoogleProfile = async (access_token: string) => {
-    console.log(access_token);
+  const getGoogleProfile = (access_token: string) => {
+    console.log(access_token)
 
-    const url = `${access_token}`;
-    await axios
+    const url = `${access_token}`
+    axios
       .get(url)
       .then((res) => console.log(res.data))
-      .catch((error) => showToast(error));
-  };
+      .catch((error: ApiResponse) => showToast(error.message))
+  }
 
   useGoogleOneTapLogin({
     onSuccess: (response) => {
-      console.log(parseJwt(response.credential));
-      showToast("Você está logado!", "success");
-      navigate("/home");
+      console.log(parseJwt(response.credential))
+      showToast("Você está logado!", "success")
+      navigate("/home")
     },
     onError: () => {
-      showToast("Login com google falhou");
+      showToast("Login com google falhou")
     },
-  });
+  })
 
   return (
     <Modal title="modal" onSubmit={handleSignUp} style={style}>
@@ -131,5 +140,5 @@ export default function SignUp({ style }: any) {
         style={google_btn}
       />
     </Modal>
-  );
+  )
 }

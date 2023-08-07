@@ -1,13 +1,12 @@
-const config = {
-  google_client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-  backendUrl: import.meta.env.VITE_BACKEND_URL,
-  // environment: import.meta.env.VITE_ENVIRONMENT,
-  // apiKey: import.meta.env.VITE_API_KEY,
-  // persist: persist,
-};
+type configType = {
+  google_client_id: string
+  backendUrl: string
+}
 
-// if (import.meta.env.VITE_ENVIRONMENT === "development") {
-//   config.backendUrl = import.meta.env.VITE_BACKEND_URL_LOCAL;
-// }
-
-export default config;
+export const config: configType = {
+  google_client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID as string,
+  backendUrl:
+    import.meta.env.VITE_ENVIRONMENT === "development"
+      ? (import.meta.env.VITE_LOCAL_BACKEND as string)
+      : (import.meta.env.VITE_PROD_BACKEND as string),
+}
