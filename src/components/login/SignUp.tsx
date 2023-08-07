@@ -1,16 +1,20 @@
 import { google_logo } from "@/assets"
 import { showToast } from "@/providers"
-import { SignUpData, SignUpError } from "@/types"
+import { ApiResponse, SignUpData, SignUpError } from "@/types"
 import { parseJwt } from "@/utils/jwtParser"
 import { useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google"
 import axios from "axios"
-import { useState } from "react"
+import { CSSProperties, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "../common/Button"
 import Input from "../common/Input"
 import { Modal, google_btn, login_btn } from "./Sign.styles"
 
-export default function SignUp({ style }: any) {
+type SignUpProps = {
+  style?: CSSProperties | undefined
+}
+
+export default function SignUp({ style }: SignUpProps) {
   const [signUpData, setSignUpData] = useState<SignUpData>({ user: "", password: "", passwordRepeat: "", email: "" })
   const [error, setError] = useState<SignUpError>({
     user: false,
@@ -21,21 +25,25 @@ export default function SignUp({ style }: any) {
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
-  const handleSignUp = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSignUp = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    if (loading) return showToast("Já esta carregando")
+    if (loading) return showToast("Já está carregando")
     if (!validateFields()) return showToast("Preencha todos os campos!")
     setLoading(true)
-    try {
-      const res: SignUpResponse = await validadeSignUpInfo()
-      showToast(res.message, "success")
-      navigate("/home")
-    } catch (error) {
-      showToast(error.message)
-    } finally {
-      setLoading(false)
-    }
+
+    validadeSignUpInfo()
+      .then((res: ApiResponse) => {
+        showToast(res.message, "success")
+        navigate("/home")
+      })
+      .catch((error) => {
+        showToast((error as Error).message)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
   }
+
   const validateFields = () => {
     const { user, password, email, passwordRepeat } = signUpData
     const invalidFields = user === "" || password === "" || email === "" || passwordRepeat === ""
@@ -52,7 +60,7 @@ export default function SignUp({ style }: any) {
     return !invalidFields && !diferentPassword
   }
 
-  const validadeSignUpInfo = async () => {
+  const validadeSignUpInfo = async (): Promise<ApiResponse> => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve({ success: true, message: "Deu bom, conta criada!" })
@@ -81,14 +89,14 @@ export default function SignUp({ style }: any) {
     },
   })
 
-  const getGoogleProfile = async (access_token: string) => {
+  const getGoogleProfile = (access_token: string) => {
     console.log(access_token)
 
     const url = `${access_token}`
-    await axios
+    axios
       .get(url)
       .then((res) => console.log(res.data))
-      .catch((error) => showToast(error))
+      .catch((error: ApiResponse) => showToast(error.message))
   }
 
   useGoogleOneTapLogin({

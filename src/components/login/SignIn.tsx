@@ -1,33 +1,38 @@
 import { google_logo } from "@/assets"
 import { showToast } from "@/providers"
-import { SignInData, SignInError } from "@/types"
+import { ApiResponse, SignInData, SignInError } from "@/types"
 import { parseJwt } from "@/utils/jwtParser"
-import { useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google"
+import { TokenResponse, useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google"
 import axios from "axios"
-import { useState } from "react"
+import { CSSProperties, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "../common/Button"
 import Checkbox from "../common/Checkbox"
 import Input from "../common/Input"
 import { Divisor, Modal, Remember, google_btn, login_btn, signin_btn } from "./Sign.styles"
 
-export default function SignIn({ style, setSignShow }: any) {
+type SignInProps = {
+  setSignShow: (value: string) => void
+  style: CSSProperties | undefined
+}
+
+export default function SignIn({ style, setSignShow }: SignInProps) {
   const [signInData, setSignInData] = useState<SignInData>({ user: "", password: "" })
   const [error, setError] = useState<SignInError>({ user: false, password: false })
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
-  const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSignIn = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (loading) return showToast("Já esta carregando")
     if (!validateFields()) return showToast("Preencha todos os campos!")
     setLoading(true)
-    await validadeSignInInfo()
-      .then((res: any) => {
+    validadeSignInInfo()
+      .then((res: ApiResponse) => {
         showToast(res.message, "success")
         navigate("/home")
       })
-      .catch((error) => showToast(error.message))
+      .catch((error: ApiResponse) => showToast(error.message))
       .finally(() => setLoading(false))
   }
 
@@ -42,7 +47,7 @@ export default function SignIn({ style, setSignShow }: any) {
     return true
   }
 
-  const validadeSignInInfo = async () => {
+  const validadeSignInInfo = async (): Promise<ApiResponse> => {
     const { user, password } = signInData
     return new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -62,9 +67,9 @@ export default function SignIn({ style, setSignShow }: any) {
   }
 
   const googleSignIn = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      getGoogleProfile(tokenResponse.access_token)
+    onSuccess: (tokenResponse: TokenResponse) => {
       showToast("Você está logado!", "success")
+      getGoogleProfile(tokenResponse.access_token)
       navigate("/home")
     },
     onError: () => {
@@ -72,14 +77,13 @@ export default function SignIn({ style, setSignShow }: any) {
     },
   })
 
-  const getGoogleProfile = async (access_token: string) => {
+  const getGoogleProfile = (access_token: string) => {
     console.log(access_token)
-
     const url = `${access_token}`
-    await axios
+    axios
       .get(url)
       .then((res) => console.log(res.data))
-      .catch((error) => showToast(error))
+      .catch((error: ApiResponse) => showToast(error.message))
   }
 
   useGoogleOneTapLogin({
@@ -94,7 +98,7 @@ export default function SignIn({ style, setSignShow }: any) {
   })
 
   return (
-    <Modal title="modal" onSubmit={handleSignIn} style={...style}>
+    <Modal title="modal" onSubmit={handleSignIn} style={{ ...style }}>
       <div className="title">
         <h1>Eae blz? 👋</h1>
         <p>Bota suas informações de login aqui embaixo pra entrar.</p>
