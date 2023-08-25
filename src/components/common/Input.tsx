@@ -9,10 +9,11 @@ type InputProps = {
   type?: string;
   name: string;
   inputError: boolean;
+  value: string;
 };
 
 export default function Input(props: InputProps) {
-  const { placeholder, name, type = "text", autoFocus = false, onChange, inputError = false } = props;
+  const { placeholder, name, type = "text", autoFocus = false, onChange, inputError = false, value } = props;
 
   return (
     <Container title="input" $error={inputError}>
@@ -23,6 +24,7 @@ export default function Input(props: InputProps) {
         className="user"
         autoFocus={autoFocus}
         onChange={onChange}
+        value={value}
         name={name}
       />
     </Container>

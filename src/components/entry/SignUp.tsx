@@ -78,7 +78,7 @@ export default function SignUp({ style }: SignUpProps) {
     setError((prevError) => ({ ...prevError, [name]: value === "" }))
   }
 
-  const googleSignIn = useGoogleLogin({
+  const googleLogin = useGoogleLogin({
     onSuccess: (tokenResponse) => {
       getGoogleProfile(tokenResponse.access_token)
       showToast("Você está logado!", "success")
@@ -135,7 +135,7 @@ export default function SignUp({ style }: SignUpProps) {
       <Button style={login_btn} type="submit" text="Criar conta" loading={loading} />
       <Button
         icon={{ src: google_logo, alt: "google_logo" }}
-        onClick={() => googleSignIn()}
+        onClick={() => googleLogin()}
         text="Continuar com Google"
         style={google_btn}
       />

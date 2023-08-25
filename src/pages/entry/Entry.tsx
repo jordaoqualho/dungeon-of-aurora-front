@@ -1,11 +1,11 @@
 import castle from "@/assets/images/castle.png";
 import TiltBox from "@/components/common/TiltBox";
-import SignIn from "@/components/login/SignIn";
-import SignUp from "@/components/login/SignUp";
-import { Container } from "@/pages/login/Login.styles";
+import Login from "@/components/entry/Login";
+import SignUp from "@/components/entry/SignUp";
+import { Container } from "@/pages/entry/Entry.styles";
 import { useState } from "react";
 
-export default function Login() {
+export default function Entry() {
   const [signShow, setSignShow] = useState("signIn");
 
   // const logOut = () => {
@@ -17,7 +17,7 @@ export default function Login() {
     <Container title="container">
       <div className="w100 hfs flex_ccc">
         <div className="flex_ssr">
-          <SignIn
+          <Login
             setSignShow={(value: string) => setSignShow(value)}
             style={{ display: signShow === "signIn" ? "block" : "none" }}
           />
