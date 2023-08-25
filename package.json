@@ -7,8 +7,9 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "dev": "set VITE_ENVIRONMENT=development && vite",
-    "prod": "set VITE_ENVIRONMENT=production && vite"
+    "start": "vite",
+    "start:dev": "set VITE_ENVIRONMENT=development&& vite",
+    "start:prod": "set VITE_ENVIRONMENT=production&& vite"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

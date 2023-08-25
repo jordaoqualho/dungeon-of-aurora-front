@@ -1,4 +1,4 @@
-export type SignInData = {
+export type LoginData = {
   user: string;
   password: string;
 };
@@ -9,7 +9,7 @@ export type SignUpData = {
   email: string;
 };
 
-export type SignInError = {
+export type LoginError = {
   user: boolean;
   password: boolean;
 };
