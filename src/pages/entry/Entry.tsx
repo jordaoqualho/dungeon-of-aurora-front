@@ -6,7 +6,7 @@ import { Container } from "@/pages/entry/Entry.styles";
 import { useState } from "react";
 
 export default function Entry() {
-  const [signShow, setSignShow] = useState("signIn");
+  const [showEntry, setShowEntry] = useState("Login");
 
   // const logOut = () => {
   //   googleLogout();
@@ -18,10 +18,13 @@ export default function Entry() {
       <div className="w100 hfs flex_ccc">
         <div className="flex_ssr">
           <Login
-            setSignShow={(value: string) => setSignShow(value)}
-            style={{ display: signShow === "signIn" ? "block" : "none" }}
+            setShowEntry={(value: string) => setShowEntry(value)}
+            style={{ display: showEntry === "Login" ? "block" : "none" }}
           />
-          <SignUp style={{ display: signShow === "SignUp" ? "block" : "none" }} />
+          <SignUp
+            style={{ display: showEntry === "SignUp" ? "block" : "none" }}
+            setShowEntry={(value: string) => setShowEntry(value)}
+          />
           <TiltBox>
             <img className="castle_img" src={castle} alt="castle" />
           </TiltBox>
