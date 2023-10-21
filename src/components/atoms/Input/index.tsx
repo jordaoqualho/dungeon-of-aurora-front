@@ -1,6 +1,6 @@
-import { Container } from "@/components/common/Input.styles";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import HttpsIcon from "@mui/icons-material/Https";
+import { Container } from "./styles";
 
 type InputProps = {
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -12,7 +12,7 @@ type InputProps = {
   value: string;
 };
 
-export default function Input(props: InputProps) {
+export function Input(props: InputProps) {
   const { placeholder, name, type = "text", autoFocus = false, onChange, inputError = false, value } = props;
 
   return (

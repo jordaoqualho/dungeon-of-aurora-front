@@ -1,11 +1,9 @@
 import castle from "@/assets/images/castle.png";
-import TiltBox from "@/components/common/TiltBox";
-import Login from "@/components/entry/Login";
-import SignUp from "@/components/entry/SignUp";
-import { Container } from "@/pages/entry/Entry.styles";
+import { Login, SignUp, TiltBox } from "@/components";
 import { useState } from "react";
+import { Container } from "./styles";
 
-export default function Entry() {
+export function Entry() {
   const [showEntry, setShowEntry] = useState("Login");
 
   // const logOut = () => {

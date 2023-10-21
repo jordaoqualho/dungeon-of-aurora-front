@@ -1,20 +1,17 @@
+import { Button, Checkbox, GoogleButton, Input } from "@/components";
 import authService from "@/connection/authService";
 import { showToast } from "@/providers";
 import { LoginData, LoginError } from "@/types";
 import { CSSProperties, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../common/Button";
-import Checkbox from "../common/Checkbox";
-import Input from "../common/Input";
-import GoogleButton from "./GoogleButton";
-import { Divisor, Modal, Remember, login_btn, signin_btn } from "./Sign.styles";
+import { Divisor, Modal, Remember, login_btn, signin_btn } from "../SignUp/styles";
 
 type LoginProps = {
   setShowEntry: (value: string) => void;
   style: CSSProperties | undefined;
 };
 
-export default function Login({ style, setShowEntry }: LoginProps) {
+export function Login({ style, setShowEntry }: LoginProps) {
   const initialCredentials = { user: "", password: "" };
   const [credentials, setCredentials] = useState<LoginData>(initialCredentials);
   const [error, setError] = useState<LoginError>({ user: false, password: false });

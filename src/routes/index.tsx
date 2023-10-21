@@ -1,6 +1,4 @@
-import Entry from "@/pages/entry/Entry";
-import NotFound from "@/pages/errors/NotFound";
-import Home from "@/pages/home/Home";
+import { Entry, Home, NotFound } from "@/components";
 import { BrowserRouter, Route, Routes as RoutesContainer } from "react-router-dom";
 
 export default function Routes() {

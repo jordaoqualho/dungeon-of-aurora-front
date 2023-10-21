@@ -1,19 +1,18 @@
+import { Button, Input } from "@/components";
 import { showToast } from "@/providers";
 import { ApiResponse, SignUpData, SignUpError } from "@/types";
 import { parseJwt } from "@/utils/jwtParser";
 import { useGoogleOneTapLogin } from "@react-oauth/google";
 import { CSSProperties, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../common/Button";
-import Input from "../common/Input";
-import { Modal, signin_btn, login_btn } from "./Sign.styles";
+import { Modal, login_btn, signin_btn } from "./styles";
 
 type SignUpProps = {
   style?: CSSProperties | undefined;
   setShowEntry: (value: string) => void;
 };
 
-export default function SignUp({ style, setShowEntry }: SignUpProps) {
+export function SignUp({ style, setShowEntry }: SignUpProps) {
   const [signUpData, setSignUpData] = useState<SignUpData>({ user: "", password: "", passwordRepeat: "", email: "" });
   const [error, setError] = useState<SignUpError>({
     user: false,

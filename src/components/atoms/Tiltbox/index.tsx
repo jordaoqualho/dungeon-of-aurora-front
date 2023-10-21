@@ -24,7 +24,7 @@ interface State {
   style: CSSProperties
 }
 
-class TiltBox extends Component<Props, State> {
+export class TiltBox extends Component<Props, State> {
   private width: number | null = null
   private height: number | null = null
   private left: number | null = null
@@ -183,5 +183,3 @@ class TiltBox extends Component<Props, State> {
     )
   }
 }
-
-export default TiltBox
