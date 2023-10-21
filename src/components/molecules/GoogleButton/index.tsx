@@ -1,14 +1,13 @@
 import { google_logo } from "@/assets";
+import { Button } from "@/components";
 import { showToast } from "@/providers";
 import { ApiResponse } from "@/types";
 import { parseJwt } from "@/utils/jwtParser";
 import { TokenResponse, useGoogleLogin, useGoogleOneTapLogin } from "@react-oauth/google";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../common/Button";
-import { google_btn } from "./Sign.styles";
 
-export default function GoogleButton() {
+export function GoogleButton() {
   const navigate = useNavigate();
 
   const successLogin = () => {
@@ -48,7 +47,10 @@ export default function GoogleButton() {
       icon={{ src: google_logo, alt: "google_logo" }}
       onClick={() => googleButtonLogin()}
       text="Entrar com Google"
-      style={google_btn}
+      style={{
+        background: "var(--basic)",
+        color: "var(--background)",
+      }}
     />
   );
 }

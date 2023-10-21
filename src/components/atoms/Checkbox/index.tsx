@@ -1,7 +1,7 @@
-import { Container } from "@/components/common/Checkbox.styles";
 import { useState } from "react";
+import { Container } from "./styles";
 
-export default function Checkbox() {
+export function Checkbox() {
   const [isChecked, setIsChecked] = useState<boolean>(true);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {

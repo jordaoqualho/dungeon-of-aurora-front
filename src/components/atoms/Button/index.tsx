@@ -1,4 +1,4 @@
-import { Container, Loader } from "./Button.styles";
+import { Container, Loader } from "./styles";
 
 type IconType = {
   src: string;
