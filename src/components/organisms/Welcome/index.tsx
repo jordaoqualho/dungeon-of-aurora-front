@@ -1,7 +1,6 @@
 import { Button, Checkbox, GoogleButton, Input } from "@/components";
-import { LoginData, SignUpData, SignUpError } from "@/types";
+import { LoginData, SignUpError } from "@/types";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Container, Divisor, Modal, Remember, login_btn, signin_btn } from "./styles";
 
 export function Welcome() {
@@ -14,7 +13,6 @@ export function Welcome() {
     email: false,
   });
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -23,6 +21,9 @@ export function Welcome() {
       [name]: value,
     });
     setError((prevError) => ({ ...prevError, [name]: value === "" }));
+
+    // remove
+    setLoading(true)
   };
 
   return (
