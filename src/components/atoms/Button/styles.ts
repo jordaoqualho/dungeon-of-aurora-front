@@ -6,9 +6,9 @@ export const Container = styled.div`
     color: var(--background);
     border-radius: 15px;
     color: var(--basic);
-    min-height: 65px;
+    min-height: 50px;
     font-weight: 600;
-    padding: 20px;
+    padding: 10px;
     width: 100%;
 
     &:focus {

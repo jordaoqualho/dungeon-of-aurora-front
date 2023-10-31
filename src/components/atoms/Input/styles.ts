@@ -10,7 +10,7 @@ export const Container = styled.div<ContainerProps>`
     font-size: var(--large);
     color: var(--bright);
     z-index: 10;
-    top: 20px;
+    top: 17px;
     left: 20px;
   }
 
@@ -19,7 +19,7 @@ export const Container = styled.div<ContainerProps>`
     font-size: var(--medium);
     color: var(--basic);
     border-radius: 15px;
-    padding: 15px 0 15px 50px;
+    padding: 11.5px 0 11.5px 50px;
     margin-bottom: 15px;
     border: ${(props) => (props.$error ? "1px solid var(--error) !important" : "1px solid var(--border)")};
 
