@@ -4,15 +4,15 @@ export const Container = styled.div`
   width: -webkit-fill-available;
   position: relative;
   height: 100vh;
-  padding: 40px;
+  padding: 20px;
 
-  .castle_img {
-    width: 450px;
-    height: 100%;
-    background: var(--bright);
-    box-shadow: var(--normalShadow);
-    border-radius: 20px;
+  .landscape {
+    position: absolute;
     object-fit: cover;
+    height: 100vh;
+    width: 100%;
+    left: 0;
+    top: 0;
   }
 `;
 

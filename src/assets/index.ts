@@ -1,4 +1,6 @@
-import castle from "@/assets/images/castle.png";
+import giphy from "@/assets/gifs/giphy.gif";
+import landscape from '@/assets/images/landscape.jpg';
 import google_logo from "@/assets/svgs/google_logo.svg";
 
-export { castle, google_logo };
+export { giphy, google_logo, landscape };
+

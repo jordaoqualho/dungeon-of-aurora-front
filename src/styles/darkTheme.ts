@@ -20,7 +20,7 @@ export default {
     success: "#3DBEA9",
     warning: "#F9F871",
     error: "#FF553C",
-    border: "#2B2E37",
+    border: "#5f5f5f",
     transparency: "rgba(32, 32, 44, 0.25)",
   },
 
@@ -33,7 +33,7 @@ export default {
   text: {
     basic: "#e9e9e9",
     contrast: "#161922",
-    bright: "#53565F",
+    bright: "#a9a9a9",
   },
 
   shadow: {
