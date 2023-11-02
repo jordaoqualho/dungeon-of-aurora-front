@@ -1,7 +1,7 @@
 import { Button, Input } from "@/components";
 import { userService } from "@/connection";
 import { showToast } from "@/providers";
-import { ApiResponse, SignUpData, SignUpError } from "@/types";
+import { SignUpData, SignUpError } from "@/types";
 import { CSSProperties, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal, login_btn, signin_btn } from "./styles";
