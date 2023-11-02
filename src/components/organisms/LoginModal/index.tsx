@@ -2,29 +2,23 @@ import { Button, Checkbox, GoogleButton, Input } from "@/components";
 import { authService } from "@/connection";
 import { showToast } from "@/providers";
 import { LoginData, LoginError } from "@/types";
-import { CSSProperties, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Divisor, Modal, Remember, login_btn, signin_btn } from "../SignUp/styles";
+import { Divisor, Modal, Remember, login_btn, signin_btn } from "./styles";
 
-type LoginProps = {
-  setShowEntry: (value: string) => void;
-  style: CSSProperties | undefined;
+type LoginModalProps = {
+  setShowLoginModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export function Login({ style, setShowEntry }: LoginProps) {
+export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
   const initialCredentials = { email: "", password: "" };
   const [credentials, setCredentials] = useState<LoginData>(initialCredentials);
-  const [error, setError] = useState<LoginError>({ email: false, password: false });
+  const [error, setError] = useState<LoginError>({
+    email: false,
+    password: false,
+  });
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
-  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (loading) return showToast("Já esta carregando");
-    if (!validateFields()) return showToast("Preencha todos os campos!");
-    setLoading(true);
-    authLogin();
-  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -35,11 +29,30 @@ export function Login({ style, setShowEntry }: LoginProps) {
     setError((prevError) => ({ ...prevError, [name]: value === "" }));
   };
 
+  const handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (loading) return showToast("Já esta carregando");
+    if (!validateFields()) return showToast("Preencha todos os campos!");
+    setLoading(true);
+    authLogin();
+  };
+
+  type response = {
+    data: {
+      data: {
+        user: {
+          name: string
+        }
+      };
+    };
+  };
+
   const authLogin = () => {
     authService
       .login(credentials)
-      .then(() => {
-        showToast("Você está logado!", "success");
+      .then((res) => {
+        const response = res as unknown as response;
+        showToast(`Bem vindo ${response.data.data.user.name}`, "success");
         navigate("/home");
       })
       .catch(() => {
@@ -53,22 +66,21 @@ export function Login({ style, setShowEntry }: LoginProps) {
     const { email, password } = credentials;
 
     if (email === "" || password === "") {
-      setError((prevError) => ({ ...prevError, email: email === "", password: password === "" }));
+      setError((prevError) => ({ ...prevError, user: email === "", password: password === "" }));
       return false;
     }
 
     return true;
   };
-
   return (
-    <Modal title="modal" onSubmit={handleLogin} style={{ ...style }}>
+    <Modal onSubmit={handleLogin} autoComplete="off">
       <div className="title">
         <h1>Eae blz? 👋</h1>
         <p>Bota suas informações de login aqui embaixo pra entrar.</p>
       </div>
       <Input
         value={credentials.email}
-        placeholder="Seu usuário"
+        placeholder="Seu email"
         onChange={handleChange}
         name="email"
         autoFocus
@@ -90,7 +102,7 @@ export function Login({ style, setShowEntry }: LoginProps) {
         <a href="#">Esqueceu a senha?</a>
       </Remember>
       <Button style={login_btn} type="submit" text="Entrar" loading={loading} />
-      <Button style={signin_btn} text="Criar uma conta" onClick={() => setShowEntry("SignUp")} />
+      <Button style={signin_btn} text="Criar uma conta" onClick={() => setShowLoginModal(false)} />
       <Divisor title="divisor" className="flex_ccr">
         <div className="line" />
         <span>ou</span>

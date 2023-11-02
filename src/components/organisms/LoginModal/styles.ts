@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  /* ... */
-`;
-
-export const Modal = styled.div`
+export const Modal = styled.form`
   padding: 20px;
   border-radius: 20px;
   background: rgba(0, 0, 0, 0.3);

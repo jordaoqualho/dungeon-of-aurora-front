@@ -1,5 +1,5 @@
 import { giphy } from "@/assets";
-import { Welcome } from "@/components/organisms/Welcome";
+import { Welcome } from "@/components/templates/Welcome";
 import { Container } from "./styles";
 
 export function Entry() {
