@@ -1,21 +1,21 @@
 export type LoginData = {
-  user: string;
+  email: string;
   password: string;
 };
 export type SignUpData = {
-  user: string;
+  name: string;
   password: string;
   passwordRepeat: string;
   email: string;
 };
 
 export type LoginError = {
-  user: boolean;
+  email: boolean;
   password: boolean;
 };
 
 export type SignUpError = {
-  user: boolean;
+  name: boolean;
   password: boolean;
   passwordRepeat: boolean;
   email: boolean;

@@ -3,11 +3,12 @@ import { AuthInterface } from '@/interfaces';
 import { LoginData } from '@/types';
 
 class AuthService implements AuthInterface {
-  async login(login: LoginData): Promise<void> {
-    await backend.post(`/auth/login`, 
-    {password: login.password, email: login.user});
+
+  async login({password, email}: LoginData): Promise<void> {
+    return await backend.post(`/auth/login`, 
+    {password, email});
   }
+
 }
 
-const authService: AuthInterface = new AuthService();
-export default authService;
+export const authService: AuthInterface = new AuthService();
