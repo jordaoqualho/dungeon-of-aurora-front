@@ -13,9 +13,9 @@ type SignUpProps = {
 };
 
 export function SignUp({ style, setShowEntry }: SignUpProps) {
-  const [signUpData, setSignUpData] = useState<SignUpData>({ user: "", password: "", passwordRepeat: "", email: "" });
+  const [signUpData, setSignUpData] = useState<SignUpData>({ name: "", password: "", passwordRepeat: "", email: "" });
   const [error, setError] = useState<SignUpError>({
-    user: false,
+    name: false,
     password: false,
     passwordRepeat: false,
     email: false,
@@ -43,13 +43,13 @@ export function SignUp({ style, setShowEntry }: SignUpProps) {
   };
 
   const validateFields = () => {
-    const { user, password, email, passwordRepeat } = signUpData;
-    const invalidFields = user === "" || password === "" || email === "" || passwordRepeat === "";
+    const { name, password, email, passwordRepeat } = signUpData;
+    const invalidFields = name === "" || password === "" || email === "" || passwordRepeat === "";
     const diferentPassword = password !== passwordRepeat;
 
     setError((prevError) => ({
       ...prevError,
-      user: user === "",
+      name: name === "",
       password: password === "",
       email: email === "",
       passwordRepeat: passwordRepeat === "" || diferentPassword,
@@ -95,11 +95,11 @@ export function SignUp({ style, setShowEntry }: SignUpProps) {
       </div>
       <Input
         placeholder="Qual seu nome?"
-        value={signUpData.user}
+        value={signUpData.name}
         onChange={handleChange}
-        name="user"
+        name="name"
         autoFocus
-        inputError={error.user}
+        inputError={error.name}
       />
       <Input
         placeholder="Qual email tu usa?"
