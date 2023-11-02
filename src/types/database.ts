@@ -1,11 +1,11 @@
 export type User = {
-  id: string;
+  id?: string;
   name: string;
   password: string;
   email: string;
-  avatarUrl: string;
-  totalGamesPlayed: number;
-  quests: string[];
-  inspiration: number;
+  avatarUrl?: string;
+  totalGamesPlayed?: number;
+  quests?: string[];
+  inspiration?: number;
 }
 
