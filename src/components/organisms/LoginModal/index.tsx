@@ -1,8 +1,9 @@
 import { Button, Checkbox, GoogleButton, Input } from "@/components";
 import { authService } from "@/connection";
+import { useLocalStorage } from "@/hooks";
 import { showToast } from "@/providers";
-import { LoginData, LoginError } from "@/types";
-import { useState } from "react";
+import { LoginData, LoginError, User } from "@/types";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Divisor, Modal, Remember, login_btn, signin_btn } from "./styles";
 
@@ -13,6 +14,7 @@ type LoginModalProps = {
 export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
   const initialCredentials = { email: "", password: "" };
   const [credentials, setCredentials] = useState<LoginData>(initialCredentials);
+  const [user, setUser] = useLocalStorage<User>("user");
   const [error, setError] = useState<LoginError>({
     email: false,
     password: false,
@@ -37,23 +39,11 @@ export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
     authLogin();
   };
 
-  type response = {
-    data: {
-      data: {
-        user: {
-          name: string
-        }
-      };
-    };
-  };
-
   const authLogin = () => {
     authService
       .login(credentials)
-      .then((res) => {
-        const response = res as unknown as response;
-        showToast(`Bem vindo ${response.data.data.user.name}`, "success");
-        navigate("/home");
+      .then((response) => {
+        setUser(response.user);
       })
       .catch(() => {
         setCredentials(initialCredentials);
@@ -72,6 +62,14 @@ export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
 
     return true;
   };
+
+  useEffect(() => {
+    if (user) {
+      showToast(`Bem vindo ${user.name}`, "success");
+      navigate("/home");
+    }
+  }, [user]);
+
   return (
     <Modal onSubmit={handleLogin} autoComplete="off">
       <div className="title">

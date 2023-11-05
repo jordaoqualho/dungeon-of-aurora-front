@@ -1,8 +1,9 @@
 import { Button, Input } from "@/components";
 import { userService } from "@/connection";
+import { useLocalStorage } from "@/hooks/useLocalStore";
 import { showToast } from "@/providers";
-import { SignUpData, SignUpError } from "@/types";
-import { CSSProperties, useState } from "react";
+import { SignUpData, SignUpError, User } from "@/types";
+import { CSSProperties, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal, login_btn, signin_btn } from "./styles";
 
@@ -12,8 +13,9 @@ type RegisterModalProps = {
 };
 
 export default function RegisterModal({ setShowLoginModal }: RegisterModalProps) {
-  const initialCredentials = { name: "", password: "", passwordRepeat: "", email: "" }
+  const initialCredentials = { name: "", password: "", passwordRepeat: "", email: "" };
   const [signUpData, setSignUpData] = useState<SignUpData>(initialCredentials);
+  const [user, setUser] = useLocalStorage<User>("user");
   const [error, setError] = useState<SignUpError>({
     name: false,
     password: false,
@@ -31,28 +33,22 @@ export default function RegisterModal({ setShowLoginModal }: RegisterModalProps)
     registerUser();
   };
 
-  type response = {
-      data: {
-        data: {
-          name: string
-        }
-      }
-  }
-
   const registerUser = () => {
     userService
       .post(signUpData)
-      .then((res) => {
-        const teste = res as unknown as response;
-        showToast(`Bem vindo ${teste.data.data.name}`, "success");
-        navigate("/home");
+      .then((createdUser: User) => {
+        setUser(createdUser);
       })
       .catch((error) => {
-        console.log(error);
-        // setSignUpData(initialCredentials);
+        console.log("📌  registerUser Error → ", error);
         showToast("Usuário ou senha inválido");
       })
       .finally(() => setLoading(false));
+  };
+
+  const successRegister = () => {
+    showToast(`Bem vindo ${user.name}`, "success");
+    navigate("/home");
   };
 
   const validateFields = () => {
@@ -79,6 +75,12 @@ export default function RegisterModal({ setShowLoginModal }: RegisterModalProps)
     });
     setError((prevError) => ({ ...prevError, [name]: value === "" }));
   };
+
+  useEffect(() => {
+    if (user) {
+      successRegister();
+    }
+  }, [user]);
 
   return (
     <Modal title="modal" onSubmit={handleSignUp} autoComplete="off">
