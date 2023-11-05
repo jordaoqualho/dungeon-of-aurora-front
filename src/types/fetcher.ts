@@ -8,3 +8,9 @@ export type FetcherConfig = {
   url: string;
   headers?: HttpHeaders;
 };
+
+export type ResponseAxios<T> = {
+  data: T;
+  status: number;
+  message: string;
+}
