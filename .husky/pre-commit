@@ -3,4 +3,4 @@
 
 exec >/dev/tty 2>&1
 
-yarn staged
+npx lint-staged
