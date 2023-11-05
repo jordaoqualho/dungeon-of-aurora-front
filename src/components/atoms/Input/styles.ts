@@ -10,18 +10,18 @@ export const Container = styled.div<ContainerProps>`
     font-size: var(--large);
     color: var(--bright);
     z-index: 10;
-    top: 17px;
+    top: 15px;
     left: 20px;
   }
 
   input {
-    background-color: var(--background);
+    background-color: #ffffff08;
     font-size: var(--medium);
     color: var(--basic);
     border-radius: 15px;
     padding: 11.5px 0 11.5px 50px;
     margin-bottom: 15px;
-    border: ${(props) => (props.$error ? "1px solid var(--error) !important" : "1px solid var(--border)")};
+    border: ${(props) => (props.$error ? "1px solid var(--error) !important" : "1px solid #73308952")};
 
     &::placeholder {
       color: var(--bright);
