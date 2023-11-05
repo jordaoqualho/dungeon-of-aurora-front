@@ -9,11 +9,12 @@
     "preview": "vite preview",
     "start": "vite",
     "start:dev": "set VITE_ENVIRONMENT=development&& vite",
-    "start:prod": "set VITE_ENVIRONMENT=production&& vite"
+    "start:prod": "set VITE_ENVIRONMENT=production&& vite",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint"
     }
   },
   "dependencies": {
