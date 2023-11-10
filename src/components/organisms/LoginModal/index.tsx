@@ -1,8 +1,8 @@
 import { Button, Checkbox, GoogleButton, Input } from "@/components";
 import { authService } from "@/connection";
-import { useLocalStorage } from "@/hooks";
 import { showToast } from "@/providers";
-import { LoginData, LoginError, User } from "@/types";
+import { LoginData, LoginError } from "@/types";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Divisor, Modal, Remember, login_btn, signin_btn } from "./styles";
@@ -14,7 +14,7 @@ type LoginModalProps = {
 export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
   const initialCredentials = { email: "", password: "" };
   const [credentials, setCredentials] = useState<LoginData>(initialCredentials);
-  const [user, setUser] = useLocalStorage<User>("user");
+  const [user, setUser] = useLocalStorage("user");
   const [error, setError] = useState<LoginError>({
     email: false,
     password: false,
@@ -64,10 +64,7 @@ export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
   };
 
   useEffect(() => {
-    if (user) {
-      showToast(`Bem vindo ${user.name}`, "success");
-      navigate("/home");
-    }
+    if (user) navigate("/home");
   }, [user]);
 
   return (

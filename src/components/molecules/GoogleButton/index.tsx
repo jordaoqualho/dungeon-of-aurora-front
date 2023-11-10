@@ -1,10 +1,10 @@
 import { google_logo } from "@/assets";
 import { Button } from "@/components";
 import { userService } from "@/connection";
-import { useLocalStorage } from "@/hooks/useLocalStore";
 import { showToast } from "@/providers";
 import { ApiResponse, GoogleResponse, User } from "@/types";
 import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -23,11 +23,6 @@ export function GoogleButton() {
     },
     onError: failedLogin,
   });
-
-  const successLogin = () => {
-    showToast(`Você está logado ${user?.name}`, "success");
-    navigate("/home");
-  };
 
   const getGoogleProfile = (access_token: string) => {
     axios
@@ -70,8 +65,9 @@ export function GoogleButton() {
   // });
 
   useEffect(() => {
-    if (!user) return;
-    successLogin();
+    if (user) {
+      navigate("/home");
+    }
   }, [user]);
 
   return (
