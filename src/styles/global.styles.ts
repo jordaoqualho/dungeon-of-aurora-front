@@ -15,6 +15,7 @@ export default createGlobalStyle<GlobalStyleProps>`
     --warning: ${(props) => props.theme.color.warning};
     --success: ${(props) => props.theme.color.success};
     --border: ${(props) => props.theme.color.border};
+    --ground: ${(props) => props.theme.color.ground};
     --transparency: ${(props) => props.theme.color.transparency};
 
     /* Gradients */
@@ -28,7 +29,8 @@ export default createGlobalStyle<GlobalStyleProps>`
     --bright: ${(props) => props.theme.text.bright};
 
     /* Fonts */
-    --main: ${(props) => props.theme.font.family};
+    --main: ${(props) => props.theme.font.main};
+    --second: ${(props) => props.theme.font.second};
     --micro: ${(props) => props.theme.font.micro};
     --small: ${(props) => props.theme.font.small};
     --medium: ${(props) => props.theme.font.medium};
@@ -80,7 +82,7 @@ export default createGlobalStyle<GlobalStyleProps>`
   }
 
   * {
-    font-family: var(--main);
+    font-family: var(--second);
     position: relative;
     box-sizing: border-box;
     outline: none;
@@ -202,6 +204,20 @@ export default createGlobalStyle<GlobalStyleProps>`
   select {
     outline: none;
     width: 100%;
+    appearance: none; /* Remove default appearance */
+    -webkit-appearance: none; /* For older browsers */
+    min-width: 100px;
+  }
+
+  input,select {
+    background-color: var(--transparency);
+    color: var(--basic);
+    border-radius: 3px;
+  }
+
+
+  input::placeholder {
+    color: var(--bright);
   }
 
   h3,

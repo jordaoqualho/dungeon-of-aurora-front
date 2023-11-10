@@ -2,7 +2,8 @@ export default {
   title: "dark",
 
   font: {
-    family: "Poppins",
+    main: "Bebas Neue",
+    second: "Rubik",
     micro: "1rem",
     small: "1.2rem",
     medium: "1.6rem",
@@ -16,11 +17,12 @@ export default {
   color: {
     primary: "#874EFE",
     secundary: "#FE852C",
-    background: "#22252E",
-    success: "#3DBEA9",
+    background: "#232428",
+    success: "#22a590",
     warning: "#F9F871",
-    error: "#FF553C",
-    border: "#5f5f5f",
+    error: "#b53523",
+    border: "#292929",
+    ground: "#1A1A1A",
     transparency: "rgba(32, 32, 44, 0.25)",
   },
 
@@ -31,7 +33,7 @@ export default {
   },
 
   text: {
-    basic: "#e9e9e9",
+    basic: "#f5f5f5",
     contrast: "#161922",
     bright: "#a9a9a9",
   },

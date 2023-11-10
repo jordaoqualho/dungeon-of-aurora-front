@@ -1,7 +1,8 @@
 export default interface Theme {
   title: string;
   font: {
-    family: string;
+    main: string;
+    second: string;
     micro: string;
     small: string;
     medium: string;
@@ -19,6 +20,7 @@ export default interface Theme {
     warning: string;
     success: string;
     border: string;
+    ground: string;
     transparency: string;
   };
   gradient: {
