@@ -1,8 +1,8 @@
 import { Button, Input } from "@/components";
 import { userService } from "@/connection";
-import { useLocalStorage } from "@/hooks/useLocalStore";
 import { showToast } from "@/providers";
 import { SignUpData, SignUpError, User } from "@/types";
+import { useLocalStorage } from "@uidotdev/usehooks";
 import { CSSProperties, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Modal, login_btn, signin_btn } from "./styles";
