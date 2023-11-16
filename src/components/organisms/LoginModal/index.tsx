@@ -1,10 +1,10 @@
 import { Button, Checkbox, GoogleButton, Input } from "@/components";
 import { authService } from "@/connection";
 import { showToast } from "@/providers";
-import { LoginData, LoginError } from "@/types";
-import { useLocalStorage } from "@uidotdev/usehooks";
+import { LoginData, LoginError, User, defaultUser } from "@/types";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "usehooks-ts";
 import { Divisor, Modal, Remember, login_btn, signin_btn } from "./styles";
 
 type LoginModalProps = {
@@ -14,7 +14,7 @@ type LoginModalProps = {
 export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
   const initialCredentials = { email: "", password: "" };
   const [credentials, setCredentials] = useState<LoginData>(initialCredentials);
-  const [user, setUser] = useLocalStorage("user");
+  const [user, setUser] = useLocalStorage<User>("user", defaultUser);
   const [error, setError] = useState<LoginError>({
     email: false,
     password: false,

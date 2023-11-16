@@ -1,10 +1,10 @@
 import { Button, Input } from "@/components";
 import { userService } from "@/connection";
 import { showToast } from "@/providers";
-import { SignUpData, SignUpError, User } from "@/types";
-import { useLocalStorage } from "@uidotdev/usehooks";
+import { SignUpData, SignUpError, User, defaultUser } from "@/types";
 import { CSSProperties, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "usehooks-ts";
 import { Modal, login_btn, signin_btn } from "./styles";
 
 type RegisterModalProps = {
@@ -15,7 +15,7 @@ type RegisterModalProps = {
 export default function RegisterModal({ setShowLoginModal }: RegisterModalProps) {
   const initialCredentials = { name: "", password: "", passwordRepeat: "", email: "" };
   const [signUpData, setSignUpData] = useState<SignUpData>(initialCredentials);
-  const [user, setUser] = useLocalStorage<User>("user");
+  const [user, setUser] = useLocalStorage<User>("user", defaultUser);
   const [error, setError] = useState<SignUpError>({
     name: false,
     password: false,
