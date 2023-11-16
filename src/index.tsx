@@ -11,14 +11,20 @@ import { env } from "@/config";
 import Routes from "@/routes";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <GoogleOAuthProvider clientId={env.google_client_id}>
-      <ToastContainer />
-      <GlobalStyle theme={darkTheme} />
-      <AppContainer className="flex_ssr">
-        <Routes />
-      </AppContainer>
-    </GoogleOAuthProvider>{" "}
+    <QueryClientProvider client={queryClient}>
+      <GoogleOAuthProvider clientId={env.google_client_id}>
+        <ToastContainer />
+        <GlobalStyle theme={darkTheme} />
+        <AppContainer className="flex_ssr">
+          <Routes />
+        </AppContainer>
+      </GoogleOAuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
