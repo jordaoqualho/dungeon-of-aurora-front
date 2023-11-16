@@ -1,5 +1,5 @@
 export type User = {
-  id?: string;
+  _id?: string;
   name: string;
   password: string;
   email: string;
@@ -7,5 +7,12 @@ export type User = {
   totalGamesPlayed?: number;
   quests?: string[];
   inspiration?: number;
-}
+};
+
+export const defaultUser = {
+  _id: "",
+  name: "",
+  password: "",
+  email: "",
+};
 
