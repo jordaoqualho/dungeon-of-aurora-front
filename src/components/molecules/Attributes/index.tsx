@@ -1,143 +1,65 @@
+import { Attribute } from "@/components";
+import { Character } from "@/types";
+import { ChangeEvent } from "react";
 import { Container } from "./styles";
 
-export const Attributes = () => {
-  const handleInputChange = () => {
-    console.log("mudou");
+type AttributesProps = {
+  character: Character;
+  setCharacter: (char: Character) => void;
+};
+
+export const Attributes = (props: AttributesProps) => {
+  const { character, setCharacter } = props;
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = event.target;
+    setCharacter({
+      ...character,
+      attributes: {
+        ...character.attributes,
+        [name]: value,
+      },
+    });
   };
 
   return (
     <Container className="flex_ccr">
-      <div className="capability flex_csr">
-        <div className="mod flex_ccc">
-          <input type="text" value="11" onChange={handleInputChange} />
-        </div>
-        <p>Força</p>
-        <div className="points flex_ccc">
-          {new Array(5).fill(0).map((index: string) => {
-            return <div key={index} className="mark" />;
-          })}
-        </div>
-        <div className="points flex_ccc">
-          {new Array(0).fill(0).map((index: string) => {
-            return <div key={index} className="positive" />;
-          })}
-        </div>
-        <div className="points flex_ccc">
-          {new Array(0).fill(0).map((index: string) => {
-            return <div key={index} className="negative" />;
-          })}
-        </div>
-      </div>
-
-      <div className="capability flex_csr">
-        <div className="mod flex_ccc">
-          <input type="text" value="20" onChange={handleInputChange} />
-        </div>
-        <p>Destreza</p>
-        <div className="points flex_ccc">
-          {new Array(5).fill(0).map((index: string) => {
-            return <div key={index} className="mark" />;
-          })}
-        </div>
-        <div className="points flex_ccc">
-          {new Array(5).fill(0).map((index: string) => {
-            return <div key={index} className="positive" />;
-          })}
-        </div>
-        <div className="points flex_ccc">
-          {new Array(0).fill(0).map((index: string) => {
-            return <div key={index} className="negative" />;
-          })}
-        </div>
-      </div>
-
-      <div className="capability flex_csr">
-        <div className="mod flex_ccc">
-          <input type="text" value="16" onChange={handleInputChange} />
-        </div>
-        <p>Constituição</p>
-        <div className="points flex_ccc">
-          {new Array(5).fill(0).map((index: string) => {
-            return <div key={index} className="mark" />;
-          })}
-        </div>
-        <div className="points flex_ccc">
-          {new Array(3).fill(0).map((index: string) => {
-            return <div key={index} className="positive" />;
-          })}
-        </div>
-        <div className="points flex_ccc">
-          {new Array(0).fill(0).map((index: string) => {
-            return <div key={index} className="negative" />;
-          })}
-        </div>
-      </div>
-
-      <div className="capability flex_csr">
-        <div className="mod flex_ccc">
-          <input type="text" value="20" onChange={handleInputChange} />
-        </div>
-        <p>Inteligência</p>
-        <div className="points flex_ccc">
-          {new Array(5).fill(0).map((index: string) => {
-            return <div key={index} className="mark" />;
-          })}
-        </div>
-        <div className="points flex_ccc">
-          {new Array(5).fill(0).map((index: string) => {
-            return <div key={index} className="positive" />;
-          })}
-        </div>
-        <div className="points flex_ccc">
-          {new Array(0).fill(0).map((index: string) => {
-            return <div key={index} className="negative" />;
-          })}
-        </div>
-      </div>
-
-      <div className="capability flex_csr">
-        <div className="mod flex_ccc">
-          <input type="text" value="8" onChange={handleInputChange} />
-        </div>
-        <p>Sabedoria</p>
-        <div className="points flex_ccc">
-          {new Array(5).fill(0).map((index: string) => {
-            return <div key={index} className="mark" />;
-          })}
-        </div>
-        <div className="points flex_ccc">
-          {new Array(0).fill(0).map((index: string) => {
-            return <div key={index} className="positive" />;
-          })}
-        </div>
-        <div className="points flex_ccc">
-          {new Array(1).fill(0).map((index: string) => {
-            return <div key={index} className="negative" />;
-          })}
-        </div>
-      </div>
-
-      <div className="capability flex_csr">
-        <div className="mod flex_ccc">
-          <input type="text" value="10" onChange={handleInputChange} />
-        </div>
-        <p>Carisma</p>
-        <div className="points flex_ccc">
-          {new Array(5).fill(0).map((index: string) => {
-            return <div key={index} className="mark" />;
-          })}
-        </div>
-        <div className="points flex_ccc">
-          {new Array(0).fill(0).map((index: string) => {
-            return <div key={index} className="positive" />;
-          })}
-        </div>
-        <div className="points flex_ccc">
-          {new Array(0).fill(0).map((index: string) => {
-            return <div key={index} className="negative" />;
-          })}
-        </div>
-      </div>
+      <Attribute
+        label="Força"
+        name="strength"
+        value={character.attributes.strength}
+        handeChange={handleInputChange}
+      />
+      <Attribute
+        label="Destreza"
+        name="dexterity"
+        value={character.attributes.dexterity}
+        handeChange={handleInputChange}
+      />
+      <Attribute
+        label="Constituição"
+        name="constitution"
+        value={character.attributes.constitution}
+        handeChange={handleInputChange}
+      />
+      <Attribute
+        label="Inteligência"
+        name="intelligence"
+        value={character.attributes.intelligence}
+        handeChange={handleInputChange}
+      />
+      <Attribute
+        label="Sabedoria"
+        name="wisdom"
+        value={character.attributes.wisdom}
+        handeChange={handleInputChange}
+      />
+      <Attribute
+        label="Carisma"
+        name="charisma"
+        value={character.attributes.charisma}
+        handeChange={handleInputChange}
+      />
     </Container>
   );
 };

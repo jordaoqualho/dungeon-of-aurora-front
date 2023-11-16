@@ -1,26 +1,33 @@
 import { male_character } from "@/assets";
 import { ClassSelector, RaceSelector } from "@/components";
-import { useLocalStorage } from "@uidotdev/usehooks";
-import { useState } from "react";
+import { Character, User, defaultUser } from "@/types";
+import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "usehooks-ts";
 import { Container } from "./styles";
 
-export const CharacterInfo = () => {
-  const [user, setUser] = useLocalStorage("user");
+type CharacterInfoProps = {
+  character: Character;
+  setCharacter: (char: Character) => void;
+};
+
+export const CharacterInfo = (props: CharacterInfoProps) => {
+  const [user, setUser] = useLocalStorage<User>("user", defaultUser);
   const [showRaceSelector, setShowRaceSelector] = useState(false);
   const [showClassSelector, setShowClassSelector] = useState(false);
-  const [character, setCharacter] = useState({
-    race: "",
-    class: "",
-    level: 3,
-  });
+  const { character, setCharacter } = props;
   const navigate = useNavigate();
 
   const handleExit = () => {
     if (user) {
-      setUser(null);
+      setUser(null as unknown as User);
     }
     navigate("/");
+  };
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = event.target;
+    setCharacter({ ...character, [name]: value });
   };
 
   return (
@@ -32,7 +39,13 @@ export const CharacterInfo = () => {
         </div>
       </section>
       <section className="name_info flex_scc">
-        <input className="name" placeholder="Nome do Personagem" />
+        <input
+          className="name"
+          name="name"
+          value={character.name}
+          placeholder="Nome do Personagem"
+          onChange={handleInputChange}
+        />
         <div className="info flex_ccr">
           <button className="race" onClick={() => setShowRaceSelector(!showRaceSelector)}>
             {character.race || "Raça"}

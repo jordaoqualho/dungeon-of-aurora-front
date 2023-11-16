@@ -1,6 +1,18 @@
+import { Character } from "@/types";
 import { Container } from "./styles";
 
-export const Proficiency = () => {
+type ProficiencyProps = {
+  character: Character;
+  setCharacter: (char: Character) => void;
+};
+
+export const Proficiency = (props: ProficiencyProps) => {
+  const { character, setCharacter } = props;
+
+  if (!character) {
+    console.log("📌  Proficiency");
+  }
+
   return (
     <Container className="flex_ccc">
       <div className="prof flex_csb">

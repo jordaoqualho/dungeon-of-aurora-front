@@ -4,6 +4,12 @@ export function calculateProficiencyBonus(level: number) : string{
 }
 
 export function calculateAbilityModifier(abilityScore: number): string {
-  const modifier = "+" + Math.floor((abilityScore - 10) / 2).toString();
-  return modifier;
+  const modifierValue = Math.floor((abilityScore - 10) / 2);
+
+  if (modifierValue === 0) {
+    return `${modifierValue}`;
+  }
+
+  return modifierValue > 0 ? `+${modifierValue}` : `${modifierValue}`;
 }
+

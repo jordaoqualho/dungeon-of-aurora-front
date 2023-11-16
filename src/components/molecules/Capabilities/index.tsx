@@ -1,33 +1,62 @@
+import { Character } from "@/types";
+import { calculateAbilityModifier, calculateProficiencyBonus } from "@/utils";
+import { ChangeEvent } from "react";
 import { Container } from "./styles";
 
-export const Capabilities = () => {
-  const handleChangeInput = () => {
-    console.log("mudou");
+type CapabilitiesProps = {
+  character: Character;
+  setCharacter: (char: Character) => void;
+};
+
+export const Capabilities = (props: CapabilitiesProps) => {
+  const { character, setCharacter } = props;
+
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = event.target;
+    setCharacter({ ...character, [name]: value });
   };
 
   return (
     <Container className="flex_ccr">
       <div className="capability flex_csr">
         <div className="mod flex_ccc">
-          <input type="text" value="+3" onChange={handleChangeInput} />
+          <input
+            type="text"
+            value={calculateProficiencyBonus(character.level)}
+            readOnly
+          />
         </div>
         <p>Proficiência</p>
       </div>
       <div className="capability flex_csr">
         <div className="mod flex_ccc">
-          <input type="text" value="16" onChange={handleChangeInput} />
+          <input
+            type="text"
+            name="armorClass"
+            value={character.armorClass}
+            onChange={handleInputChange}
+          />
         </div>
         <p>Armadura</p>
       </div>
       <div className="capability flex_csr">
         <div className="mod flex_ccc">
-          <input type="text" value="+5" onChange={handleChangeInput} />
+          <input
+            type="text"
+            value={calculateAbilityModifier(character.attributes.dexterity)}
+            readOnly
+          />
         </div>
         <p>Iniciativa</p>
       </div>
       <div className="capability flex_csr">
         <div className="mod flex_ccc">
-          <input type="text" value="+5" onChange={handleChangeInput} />
+          <input
+            type="text"
+            name="speed"
+            value={character.speed}
+            onChange={handleInputChange}
+          />
         </div>
         <p>Descolamento</p>
       </div>
