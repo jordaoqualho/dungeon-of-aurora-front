@@ -12,6 +12,10 @@ export function Home() {
   const [character, setCharacter] = useState<Character>(defaultCharacter);
   const user = useReadLocalStorage<User>("user");
   const { isLoading, error, data } = useCharacter(user?._id);
+  
+  if (error) {
+    console.log(isLoading, error);
+  }
 
   const debouncedUpdateCharacter = useDebounce((character: Character) => {
     characterService.put(character).catch((error) => console.log(error));
