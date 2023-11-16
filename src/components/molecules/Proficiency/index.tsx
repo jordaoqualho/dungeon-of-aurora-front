@@ -7,7 +7,7 @@ type ProficiencyProps = {
 };
 
 export const Proficiency = (props: ProficiencyProps) => {
-  const { character, setCharacter } = props;
+  const { character } = props;
 
   if (!character) {
     console.log("📌  Proficiency");
