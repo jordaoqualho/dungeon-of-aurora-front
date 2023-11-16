@@ -1,8 +1,8 @@
 import { backend } from '@/config';
-import { ServiceInterface } from '@/interfaces';
+import { UserInterface } from '@/interfaces';
 import { ResponseAxios, User } from '@/types';
 
-class UserService implements ServiceInterface {
+class UserService implements UserInterface {
   async post(data: User): Promise<User> {
     const response =  await backend.post<ResponseAxios<User>>(`/user`, data);
     return response.data.data;
@@ -18,4 +18,4 @@ class UserService implements ServiceInterface {
   }
 }
 
-export const userService: ServiceInterface = new UserService();
+export const userService: UserInterface = new UserService();
