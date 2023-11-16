@@ -2,16 +2,16 @@ import { google_logo } from "@/assets";
 import { Button } from "@/components";
 import { userService } from "@/connection";
 import { showToast } from "@/providers";
-import { ApiResponse, GoogleResponse, User } from "@/types";
+import { ApiResponse, GoogleResponse, User, defaultUser } from "@/types";
 import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
-import { useLocalStorage } from "@uidotdev/usehooks";
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocalStorage } from "usehooks-ts";
 
 export function GoogleButton() {
   const navigate = useNavigate();
-  const [user, setUser] = useLocalStorage<User>("user");
+  const [user, setUser] = useLocalStorage<User>("user", defaultUser);
 
   const failedLogin = () => {
     showToast("Login com google falhou");
