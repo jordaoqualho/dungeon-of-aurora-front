@@ -6,9 +6,11 @@ type AttributeProps = {
   value: number;
   name: string;
   handeChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  isEditing: boolean;
 };
 
-export function Attribute({ label, value, name, handeChange }: AttributeProps) {
+export function Attribute(props: AttributeProps) {
+  const { label, value, name, handeChange, isEditing } = props;
   const modifier: string = calculateAbilityModifier(value);
   const modifierValue: number = parseInt(modifier, 10);
   const isNegative: boolean = modifierValue < 0;
@@ -16,7 +18,7 @@ export function Attribute({ label, value, name, handeChange }: AttributeProps) {
 
   return (
     <div className="capability flex_csr">
-      <div className="mod flex_ccc">
+      <div className={`mod flex_ccc ${isEditing ? "editing" : ""}`}>
         <input type="text" name={name} value={value} onChange={handeChange} />
       </div>
       <p>{label}</p>

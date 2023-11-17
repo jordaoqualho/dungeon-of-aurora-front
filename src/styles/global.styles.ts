@@ -51,7 +51,7 @@ export default createGlobalStyle<GlobalStyleProps>`
     --slow: ${(props) => props.theme.transition.slow};
 
     --toastify-color-light: var(--basic);
-    --toastify-color-dark: var(--contrast);
+    --toastify-color-dark: var(--background);
     --toastify-color-info: var(--primary);
     --toastify-color-success: var(--success);
     --toastify-color-warning: var(--warning);
@@ -188,6 +188,11 @@ export default createGlobalStyle<GlobalStyleProps>`
   .test {
     border: 1px solid gray;
     border-radius: 20px;
+  }
+
+  
+  .editing {
+    outline: 1px solid var(--primary) ;
   }
 
   button, a, input {
