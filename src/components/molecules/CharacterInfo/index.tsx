@@ -11,6 +11,8 @@ import { Container, Controls } from "./styles";
 type CharacterInfoProps = {
   character: Character;
   setCharacter: (char: Character) => void;
+  isEditing: boolean;
+  setIsEditing: (value: boolean) => void;
 };
 
 export const CharacterInfo = (props: CharacterInfoProps) => {
@@ -18,7 +20,7 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
   const [showRaceSelector, setShowRaceSelector] = useState(false);
   const [showClassSelector, setShowClassSelector] = useState(false);
   const [showControls, setShowControls] = useState(false);
-  const { character, setCharacter } = props;
+  const { character, setCharacter, isEditing, setIsEditing } = props;
   const navigate = useNavigate();
 
   const handleExit = () => {
@@ -43,7 +45,7 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
       </section>
       <section className="name_info flex_scc">
         <input
-          className="name"
+          className={`name ${isEditing ? "editing" : ""}`}
           name="name"
           value={character.name}
           placeholder="Nome do Personagem"
@@ -51,14 +53,14 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
         />
         <div className="info flex_ccr">
           <button
-            className="race"
+            className={`race ${isEditing ? "editing" : ""}`}
             onClick={() => setShowRaceSelector(!showRaceSelector)}
           >
             {character.race || "Raça"}
           </button>
           <p>/</p>
           <button
-            className="class"
+            className={`class ${isEditing ? "editing" : ""}`}
             onClick={() => setShowClassSelector(!showClassSelector)}
           >
             {character.class || "Classe"}
@@ -79,8 +81,14 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
         </button>
         {showControls && (
           <div className="control_options flex_scc">
-            <button>Editar</button>
-            <button>Salvar</button>
+            <button
+              onClick={() => {
+                setIsEditing(!isEditing);
+                setShowControls(false);
+              }}
+            >
+              Editar
+            </button>
             <button onClick={() => handleExit()}>Sair</button>
           </div>
         )}

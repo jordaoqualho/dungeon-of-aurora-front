@@ -6,10 +6,11 @@ import { Container } from "./styles";
 type CapabilitiesProps = {
   character: Character;
   setCharacter: (char: Character) => void;
+  isEditing: boolean;
 };
 
 export const Capabilities = (props: CapabilitiesProps) => {
-  const { character, setCharacter } = props;
+  const { character, setCharacter, isEditing } = props;
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
@@ -29,12 +30,13 @@ export const Capabilities = (props: CapabilitiesProps) => {
         <p>Proficiência</p>
       </div>
       <div className="capability flex_csr">
-        <div className="mod flex_ccc">
+        <div className={`mod flex_ccc ${isEditing ? "editing" : ""}`}>
           <input
             type="text"
             name="armorClass"
             value={character.armorClass}
             onChange={handleInputChange}
+            readOnly={!isEditing}
           />
         </div>
         <p>Armadura</p>
@@ -50,12 +52,13 @@ export const Capabilities = (props: CapabilitiesProps) => {
         <p>Iniciativa</p>
       </div>
       <div className="capability flex_csr">
-        <div className="mod flex_ccc">
+        <div className={`mod flex_ccc ${isEditing ? "editing" : ""}`}>
           <input
             type="text"
             name="speed"
             value={character.speed}
             onChange={handleInputChange}
+            readOnly={!isEditing}
           />
         </div>
         <p>Descolamento</p>

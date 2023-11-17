@@ -26,6 +26,7 @@ export const Container = styled.div`
     font-family: var(--main);
     font-size: var(--big);
     text-transform: uppercase;
+    margin-bottom: 4px;
   }
 
   .info {
@@ -41,6 +42,7 @@ export const Container = styled.div`
 
     button {
       background-color: var(--transparency);
+      border-radius: 2px;
       color: var(--bright);
       padding: 0;
     }
