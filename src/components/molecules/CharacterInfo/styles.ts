@@ -34,7 +34,7 @@ export const Container = styled.div`
     border-radius: 5px;
     gap: 8px;
 
-    p{
+    p {
       font-size: var(--small);
       color: var(--bright);
     }
@@ -43,6 +43,44 @@ export const Container = styled.div`
       background-color: var(--transparency);
       color: var(--bright);
       padding: 0;
+    }
+  }
+`;
+
+export const Controls = styled.section`
+  position: relative;
+
+  .control_button {
+    background-color: var(--ground);
+    color: var(--basic);
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 5px;
+
+    .icon {
+      font-size: var(--big);
+    }
+  }
+
+  .control_options {
+    box-shadow: -5px 5px 10px 0px #0000003d;
+    background-color: var(--ground);
+    border-radius: 10px;
+    position: absolute;
+    padding: 20px;
+    z-index: 100;
+    top: 40px;
+    gap: 5px;
+    right: 0;
+
+    button {
+      color: var(--basic);
+      font-weight: 400;
+      min-width: 100px;
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: var(--background);
     }
   }
 `;
