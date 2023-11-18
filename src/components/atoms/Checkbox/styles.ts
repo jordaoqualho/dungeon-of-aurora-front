@@ -16,19 +16,14 @@ export const Container = styled.label`
     left: 0;
     height: 15px;
     width: 15px;
-    background: transparent;
-    border: 1px solid var(--bright);
+    background: var(--background);
     border-radius: 5px;
   }
-  .control:hover input ~ .control__indicator,
-  .control input:focus ~ .control__indicator {
-    border: 1px solid var(--basic);
-  }
   .control input:checked ~ .control__indicator {
-    background: var(--primary);
+    background: var(--success);
   }
   .control input:disabled ~ .control__indicator {
-    background: #e6e6e6;
+    background: #ffffff;
     opacity: 0.6;
     pointer-events: none;
   }
@@ -45,7 +40,7 @@ export const Container = styled.label`
     top: 2px;
     width: 3px;
     height: 6px;
-    border: solid #fff;
+    border: solid var(--success);
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
   }

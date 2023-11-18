@@ -1,25 +1,16 @@
-import { useState } from "react";
 import { Container } from "./styles";
 
-export function Checkbox() {
-  const [isChecked, setIsChecked] = useState<boolean>(true);
+type CheckboxProps = {
+  checked: boolean;
+};
 
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      setIsChecked(!isChecked);
-    }
-  };
+export function Checkbox(props: CheckboxProps) {
+  const { checked } = props;
 
   return (
     <Container title="checkbox">
       <label className="control control--checkbox">
-        <input
-          type="checkbox"
-          className="checked"
-          checked={isChecked}
-          onChange={() => setIsChecked(!isChecked)}
-          onKeyDown={handleKeyDown}
-        />
+        <input type="checkbox" className="checked" checked={checked} readOnly />
         <div className="control__indicator" />
       </label>
     </Container>
