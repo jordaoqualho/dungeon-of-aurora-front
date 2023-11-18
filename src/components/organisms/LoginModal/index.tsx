@@ -91,13 +91,17 @@ export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
       />
       <Remember title="remember" className="flex_sbr">
         <div className="check-box  flex_ssr">
-          <Checkbox />
+          <Checkbox checked={true} />
           <label htmlFor="">Continuar conectado</label>
         </div>
         <a href="#">Esqueceu a senha?</a>
       </Remember>
       <Button style={login_btn} type="submit" text="Entrar" loading={loading} />
-      <Button style={signin_btn} text="Criar uma conta" onClick={() => setShowLoginModal(false)} />
+      <Button
+        style={signin_btn}
+        text="Criar uma conta"
+        onClick={() => setShowLoginModal(false)}
+      />
       <Divisor title="divisor" className="flex_ccr">
         <div className="line" />
         <span>ou</span>
