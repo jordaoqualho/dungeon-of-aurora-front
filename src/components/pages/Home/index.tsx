@@ -29,19 +29,10 @@ export function Home() {
     }
   };
 
-  // const debouncedUpdateCharacter = useDebounce((character: Character) => {
-  //   characterService.put(character).catch((error) => console.log(error));
-  // }, 5000);
-
-  // useEffect(() => {
-  //   if (!character?._id) return;
-  //   debouncedUpdateCharacter(character);
-  // }, [character]);
-
   useEffect(() => {
     if (!data || !data[0]) return;
     setCharacter(data[0]);
-  }, [data]);
+  }, [data, isEditing]);
 
   return (
     <Container className="flex_ccc">
@@ -62,7 +53,11 @@ export function Home() {
         setCharacter={setCharacter}
         isEditing={isEditing}
       />
-      <Proficiency character={character} setCharacter={setCharacter} />
+      <Proficiency
+        character={character}
+        setCharacter={setCharacter}
+        isEditing={isEditing}
+      />
       <EditingModal
         isOpen={isEditing}
         isEditing={isEditing}

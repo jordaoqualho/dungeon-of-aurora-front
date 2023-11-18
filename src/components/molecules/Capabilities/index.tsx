@@ -1,5 +1,5 @@
 import { Character } from "@/types";
-import { calculateAbilityModifier, calculateProficiencyBonus } from "@/utils";
+import { getAbilityModifier, getProficiencyBonus } from "@/utils";
 import { ChangeEvent } from "react";
 import { Container } from "./styles";
 
@@ -23,7 +23,7 @@ export const Capabilities = (props: CapabilitiesProps) => {
         <div className="mod flex_ccc">
           <input
             type="text"
-            value={calculateProficiencyBonus(character.level)}
+            value={getProficiencyBonus(character.level)}
             readOnly
           />
         </div>
@@ -45,7 +45,7 @@ export const Capabilities = (props: CapabilitiesProps) => {
         <div className="mod flex_ccc">
           <input
             type="text"
-            value={calculateAbilityModifier(character.attributes.dexterity)}
+            value={getAbilityModifier(character.attributes.dexterity)}
             readOnly
           />
         </div>

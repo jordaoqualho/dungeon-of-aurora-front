@@ -24,6 +24,7 @@ export const Container = styled.div`
 
   .name {
     font-family: var(--main);
+    padding: 0;
     font-size: var(--big);
     text-transform: uppercase;
     margin-bottom: 4px;

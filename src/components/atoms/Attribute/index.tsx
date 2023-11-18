@@ -1,4 +1,4 @@
-import { calculateAbilityModifier } from "@/utils";
+import { getAbilityModifier } from "@/utils";
 import { ChangeEvent } from "react";
 
 type AttributeProps = {
@@ -11,7 +11,7 @@ type AttributeProps = {
 
 export function Attribute(props: AttributeProps) {
   const { label, value, name, handeChange, isEditing } = props;
-  const modifier: string = calculateAbilityModifier(value);
+  const modifier: string = getAbilityModifier(value);
   const modifierValue: number = parseInt(modifier, 10);
   const isNegative: boolean = modifierValue < 0;
   const quantity = Math.abs(modifierValue);
