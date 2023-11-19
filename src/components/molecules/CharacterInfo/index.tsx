@@ -50,18 +50,21 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
           value={character.name}
           placeholder="Nome do Personagem"
           onChange={handleInputChange}
+          readOnly={!isEditing}
         />
         <div className="info flex_ccr">
           <button
             className={`race ${isEditing ? "editing" : ""}`}
-            onClick={() => setShowRaceSelector(!showRaceSelector)}
+            onClick={() => isEditing && setShowRaceSelector(!showRaceSelector)}
           >
             {character.race || "Raça"}
           </button>
           <p>/</p>
           <button
             className={`class ${isEditing ? "editing" : ""}`}
-            onClick={() => setShowClassSelector(!showClassSelector)}
+            onClick={() =>
+              isEditing && setShowClassSelector(!showClassSelector)
+            }
           >
             {character.class || "Classe"}
           </button>
