@@ -37,6 +37,10 @@ export const Remember = styled.div`
       color: var(--primary);
     }
   }
+
+  .check-box {
+    align-items: center;
+  }
 `;
 
 export const Divisor = styled.div`
@@ -64,3 +68,18 @@ export const google_btn = {
   color: "var(--background)",
 };
 
+export const checkboxStyle = `
+  .control input:checked ~ .control__indicator {
+    background: var(--primary);
+  }
+
+  .control--checkbox .control__indicator:after {
+    left: 5px;
+    top: 2.5px;
+    width: 3px;
+    height: 6px;
+    border: solid var(--basic);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+`;

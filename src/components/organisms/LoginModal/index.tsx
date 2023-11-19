@@ -4,7 +4,14 @@ import { showToast } from "@/providers";
 import { LoginData, LoginError, User, defaultUser } from "@/types";
 import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
-import { Divisor, Modal, Remember, login_btn, signin_btn } from "./styles";
+import {
+  Divisor,
+  Modal,
+  Remember,
+  checkboxStyle,
+  login_btn,
+  signin_btn,
+} from "./styles";
 
 type LoginModalProps = {
   setShowLoginModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -89,7 +96,7 @@ export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
       />
       <Remember title="remember" className="flex_sbr">
         <div className="check-box  flex_ssr">
-          <Checkbox checked={true} />
+          <Checkbox checked={true} customstyle={checkboxStyle} />
           <label htmlFor="">Continuar conectado</label>
         </div>
         <a href="#">Esqueceu a senha?</a>
