@@ -2,7 +2,7 @@ import { Button, Input } from "@/components";
 import { userService } from "@/connection";
 import { showToast } from "@/providers";
 import { SignUpData, SignUpError, User, defaultUser } from "@/types";
-import { CSSProperties, useEffect, useState } from "react";
+import { CSSProperties, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "usehooks-ts";
 import { Modal, login_btn, signin_btn } from "./styles";
@@ -12,8 +12,15 @@ type RegisterModalProps = {
   setShowLoginModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-export default function RegisterModal({ setShowLoginModal }: RegisterModalProps) {
-  const initialCredentials = { name: "", password: "", passwordRepeat: "", email: "" };
+export default function RegisterModal({
+  setShowLoginModal,
+}: RegisterModalProps) {
+  const initialCredentials = {
+    name: "",
+    password: "",
+    passwordRepeat: "",
+    email: "",
+  };
   const [signUpData, setSignUpData] = useState<SignUpData>(initialCredentials);
   const [user, setUser] = useLocalStorage<User>("user", defaultUser);
   const [error, setError] = useState<SignUpError>({
@@ -37,7 +44,8 @@ export default function RegisterModal({ setShowLoginModal }: RegisterModalProps)
     userService
       .post(signUpData)
       .then((createdUser: User) => {
-        setUser(createdUser);
+        setUser({ ...createdUser, isAuthenticated: true });
+        successRegister();
       })
       .catch((error) => {
         console.log("📌  registerUser Error → ", error);
@@ -53,7 +61,8 @@ export default function RegisterModal({ setShowLoginModal }: RegisterModalProps)
 
   const validateFields = () => {
     const { name, password, email, passwordRepeat } = signUpData;
-    const invalidFields = name === "" || password === "" || email === "" || passwordRepeat === "";
+    const invalidFields =
+      name === "" || password === "" || email === "" || passwordRepeat === "";
     const diferentPassword = password !== passwordRepeat;
 
     setError((prevError) => ({
@@ -75,12 +84,6 @@ export default function RegisterModal({ setShowLoginModal }: RegisterModalProps)
     });
     setError((prevError) => ({ ...prevError, [name]: value === "" }));
   };
-
-  useEffect(() => {
-    if (user) {
-      successRegister();
-    }
-  }, [user]);
 
   return (
     <Modal title="modal" onSubmit={handleSignUp} autoComplete="off">
@@ -119,8 +122,17 @@ export default function RegisterModal({ setShowLoginModal }: RegisterModalProps)
         name="passwordRepeat"
         inputError={error.passwordRepeat}
       />
-      <Button style={login_btn} type="submit" text="Criar conta" loading={loading} />
-      <Button onClick={() => setShowLoginModal(true)} text="Já tenho uma conta" style={signin_btn} />
+      <Button
+        style={login_btn}
+        type="submit"
+        text="Criar conta"
+        loading={loading}
+      />
+      <Button
+        onClick={() => setShowLoginModal(true)}
+        text="Já tenho uma conta"
+        style={signin_btn}
+      />
     </Modal>
   );
 }
