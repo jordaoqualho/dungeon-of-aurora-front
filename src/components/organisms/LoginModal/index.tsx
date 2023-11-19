@@ -3,6 +3,7 @@ import { authService } from "@/connection";
 import { showToast } from "@/providers";
 import { LoginData, LoginError, User, defaultUser } from "@/types";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "usehooks-ts";
 import {
   Divisor,
@@ -26,6 +27,7 @@ export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
     password: false,
   });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -48,7 +50,8 @@ export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
     authService
       .login(credentials)
       .then((response) => {
-        setUser(response.user);
+        setUser({ ...response.user, isAuthenticated: true });
+        navigate("/home");
       })
       .catch(() => {
         setCredentials(initialCredentials);
