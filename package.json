@@ -8,13 +8,14 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "start": "vite",
-    "start:dev": "set VITE_ENVIRONMENT=development&& vite",
+    "start:dev": "set VITE_ENVIRONMENT=development&& vite --host",
     "start:prod": "set VITE_ENVIRONMENT=production&& vite",
     "prepare": "husky install"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint"
+      "pre-commit": "lint",
+      "pre-push": "build"
     }
   },
   "dependencies": {

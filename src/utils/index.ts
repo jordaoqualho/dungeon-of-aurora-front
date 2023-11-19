@@ -1,1 +1,2 @@
-export * from './calculations';
+export * from "./ProtectedRoute";
+export * from "./calculations";
