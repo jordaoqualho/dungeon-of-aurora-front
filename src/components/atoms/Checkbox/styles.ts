@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 type ContainerProps = {
-  customstyle?: string;
+  $customStyle?: string;
 };
 
 export const Container = styled.div<ContainerProps>`
@@ -62,9 +62,9 @@ export const Container = styled.div<ContainerProps>`
     border-color: red;
   }
 
-  ${({ customstyle }) =>
-    customstyle &&
+  ${({ $customStyle }) =>
+    $customStyle &&
     css`
-      ${customstyle};
+      ${$customStyle};
     `}
 `;

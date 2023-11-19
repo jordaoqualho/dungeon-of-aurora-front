@@ -96,7 +96,7 @@ export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
       />
       <Remember title="remember" className="flex_sbr">
         <div className="check-box  flex_ssr">
-          <Checkbox checked={true} customstyle={checkboxStyle} />
+          <Checkbox checked={true} customStyle={checkboxStyle} />
           <label htmlFor="">Continuar conectado</label>
         </div>
         <a href="#">Esqueceu a senha?</a>
