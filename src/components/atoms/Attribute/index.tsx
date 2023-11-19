@@ -19,7 +19,13 @@ export function Attribute(props: AttributeProps) {
   return (
     <div className="capability flex_csr">
       <div className={`mod flex_ccc ${isEditing ? "editing" : ""}`}>
-        <input type="text" name={name} value={value} onChange={handeChange} />
+        <input
+          type="text"
+          name={name}
+          value={value}
+          onChange={handeChange}
+          readOnly={!isEditing}
+        />
       </div>
       <p>{label}</p>
       <div className="points flex_ccc">
