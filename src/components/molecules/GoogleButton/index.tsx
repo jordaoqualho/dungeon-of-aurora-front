@@ -5,13 +5,12 @@ import { showToast } from "@/providers";
 import { ApiResponse, GoogleResponse, User, defaultUser } from "@/types";
 import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "usehooks-ts";
 
 export function GoogleButton() {
   const navigate = useNavigate();
-  const [user, setUser] = useLocalStorage<User>("user", defaultUser);
+  const [, setUser] = useLocalStorage<User>("user", defaultUser);
 
   const failedLogin = () => {
     showToast("Login com google falhou");
@@ -26,15 +25,21 @@ export function GoogleButton() {
 
   const getGoogleProfile = (access_token: string) => {
     axios
-      .get(`https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`)
-      .then(async (response: GoogleResponse) => await handleUserLogin(response.data.email, response))
+      .get(
+        `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`
+      )
+      .then(
+        async (response: GoogleResponse) =>
+          await handleUserLogin(response.data.email, response)
+      )
       .catch((error: ApiResponse) => showToast(error.message));
   };
 
   const handleUserLogin = async (email: string, response: GoogleResponse) => {
     const foundUser = await userService.getByEmail(email);
     if (foundUser) {
-      setUser(foundUser);
+      setUser({ ...foundUser, isAuthenticated: true });
+      navigate("/home");
     } else {
       await createUser(response);
     }
@@ -47,6 +52,7 @@ export function GoogleButton() {
       name,
       avatarUrl: picture,
       password: email,
+      isAuthenticated: true,
     };
 
     await userService
@@ -63,12 +69,6 @@ export function GoogleButton() {
   //   },
   //   onError: failedLogin,
   // });
-
-  useEffect(() => {
-    if (user) {
-      navigate("/home");
-    }
-  }, [user]);
 
   return (
     <Button

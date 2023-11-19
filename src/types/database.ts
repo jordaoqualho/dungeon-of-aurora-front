@@ -7,9 +7,11 @@ export type User = {
   totalGamesPlayed?: number;
   quests?: string[];
   inspiration?: number;
+  isAuthenticated: boolean;
 };
 
 export const defaultUser = {
+  isAuthenticated: false,
   _id: "",
   name: "",
   password: "",

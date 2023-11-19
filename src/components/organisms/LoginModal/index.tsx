@@ -2,8 +2,7 @@ import { Button, Checkbox, GoogleButton, Input } from "@/components";
 import { authService } from "@/connection";
 import { showToast } from "@/providers";
 import { LoginData, LoginError, User, defaultUser } from "@/types";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useLocalStorage } from "usehooks-ts";
 import { Divisor, Modal, Remember, login_btn, signin_btn } from "./styles";
 
@@ -14,13 +13,12 @@ type LoginModalProps = {
 export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
   const initialCredentials = { email: "", password: "" };
   const [credentials, setCredentials] = useState<LoginData>(initialCredentials);
-  const [user, setUser] = useLocalStorage<User>("user", defaultUser);
+  const [, setUser] = useLocalStorage<User>("user", defaultUser);
   const [error, setError] = useState<LoginError>({
     email: false,
     password: false,
   });
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -56,16 +54,16 @@ export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
     const { email, password } = credentials;
 
     if (email === "" || password === "") {
-      setError((prevError) => ({ ...prevError, user: email === "", password: password === "" }));
+      setError((prevError) => ({
+        ...prevError,
+        user: email === "",
+        password: password === "",
+      }));
       return false;
     }
 
     return true;
   };
-
-  useEffect(() => {
-    if (user) navigate("/home");
-  }, [user]);
 
   return (
     <Modal onSubmit={handleLogin} autoComplete="off">
