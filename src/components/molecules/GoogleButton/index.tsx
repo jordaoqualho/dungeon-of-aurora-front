@@ -24,6 +24,7 @@ export function GoogleButton() {
   });
 
   const getGoogleProfile = (access_token: string) => {
+    // TODO: Abstract this function to a interface maybe?
     axios
       .get(
         `https://www.googleapis.com/oauth2/v3/userinfo?access_token=${access_token}`
@@ -71,6 +72,7 @@ export function GoogleButton() {
   // });
 
   return (
+    // TODO: Add a button loading animation
     <Button
       icon={{ src: google_logo, alt: "google_logo" }}
       onClick={() => googleButtonLogin()}

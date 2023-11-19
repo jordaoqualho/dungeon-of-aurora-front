@@ -45,6 +45,7 @@ export default function RegisterModal({
       .post(signUpData)
       .then((createdUser: User) => {
         setUser({ ...createdUser, isAuthenticated: true });
+        // TODO: Create character on register
         successRegister();
       })
       .catch((error) => {
