@@ -12,12 +12,12 @@ const manifestForPlugin: Partial<ManifestOptions> = {
   description: "Web application to explore the magical world of Aurora.",
   icons: [
     {
-      src: "/images/icon_512.png",
+      src: "/images/white_icon_512.png",
       type: "image/png",
       sizes: "512x512",
     },
     {
-      src: "/images/icon_256.png",
+      src: "/images/white_icon_256.png",
       type: "image/png",
       sizes: "256x256",
     },
