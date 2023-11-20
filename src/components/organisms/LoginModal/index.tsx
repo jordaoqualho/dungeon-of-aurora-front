@@ -102,7 +102,14 @@ export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
           <Checkbox checked={true} customStyle={checkboxStyle} />
           <label htmlFor="">Continuar conectado</label>
         </div>
-        <a href="#">Esqueceu a senha?</a>
+        <a
+          href="#"
+          onClick={() =>
+            showToast("Ainda não é possível fazer isso!", "warning")
+          }
+        >
+          Esqueceu a senha?
+        </a>
       </Remember>
       <Button style={login_btn} type="submit" text="Entrar" loading={loading} />
       <Button
