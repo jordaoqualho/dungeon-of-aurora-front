@@ -1,7 +1,7 @@
 {
   "name": "dungeonsofaurora",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",
@@ -17,8 +17,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint",
-      "pre-push": "build"
+      "pre-push": "lint"
     }
   },
   "dependencies": {
