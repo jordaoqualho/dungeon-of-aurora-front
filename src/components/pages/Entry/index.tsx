@@ -12,6 +12,7 @@ export function Entry() {
     <Container title="container">
       <img src={giphy} alt="landscape" className="landscape" />
       <Welcome />
+      <p className="version">version 1.01</p>
     </Container>
   );
 }
