@@ -45,6 +45,7 @@ export default defineConfig({
   plugins: [
     react(),
     VitePWA({
+      registerType: "autoUpdate",
       manifest: manifestForPlugin,
       workbox: {
         clientsClaim: true,
@@ -57,5 +58,9 @@ export default defineConfig({
   ],
   resolve: {
     alias: [{ find: "@", replacement: "/src" }],
+  },
+  define: {
+    APP_VERSION: JSON.stringify(process.env.npm_package_version),
+    APP_NAME: JSON.stringify(process.env.npm_package_name),
   },
 });

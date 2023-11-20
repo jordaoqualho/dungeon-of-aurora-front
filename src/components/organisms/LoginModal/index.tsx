@@ -78,7 +78,7 @@ export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
   return (
     <Modal onSubmit={handleLogin} autoComplete="off">
       <div className="title">
-        <h1>Eae blz?1 👋</h1>
+        <h1>Eae blz? 👋</h1>
         <p>Bota suas informações de login aqui embaixo pra entrar.</p>
       </div>
       <Input
