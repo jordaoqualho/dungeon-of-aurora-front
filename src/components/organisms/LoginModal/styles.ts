@@ -8,6 +8,7 @@ export const Modal = styled.form`
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(5px);
   border: 2px solid #54296f;
+  position: relative;
 
   .title {
     margin-bottom: 40px;

@@ -14,5 +14,13 @@ export const Container = styled.div`
     left: 0;
     top: 0;
   }
+
+  .version {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: var(--bright);
+    font-size: var(--micro);
+  }
 `;
 
