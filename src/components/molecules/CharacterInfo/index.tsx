@@ -38,7 +38,12 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
   return (
     <Container className="flex_csr">
       <section className="photo_level flex_ccr">
-        <img className="photo" src={male_character} alt="photo" />
+        <img
+          className="photo"
+          src={male_character}
+          alt="photo"
+          onClick={() => location.reload()}
+        />
         <div className="level flex_ccr">
           <p>{character.level}</p>
         </div>
