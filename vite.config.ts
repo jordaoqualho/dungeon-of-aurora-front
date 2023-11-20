@@ -7,8 +7,8 @@ const manifestForPlugin: Partial<ManifestOptions> = {
   short_name: "Aurora",
   start_url: ".",
   display: "standalone",
-  background_color: "#22252E",
-  theme_color: "#22252E",
+  background_color: "#fff",
+  theme_color: "#fff",
   description: "Web application to explore the magical world of Aurora.",
   icons: [
     {
@@ -20,7 +20,6 @@ const manifestForPlugin: Partial<ManifestOptions> = {
       src: "/images/icon_256.png",
       type: "image/png",
       sizes: "256x256",
-      purpose: "any maskable",
     },
     {
       src: "/images/icon_128.png",
@@ -33,13 +32,19 @@ const manifestForPlugin: Partial<ManifestOptions> = {
       sizes: "48x48",
     },
   ],
+  screenshots: [
+    {
+      src: "source/screen.png",
+      sizes: "640x320",
+      type: "image/png",
+    },
+  ],
 };
 
 export default defineConfig({
   plugins: [
     react(),
     VitePWA({
-      registerType: "autoUpdate",
       manifest: manifestForPlugin,
       workbox: {
         clientsClaim: true,
