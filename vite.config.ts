@@ -22,19 +22,19 @@ const manifestForPlugin: Partial<ManifestOptions> = {
       sizes: "256x256",
     },
     {
-      src: "/images/icon_128.png",
+      src: "/images/white_icon_128.png",
       type: "image/png",
       sizes: "128x128",
     },
     {
-      src: "/images/icon_48.png",
+      src: "/images/white_icon_48.png",
       type: "image/png",
       sizes: "48x48",
     },
   ],
   screenshots: [
     {
-      src: "source/screen.png",
+      src: "/images/screen.png",
       sizes: "640x320",
       type: "image/png",
     },
