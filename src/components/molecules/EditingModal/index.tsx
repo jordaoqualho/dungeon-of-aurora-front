@@ -4,13 +4,12 @@ import { Container } from "./styles";
 
 type EditingModalProps = {
   isOpen: boolean;
-  isEditing: boolean;
-  setIsEditing: (value: boolean) => void;
+  cancelEditing: () => void;
   onSave: () => Promise<void>;
 };
 
 export const EditingModal = (props: EditingModalProps) => {
-  const { isOpen, isEditing, setIsEditing, onSave } = props;
+  const { isOpen, cancelEditing, onSave } = props;
 
   return (
     <Modal isOpen={isOpen}>
@@ -20,7 +19,7 @@ export const EditingModal = (props: EditingModalProps) => {
           <button className="save" onClick={() => onSave()}>
             Salvar
           </button>
-          <button className="cancel" onClick={() => setIsEditing(!isEditing)}>
+          <button className="cancel" onClick={() => cancelEditing()}>
             Cancelar
           </button>
         </div>
