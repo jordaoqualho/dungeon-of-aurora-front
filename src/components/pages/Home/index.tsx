@@ -11,6 +11,8 @@ import { Container } from "./styles";
 
 export function Home() {
   const [character, setCharacter] = useState<Character>(defaultCharacter);
+  const [initialCharacter, setInitialCharacter] =
+    useState<Character>(defaultCharacter);
   const [isEditing, setIsEditing] = useState(false);
   const user = useReadLocalStorage<User>("user");
   const { isLoading, error, data } = useCharacter(user?._id);
@@ -21,18 +23,28 @@ export function Home() {
 
   const saveCharacterData = async () => {
     try {
-      await characterService.put(character);
       setIsEditing(false);
+      await characterService.put(character);
       showToast("Alterações Salvas", "success");
     } catch (error) {
       console.log(error);
     }
   };
 
+  const cancelEditing = () => {
+    setIsEditing(false);
+    setCharacter(initialCharacter);
+  };
+
   useEffect(() => {
     if (!data || !data[0]) return;
     setCharacter(data[0]);
-  }, [data, isEditing]);
+  }, [data]);
+
+  useEffect(() => {
+    if (!isEditing) return;
+    setInitialCharacter({ ...character });
+  }, [isEditing]);
 
   return (
     <Container className="flex_ccc">
@@ -60,9 +72,8 @@ export function Home() {
       />
       <EditingModal
         isOpen={isEditing}
-        isEditing={isEditing}
-        setIsEditing={setIsEditing}
         onSave={saveCharacterData}
+        cancelEditing={cancelEditing}
       />
     </Container>
   );
