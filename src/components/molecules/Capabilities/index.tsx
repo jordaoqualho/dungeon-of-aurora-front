@@ -61,7 +61,7 @@ export const Capabilities = (props: CapabilitiesProps) => {
             readOnly={!isEditing}
           />
         </div>
-        <p>Descolamento</p>
+        <p>Deslocamento</p>
       </div>
     </Container>
   );

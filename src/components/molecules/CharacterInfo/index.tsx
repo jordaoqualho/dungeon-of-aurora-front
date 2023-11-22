@@ -6,6 +6,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "usehooks-ts";
+import { LevelSelector } from "../LevelSelector";
 import { Container, Controls } from "./styles";
 
 type CharacterInfoProps = {
@@ -19,6 +20,7 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
   const [user, setUser] = useLocalStorage<User>("user", defaultUser);
   const [showRaceSelector, setShowRaceSelector] = useState(false);
   const [showClassSelector, setShowClassSelector] = useState(false);
+  const [showLevelSelector, setShowLevelSelector] = useState(false);
   const [showControls, setShowControls] = useState(false);
   const { character, setCharacter, isEditing, setIsEditing } = props;
   const navigate = useNavigate();
@@ -38,13 +40,11 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
   return (
     <Container className="flex_csr">
       <section className="photo_level flex_ccr">
-        <img
-          className="photo"
-          src={male_character}
-          alt="photo"
-          onClick={() => location.reload()}
-        />
-        <div className="level flex_ccr">
+        <img className="photo" src={male_character} alt="photo" />
+        <div
+          className="level flex_ccr"
+          onClick={() => isEditing && setShowLevelSelector(true)}
+        >
           <p>{character.level}</p>
         </div>
       </section>
@@ -114,6 +114,13 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
         setSelection={(value: string) => {
           setCharacter({ ...character, class: value });
           setShowClassSelector(false);
+        }}
+      />
+      <LevelSelector
+        isOpen={showLevelSelector}
+        setSelection={(value: number) => {
+          setCharacter({ ...character, level: value });
+          setShowLevelSelector(false);
         }}
       />
     </Container>

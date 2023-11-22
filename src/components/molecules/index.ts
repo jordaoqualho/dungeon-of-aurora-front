@@ -6,4 +6,5 @@ export * from './Menu';
 export * from './MenuSelector';
 export * from './ClassSelector';
 export * from './RaceSelector';
+export * from "./LevelSelector";
 
