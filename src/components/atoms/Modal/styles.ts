@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from "styled-components";
 
-export const Container = styled.div`
+type ContainerProps = {
+  $customStyle?: string;
+};
+
+export const Container = styled.div<ContainerProps>`
   box-shadow: 0px 0px 20px 0px #0000003d;
   background-color: var(--ground);
   width: calc(100% - 40px);
@@ -10,6 +14,12 @@ export const Container = styled.div`
   z-index: 10;
   left: 20px;
   top: 85vh;
+
+  ${({ $customStyle }) =>
+    $customStyle &&
+    css`
+      ${$customStyle};
+    `}
 `;
 
 // export const Overlay = styled.div`
@@ -21,7 +31,7 @@ export const Container = styled.div`
 //   display: flex;
 //   align-items: center;
 //   justify-content: center;
-//   z-index: 100; 
+//   z-index: 100;
 //   -webkit-backdrop-filter: blur(5px);
 //   background: rgba(0, 0, 0, -0.1);
 //   backdrop-filter: blur(5px);
