@@ -3,7 +3,7 @@ import { defineConfig } from "vite";
 import { ManifestOptions, VitePWA } from "vite-plugin-pwa";
 
 const manifestForPlugin: Partial<ManifestOptions> = {
-  name: "Dungeon of Aurora",
+  name: "Dungeons of Aurora",
   short_name: "Aurora",
   start_url: ".",
   display: "standalone",

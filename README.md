@@ -1,6 +1,6 @@
-# Dungeon of Aurora RPG
+# Dungeons of Aurora RPG
 
-Welcome to Dungeon of Aurora, an online web application based on the Dungeon and Dragons system for playing RPGs. This platform allows you to explore the magical world of Aurora, battle fearsome monsters, complete quests, and embark on thrilling adventures with your friends.
+Welcome to Dungeons of Aurora, an online web application based on the Dungeons and Dragons system for playing RPGs. This platform allows you to explore the magical world of Aurora, battle fearsome monsters, complete quests, and embark on thrilling adventures with your friends.
 
 ## Table of Contents
 
@@ -29,7 +29,7 @@ npm install
 
 ## Contributing
 
-We welcome contributions to make Dungeon of Aurora even better. To contribute, follow these guidelines:
+We welcome contributions to make Dungeons of Aurora even better. To contribute, follow these guidelines:
 
 ### Commit Regulations
 
@@ -54,7 +54,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Thank you for choosing Dungeon of Aurora! May your adventures be filled with excitement and magic. If you encounter any issues or have suggestions, feel free to create an issue or pull request. Happy gaming! 🐉✨
+Thank you for choosing Dungeons of Aurora! May your adventures be filled with excitement and magic. If you encounter any issues or have suggestions, feel free to create an issue or pull request. Happy gaming! 🐉✨
 
 
 
