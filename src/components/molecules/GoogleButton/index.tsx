@@ -40,7 +40,7 @@ export function GoogleButton() {
     const foundUser = await userService.getByEmail(email);
     if (foundUser) {
       setUser({ ...foundUser, isAuthenticated: true });
-      navigate("/home");
+      navigate("/character");
     } else {
       await createUser(response);
     }

@@ -57,7 +57,7 @@ export default function RegisterModal({
 
   const successRegister = () => {
     showToast(`Bem vindo ${user.name}`, "success");
-    navigate("/home");
+    navigate("/character");
   };
 
   const validateFields = () => {
