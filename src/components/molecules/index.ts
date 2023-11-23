@@ -9,4 +9,5 @@ export * from "./Menu";
 export * from "./MenuSelector";
 export * from "./Proficiency";
 export * from "./RaceSelector";
+export * from "./SpellModal";
 
