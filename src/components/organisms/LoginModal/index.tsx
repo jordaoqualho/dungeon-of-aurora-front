@@ -51,7 +51,7 @@ export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
       .login(credentials)
       .then((response) => {
         setUser({ ...response.user, isAuthenticated: true });
-        navigate("/home");
+        navigate("/character");
       })
       .catch(() => {
         setCredentials(initialCredentials);

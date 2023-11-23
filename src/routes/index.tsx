@@ -12,7 +12,7 @@ export default function Routes() {
       <RoutesContainer>
         <Route path="/" element={<Entry />} />
         <Route
-          path="/home"
+          path="/character"
           element={
             <ProtectedRoute>
               <Home />
