@@ -1,4 +1,4 @@
-import { Attributes, Capabilities, Proficiency } from "@/components";
+import { Attributes, Capabilities, HitPoints, Proficiency } from "@/components";
 import { Character } from "@/types";
 
 type AbilitiesProps = {
@@ -15,6 +15,12 @@ export function Abilities(props: AbilitiesProps) {
 
   return (
     <>
+      <HitPoints
+        character={character}
+        setCharacter={setCharacter}
+        isEditing={isEditing}
+      />
+
       <Capabilities
         character={character}
         setCharacter={setCharacter}
