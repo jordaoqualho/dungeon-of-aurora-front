@@ -20,6 +20,7 @@ export type Character = {
   quests: Quest[];
   inspiration: number;
   features: Feature[];
+  picture?: string;
 };
 
 type Attributes = {

@@ -12,7 +12,7 @@ export const EditingModal = (props: EditingModalProps) => {
   const { isOpen, cancelEditing, onSave } = props;
 
   return (
-    <Modal isOpen={isOpen}>
+    <Modal isOpen={isOpen} overlay={false}>
       <Container className="flex_ccc">
         <h4>Modo Edição</h4>
         <div className="buttons flex_csr">
