@@ -24,7 +24,6 @@ export function Spells(props: SpellsProps) {
 
   useEffect(() => {
     setSpellList([...character.spells]);
-    console.log("📌  character.spells → ", character.spells);
   }, [character.spells]);
 
   if (activeMenu !== "Spells") return <></>;
