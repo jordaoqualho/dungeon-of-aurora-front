@@ -200,10 +200,10 @@ export default createGlobalStyle<GlobalStyleProps>`
   }
 
 
-  button:hover{
+  /* button:hover{
     cursor: pointer;
     opacity: 0.75;
-  }
+  } */
 
   input,
   select {
