@@ -1,6 +1,5 @@
 import { SpellModal } from "@/components";
 import { Character } from "@/types";
-import BlurOnIcon from "@mui/icons-material/BlurOn";
 import { useEffect, useState } from "react";
 import { AddButton, SpellList } from "./styles";
 
