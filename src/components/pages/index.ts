@@ -1,3 +1,3 @@
-export * from './Entry';
-export * from './Home';
-export * from './NotFound';
+export * from "./Character";
+export * from "./Entry";
+export * from "./NotFound";

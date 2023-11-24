@@ -1,6 +1,12 @@
-import { Attributes, Capabilities, CharacterInfo, Menu } from "@/components";
-import { EditingModal } from "@/components/molecules/EditingModal";
-import { Proficiency } from "@/components/molecules/Proficiency";
+import {
+  Abilities,
+  CharacterInfo,
+  EditingModal,
+  Equipments,
+  Menu,
+  Spells,
+  TurnActions,
+} from "@/components";
 import { characterService } from "@/connection";
 import { useCharacter } from "@/hooks/useCharacter";
 import { showToast } from "@/providers";
@@ -9,8 +15,9 @@ import { useEffect, useState } from "react";
 import { useReadLocalStorage } from "usehooks-ts";
 import { Container } from "./styles";
 
-export function Home() {
+export function Character() {
   const [character, setCharacter] = useState<Character>(defaultCharacter);
+  const [activeMenu, setActiveMenu] = useState("Abilities");
   const [initialCharacter, setInitialCharacter] =
     useState<Character>(defaultCharacter);
   const [isEditing, setIsEditing] = useState(false);
@@ -54,26 +61,35 @@ export function Home() {
         isEditing={isEditing}
         setIsEditing={setIsEditing}
       />
-      <Menu />
-      <Capabilities
-        character={character}
-        setCharacter={setCharacter}
-        isEditing={isEditing}
-      />
-      <Attributes
-        character={character}
-        setCharacter={setCharacter}
-        isEditing={isEditing}
-      />
-      <Proficiency
-        character={character}
-        setCharacter={setCharacter}
-        isEditing={isEditing}
-      />
       <EditingModal
         isOpen={isEditing}
         onSave={saveCharacterData}
         cancelEditing={cancelEditing}
+      />
+      <Menu setActiveMenu={setActiveMenu} activeMenu={activeMenu} />
+      <Abilities
+        character={character}
+        setCharacter={setCharacter}
+        isEditing={isEditing}
+        activeMenu={activeMenu}
+      />
+      <Spells
+        character={character}
+        setCharacter={setCharacter}
+        isEditing={isEditing}
+        activeMenu={activeMenu}
+      />
+      <Equipments
+        character={character}
+        setCharacter={setCharacter}
+        isEditing={isEditing}
+        activeMenu={activeMenu}
+      />
+      <TurnActions
+        character={character}
+        setCharacter={setCharacter}
+        isEditing={isEditing}
+        activeMenu={activeMenu}
       />
     </Container>
   );

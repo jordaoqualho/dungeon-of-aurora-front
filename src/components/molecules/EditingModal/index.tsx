@@ -16,11 +16,11 @@ export const EditingModal = (props: EditingModalProps) => {
       <Container className="flex_ccc">
         <h4>Modo Edição</h4>
         <div className="buttons flex_csr">
-          <button className="save" onClick={() => onSave()}>
-            Salvar
-          </button>
           <button className="cancel" onClick={() => cancelEditing()}>
             Cancelar
+          </button>
+          <button className="save" onClick={() => onSave()}>
+            Salvar
           </button>
         </div>
       </Container>

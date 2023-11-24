@@ -45,32 +45,32 @@ type Feature = {
   classes: string;
 };
 
-type Spell = {
+export type Spell = {
   name: string;
   level: number;
   description: string;
   upgrade: string;
   school: string;
   castingTime: string;
-  range: Range;
+  range: string;
   duration: string;
   ritual: boolean;
   concentration: boolean;
   classes: string;
-  damage: Damage;
+  damage?: Damage;
 };
 
-type Damage = {
+export type Damage = {
   type: string;
   characterLevel: DamageAtLevel;
   slotLevel: DamageAtLevel;
 };
 
-type DamageAtLevel = {
-  [level: string]: DiceRolls;
+export type DamageAtLevel = {
+  [level: number]: DiceRolls;
 };
 
-type DiceRolls = {
+export type DiceRolls = {
   quantity: number;
   dice: string;
 };
@@ -92,6 +92,26 @@ export const attributeMap: AttributeMapper = {
   SAB: "wisdom",
   CAR: "charisma",
 };
+
+export const defaultSpell = {
+  name: "",
+  level: 0,
+  description: "",
+  upgrade: "",
+  school: "",
+  castingTime: "",
+  range: "",
+  duration: "",
+  ritual: false,
+  concentration: false,
+  classes: "",
+  damage: {
+    type: "",
+    characterLevel: {},
+    slotLevel: {},
+  },
+};
+
 export const defaultCharacter = {
   _id: "",
   name: "",
