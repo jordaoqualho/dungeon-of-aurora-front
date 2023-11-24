@@ -1,7 +1,8 @@
 import { SpellModal } from "@/components";
 import { Character } from "@/types";
-import { useState } from "react";
-import { AddButton } from "./styles";
+import BlurOnIcon from "@mui/icons-material/BlurOn";
+import { useEffect, useState } from "react";
+import { AddButton, SpellList } from "./styles";
 
 type SpellsProps = {
   character: Character;
@@ -12,18 +13,47 @@ type SpellsProps = {
 
 export function Spells(props: SpellsProps) {
   const { character, setCharacter, isEditing, activeMenu } = props;
-  const [showSpellModal, setShowSpellModal] = useState(true);
-
-  if (activeMenu !== "Spells") return <></>;
+  const [showSpellModal, setShowSpellModal] = useState(false);
+  const [spellList, setSpellList] = useState(character.spells);
 
   if (isEditing && !character) console.log(character, setCharacter, isEditing);
 
+  const closeSpellModal = () => {
+    setShowSpellModal(false);
+  };
+
+  useEffect(() => {
+    setSpellList([...character.spells]);
+    console.log("📌  character.spells → ", character.spells);
+  }, [character.spells]);
+
+  if (activeMenu !== "Spells") return <></>;
   return (
     <>
       <AddButton onClick={() => setShowSpellModal(true)}>
         adicionar truque ou magia
       </AddButton>
-      <SpellModal isOpen={showSpellModal} />
+      <SpellModal
+        isOpen={showSpellModal}
+        character={character}
+        setCharacter={setCharacter}
+        closeSpellModal={closeSpellModal}
+      />
+      <SpellList>
+        {spellList.map((spell, index) => (
+          <div key={index} className="container flex_csb">
+            <div className="flex_csr" style={{ gap: 16 }}>
+              <div className="icon flex_ccc">{spell.level}</div>
+              <div className="info">
+                <p className="name">{spell.name}</p>
+                <p className="subinfo">
+                  {spell.school} - {spell.castingTime} - {spell.range}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </SpellList>
     </>
   );
 }
