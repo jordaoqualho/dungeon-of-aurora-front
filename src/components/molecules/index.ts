@@ -7,6 +7,7 @@ export * from "./GoogleButton";
 export * from "./LevelSelector";
 export * from "./Menu";
 export * from "./MenuSelector";
+export * from "./PictureModal";
 export * from "./Proficiency";
 export * from "./RaceSelector";
 export * from "./SpellModal";
