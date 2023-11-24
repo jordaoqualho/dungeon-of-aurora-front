@@ -1,5 +1,5 @@
 import { male_character } from "@/assets";
-import { ClassSelector, RaceSelector } from "@/components";
+import { ClassSelector, PictureModal, RaceSelector } from "@/components";
 import { Character, User, defaultUser } from "@/types";
 import CloseIcon from "@mui/icons-material/Close";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
@@ -21,6 +21,7 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
   const [showRaceSelector, setShowRaceSelector] = useState(false);
   const [showClassSelector, setShowClassSelector] = useState(false);
   const [showLevelSelector, setShowLevelSelector] = useState(false);
+  const [showPictureModal, setShowPictureModal] = useState(false);
   const [showControls, setShowControls] = useState(false);
   const { character, setCharacter, isEditing, setIsEditing } = props;
   const navigate = useNavigate();
@@ -40,7 +41,12 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
   return (
     <Container className="flex_csr">
       <section className="photo_level flex_ccr">
-        <img className="photo" src={male_character} alt="photo" />
+        <img
+          className="photo"
+          src={character?.picture || male_character}
+          alt="photo"
+          onClick={() => isEditing && setShowPictureModal(true)}
+        />
         <div
           className="level flex_ccr"
           onClick={() => isEditing && setShowLevelSelector(true)}
@@ -122,6 +128,12 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
           setCharacter({ ...character, level: value });
           setShowLevelSelector(false);
         }}
+      />
+      <PictureModal
+        isOpen={showPictureModal}
+        setCharacter={setCharacter}
+        character={character}
+        closeModal={() => setShowPictureModal(false)}
       />
     </Container>
   );
