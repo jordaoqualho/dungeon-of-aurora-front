@@ -4,6 +4,7 @@ export * from './CharacterInfo';
 export * from "./ClassSelector";
 export * from "./EditingModal";
 export * from "./GoogleButton";
+export * from "./HitPoints";
 export * from "./LevelSelector";
 export * from "./Menu";
 export * from "./MenuSelector";
