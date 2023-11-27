@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { showPromiseToast, showToast } from "@/providers";
+import { showPromiseToast } from "@/providers";
 import { Character, attributeMap } from "@/types";
 import { getAbilityModifier } from "@/utils";
-import { toast } from "react-toastify";
 import { Checkbox } from "..";
 
 type SkillProps = {
