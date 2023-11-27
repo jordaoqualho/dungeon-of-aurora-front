@@ -63,12 +63,10 @@ export function GoogleButton() {
       .post(formatedUser)
       .then(async (response) => {
         setUser({ ...response, isAuthenticated: true });
-        if (response?._id)
-          await characterService.post({
-            userId: response?._id,
-          });
+        await characterService.post({
+          userId: response?._id,
+        });
         showToast(`Bem vindo ${response.name}`, "success");
-        setIsLoading(false);
         navigate("/character");
       })
       .catch((error) => console.log(error));
