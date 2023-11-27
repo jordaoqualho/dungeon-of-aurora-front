@@ -19,8 +19,8 @@ export function Button(props: ButtonProps) {
   return (
     <Container>
       <button onClick={onClick} type={type} style={style} className="flex_ccr">
-        {icon && <img src={icon.src} alt={icon.alt} />}
-        {loading ? <Loader /> : text ? text : "Salvar"}
+        {icon && !loading && <img src={icon.src} alt={icon.alt} />}
+        {loading ? <Loader /> : text || "Salvar"}
       </button>
     </Container>
   );

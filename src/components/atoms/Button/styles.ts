@@ -25,7 +25,7 @@ export const Container = styled.div`
 export const Loader = styled.span`
   width: 20px;
   height: 20px;
-  border: 2px solid var(--basic);
+  border: 2px solid var(--background);
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;
