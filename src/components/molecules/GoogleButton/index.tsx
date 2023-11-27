@@ -1,6 +1,6 @@
 import { google_logo } from "@/assets";
 import { Button } from "@/components";
-import { userService } from "@/connection";
+import { characterService, userService } from "@/connection";
 import { showToast } from "@/providers";
 import { ApiResponse, GoogleResponse, User, defaultUser } from "@/types";
 import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
@@ -57,7 +57,14 @@ export function GoogleButton() {
 
     await userService
       .post(formatedUser)
-      .then((response) => setUser(response))
+      .then(async (response) => {
+        setUser({ ...response, isAuthenticated: true });
+        await characterService.post({
+          userId: response?._id,
+        });
+        showToast(`Bem vindo ${response.name}`, "success");
+        navigate("/character");
+      })
       .catch((error) => console.log(error));
   };
 
