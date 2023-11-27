@@ -5,12 +5,14 @@ import { showToast } from "@/providers";
 import { ApiResponse, GoogleResponse, User, defaultUser } from "@/types";
 import { TokenResponse, useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "usehooks-ts";
 
 export function GoogleButton() {
   const navigate = useNavigate();
   const [, setUser] = useLocalStorage<User>("user", defaultUser);
+  const [isLoading, setIsLoading] = useState(false);
 
   const failedLogin = () => {
     showToast("Login com google falhou");
@@ -18,6 +20,7 @@ export function GoogleButton() {
 
   const googleButtonLogin = useGoogleLogin({
     onSuccess: (tokenResponse: TokenResponse) => {
+      setIsLoading(true);
       getGoogleProfile(tokenResponse.access_token);
     },
     onError: failedLogin,
@@ -39,6 +42,7 @@ export function GoogleButton() {
     const foundUser = await userService.getByEmail(email);
     if (foundUser) {
       setUser({ ...foundUser, isAuthenticated: true });
+      setIsLoading(false);
       navigate("/character");
     } else {
       await createUser(response);
@@ -82,6 +86,7 @@ export function GoogleButton() {
       icon={{ src: google_logo, alt: "google_logo" }}
       onClick={() => googleButtonLogin()}
       text="Entrar com Google"
+      loading={isLoading}
       style={{
         background: "var(--basic)",
         color: "var(--background)",
