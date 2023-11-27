@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { Modal } from "@/components";
 import { Character } from "@/types";
 import { useState } from "react";
