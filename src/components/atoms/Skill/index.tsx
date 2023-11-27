@@ -1,5 +1,8 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+import { showPromiseToast, showToast } from "@/providers";
 import { Character, attributeMap } from "@/types";
 import { getAbilityModifier } from "@/utils";
+import { toast } from "react-toastify";
 import { Checkbox } from "..";
 
 type SkillProps = {
@@ -32,8 +35,13 @@ export function Skill(props: SkillProps) {
     return getAbilityModifier(charAttributes[matchedAttribute]);
   };
 
-  const toggleSkill = () => {
-    if (!isEditing) return;
+  const toggleSkill = async () => {
+    if (!isEditing) {
+      const roll = Math.floor(Math.random() * 20) + 1;
+      const total = isProficient ? roll + proficiency : roll;
+      await showPromiseToast(`Rolou ${total} em ${name}`, "success");
+      return;
+    }
 
     if (isProficient) {
       const updatedSkills = charSkills.filter((skill) => skill !== name);
@@ -42,6 +50,7 @@ export function Skill(props: SkillProps) {
       setCharacter({ ...character, skills: [...character.skills, name] });
     }
   };
+
   return (
     <div
       className={`prof flex_csb ${isEditing ? "editing" : ""}`}

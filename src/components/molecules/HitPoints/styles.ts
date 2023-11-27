@@ -13,7 +13,7 @@ export const Container = styled.div`
 
   input {
     width: 20px;
-    min-width: 40px;
+    min-width: 50px;
     padding: 5px;
     background: var(--transparency);
     font-size: 20px;

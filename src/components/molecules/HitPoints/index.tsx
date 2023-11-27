@@ -1,3 +1,4 @@
+import { showToast } from "@/providers";
 import { Character } from "@/types";
 import { ChangeEvent } from "react";
 import { Container } from "./styles";
@@ -13,11 +14,22 @@ export const HitPoints = (props: HitPointsProps) => {
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
+    const numberValue = parseInt(value) || 0;
 
-    setCharacter({
-      ...character,
-      [name]: value,
-    });
+    if (!isNaN(numberValue)) {
+      const updatedCharacter = {
+        ...character,
+        [name]: value,
+      };
+
+      if (name === "hitPoints" && numberValue > character.maxHitPoints) {
+        updatedCharacter.maxHitPoints = numberValue;
+      }
+
+      setCharacter(updatedCharacter);
+    } else {
+      showToast("Pontos de vida inválidos", "warning");
+    }
   };
 
   return (
