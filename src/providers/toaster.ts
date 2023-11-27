@@ -1,7 +1,10 @@
 import { Slide, ToastOptions, TypeOptions, toast } from "react-toastify";
 
-export const showToast = (message: string, type: TypeOptions = "error") => {
-  const options: ToastOptions = {
+const getToastOptions = (
+  message: string,
+  type: TypeOptions = "error"
+): ToastOptions => {
+  return {
     style: { fontSize: "1.6rem" },
     position: "bottom-center",
     hideProgressBar: false,
@@ -16,8 +19,30 @@ export const showToast = (message: string, type: TypeOptions = "error") => {
     theme: "dark",
     type: type,
   };
+};
 
+export const showToast = (message: string, type: TypeOptions = "error") => {
   if (message === "dismissAll") return toast.dismiss();
 
+  const options = getToastOptions(message, type);
   return toast(message, options);
+};
+
+export const showPromiseToast = (
+  message: string,
+  type: TypeOptions = "error"
+) => {
+  const options = getToastOptions(message, type);
+
+  const functionThatReturnsPromise = () =>
+    new Promise((resolve) => setTimeout(resolve, 2000));
+
+  return toast.promise(
+    functionThatReturnsPromise,
+    {
+      pending: "Rodando dados",
+      success: message,
+    },
+    options
+  );
 };
