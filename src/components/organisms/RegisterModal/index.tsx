@@ -1,5 +1,5 @@
 import { Button, Input } from "@/components";
-import { userService } from "@/connection";
+import { characterService, userService } from "@/connection";
 import { showToast } from "@/providers";
 import { SignUpData, SignUpError, User, defaultUser } from "@/types";
 import { CSSProperties, useState } from "react";
@@ -43,8 +43,11 @@ export default function RegisterModal({
   const registerUser = () => {
     userService
       .post(signUpData)
-      .then((createdUser: User) => {
+      .then(async (createdUser: User) => {
         setUser({ ...createdUser, isAuthenticated: true });
+        await characterService.post({
+          userId: createdUser?._id,
+        });
         successRegister();
       })
       .catch((error) => {
