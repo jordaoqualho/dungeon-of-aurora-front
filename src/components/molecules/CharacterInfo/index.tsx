@@ -58,7 +58,7 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
         <input
           className={`name ${isEditing ? "editing" : ""}`}
           name="name"
-          value={character.name}
+          value={character.name || ""}
           placeholder="Nome do Personagem"
           onChange={handleInputChange}
           readOnly={!isEditing}
