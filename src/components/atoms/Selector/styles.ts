@@ -34,4 +34,17 @@ export const Container = styled.div<ContainerProps>`
   &::-webkit-scrollbar-track {
     background-color: transparent;
   }
+
+  &::after {
+    content: ""; /* Ensure content is defined for pseudo-elements */
+    background-color: var(--background);
+    position: absolute;
+    border-radius: 10px;
+    width: 120px;
+    height: 6px;
+    top: 13px;
+    left: 50%;
+    transform: translate(-50%);
+  }
 `;
+
