@@ -7,5 +7,5 @@ type ModalProps = {
 };
 
 export const Selector = ({ children, isOpen }: ModalProps) => {
-  return <>{isOpen && <Container>{children}</Container>}</>;
+  return <Container $show={isOpen}>{children}</Container>;
 };
