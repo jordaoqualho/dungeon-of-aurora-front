@@ -1,7 +1,7 @@
 {
   "name": "dungeonsofaurora",
   "private": true,
-  "version": "0.1.13",
+  "version": "0.1.14",
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",
@@ -13,7 +13,8 @@
     "prepare": "husky install",
     "push": "npm version patch && git push",
     "push-minor": "npm version minor && git push",
-    "push-major": "npm version major && git push"
+    "push-major": "npm version major && git push",
+    "release": "standard-version"
   },
   "husky": {
     "hooks": {
