@@ -23,23 +23,22 @@
     <script type="module" src="/src/index.tsx">
     </script>
     <script>
-      // removes all cache on start
-      //  if ('serviceWorker' in navigator) {
-      //   caches.keys().then(function(cacheNames) {
-      //     cacheNames.forEach(function(cacheName) {
-      //       caches.delete(cacheName);
-      //     });
-      //   });
-      // }
+       if ('serviceWorker' in navigator) {
+        caches.keys().then(function(cacheNames) {
+          cacheNames.forEach(function(cacheName) {
+            caches.delete(cacheName);
+          });
+        });
+      }
 
-      // self.addEventListener('activate', async () => {
-      //   // after we've taken over, iterate over all the current clients (windows)
-      //   const tabs = await self.clients.matchAll({type: 'window'})
-      //   tabs.forEach((tab) => {
-      //     // ...and refresh each one of them
-      //     tab.navigate(tab.url)
-      //   })
-      // })
+      self.addEventListener('activate', async () => {
+        // after we've taken over, iterate over all the current clients (windows)
+        const tabs = await self.clients.matchAll({type: 'window'})
+        tabs.forEach((tab) => {
+          // ...and refresh each one of them
+          tab.navigate(tab.url)
+        })
+      })
 
       navigator.serviceWorker.addEventListener('controllerchange', () => {
         if (!refreshing) {
