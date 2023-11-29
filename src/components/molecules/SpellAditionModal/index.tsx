@@ -8,15 +8,15 @@ import BlurOnIcon from "@mui/icons-material/BlurOn";
 import CheckIcon from "@mui/icons-material/Check";
 import { useEffect, useState } from "react";
 import { Buttons, Container, SpellOption, modalStyles } from "./styles";
-type SpellModalProps = {
+type SpellAditionModalProps = {
   isOpen: boolean;
   character: Character;
   setCharacter: (value: Character) => void;
-  closeSpellModal: () => void;
+  closeSpellAditionModal: () => void;
 };
 
-export const SpellModal = (props: SpellModalProps) => {
-  const { isOpen, character, setCharacter, closeSpellModal } = props;
+export const SpellAditionModal = (props: SpellAditionModalProps) => {
+  const { isOpen, character, setCharacter, closeSpellAditionModal } = props;
   const [selectedSpells, setSelectedSpells] = useState<Spell[]>(
     character.spells
   );
@@ -120,7 +120,7 @@ export const SpellModal = (props: SpellModalProps) => {
 
   const cancelSelection = () => {
     setSearch("");
-    closeSpellModal();
+    closeSpellAditionModal();
   };
 
   const saveSpells = () => {
@@ -130,7 +130,7 @@ export const SpellModal = (props: SpellModalProps) => {
     });
     showToast("Magias e truques salvos", "success");
     setSearch("");
-    closeSpellModal();
+    closeSpellAditionModal();
   };
 
   useEffect(() => {

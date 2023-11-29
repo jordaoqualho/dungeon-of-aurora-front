@@ -1,41 +1,41 @@
-import { SpellModal } from "@/components";
+import { SpellAditionModal } from "@/components";
 import { Character } from "@/types";
 import { useEffect, useState } from "react";
 import { AddButton, SpellList } from "./styles";
 
-type SpellsProps = {
+type SpellsAndTricksProps = {
   character: Character;
   setCharacter: (value: Character) => void;
   isEditing: boolean;
   activeMenu: string;
 };
 
-export function Spells(props: SpellsProps) {
+export function SpellsAndTricks(props: SpellsAndTricksProps) {
   const { character, setCharacter, isEditing, activeMenu } = props;
-  const [showSpellModal, setShowSpellModal] = useState(false);
+  const [showSpellAditionModal, setShowSpellAditionModal] = useState(false);
   const [spellList, setSpellList] = useState(character.spells);
 
   if (isEditing && !character) console.log(character, setCharacter, isEditing);
 
-  const closeSpellModal = () => {
-    setShowSpellModal(false);
+  const closeSpellAditionModal = () => {
+    setShowSpellAditionModal(false);
   };
 
   useEffect(() => {
     setSpellList([...character.spells]);
   }, [character.spells]);
 
-  if (activeMenu !== "Spells") return <></>;
+  if (activeMenu !== "SpellsAndTricks") return <></>;
   return (
     <>
-      <AddButton onClick={() => setShowSpellModal(true)}>
+      <AddButton onClick={() => setShowSpellAditionModal(true)}>
         adicionar truque ou magia
       </AddButton>
-      <SpellModal
-        isOpen={showSpellModal}
+      <SpellAditionModal
+        isOpen={showSpellAditionModal}
         character={character}
         setCharacter={setCharacter}
-        closeSpellModal={closeSpellModal}
+        closeSpellAditionModal={closeSpellAditionModal}
       />
       <SpellList>
         {spellList.map((spell, index) => (

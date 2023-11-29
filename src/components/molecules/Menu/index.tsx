@@ -16,7 +16,7 @@ export const Menu = ({ setActiveMenu, activeMenu }: MenuProps) => {
       case "Abilities":
         return "Habilidades";
 
-      case "Spells":
+      case "SpellsAndTricks":
         return "Magias e Truques";
 
       case "Equipments":

@@ -4,7 +4,7 @@ import {
   EditingModal,
   Equipments,
   Menu,
-  Spells,
+  SpellsAndTricks,
   TurnActions,
 } from "@/components";
 import { characterService } from "@/connection";
@@ -73,7 +73,7 @@ export function Character() {
         isEditing={isEditing}
         activeMenu={activeMenu}
       />
-      <Spells
+      <SpellsAndTricks
         character={character}
         setCharacter={setCharacter}
         isEditing={isEditing}
