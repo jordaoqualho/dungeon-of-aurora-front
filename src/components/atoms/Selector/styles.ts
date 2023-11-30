@@ -18,7 +18,7 @@ export const Container = styled.div<ContainerProps>`
   overflow: auto;
   width: 100%;
   z-index: 20;
-  bottom: -100%;
+  bottom: -60%;
   left: 0;
 
   ${(props) =>
