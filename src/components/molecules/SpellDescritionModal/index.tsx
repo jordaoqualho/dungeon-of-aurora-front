@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { Modal } from "@/components";
 import { Spell } from "@/types";
 import CloseIcon from "@mui/icons-material/Close";
