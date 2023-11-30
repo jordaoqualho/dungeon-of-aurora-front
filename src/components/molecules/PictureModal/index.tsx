@@ -2,14 +2,15 @@ import { Modal } from "@/components";
 import { Character } from "@/types";
 import { useState } from "react";
 import { Buttons, Container, modalStyles } from "./styles";
-type SpellModalProps = {
+
+type PictureModalProps = {
   isOpen: boolean;
   character: Character;
   setCharacter: (value: Character) => void;
   closeModal: () => void;
 };
 
-export const PictureModal = (props: SpellModalProps) => {
+export const PictureModal = (props: PictureModalProps) => {
   const { isOpen, character, setCharacter, closeModal } = props;
   const [picture, setPicture] = useState(character.picture || "");
 

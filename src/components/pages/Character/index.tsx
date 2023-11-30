@@ -4,16 +4,17 @@ import {
   EditingModal,
   Equipments,
   Menu,
-  Spells,
+  SpellsAndTricks,
   TurnActions,
 } from "@/components";
 import { characterService } from "@/connection";
 import { useCharacter } from "@/hooks/useCharacter";
 import { showToast } from "@/providers";
-import { Character, User, defaultCharacter } from "@/types";
+import { Character, User } from "@/types";
 import { useEffect, useState } from "react";
 import { useReadLocalStorage } from "usehooks-ts";
 import { Container } from "./styles";
+import { defaultCharacter } from "@/constants";
 
 export function Character() {
   const [character, setCharacter] = useState<Character>(defaultCharacter);
@@ -73,7 +74,7 @@ export function Character() {
         isEditing={isEditing}
         activeMenu={activeMenu}
       />
-      <Spells
+      <SpellsAndTricks
         character={character}
         setCharacter={setCharacter}
         isEditing={isEditing}
