@@ -4,69 +4,64 @@ export const Container = styled.div`
   flex-wrap: wrap;
   gap: 8px;
 
-  .search_input {
-    background-color: var(--background);
-    padding: 12px 16px;
+  .title {
+    margin-bottom: 24px;
+
+    h4 {
+      font-size: var(--huge);
+      line-height: 20px;
+    }
+
+    span {
+      padding: 0;
+      font-size: var(--medium);
+      font-weight: 300;
+      color: var(--bright);
+    }
+  }
+
+  .description {
+    max-height: 300px;
+    overflow: hidden auto;
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--bright);
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: var(--border);
+    }
+  }
+
+  .text {
+    line-break: white;
+    margin-bottom: 2px;
+
+    span {
+      font-size: var(--medium);
+      color: var(--bright);
+      font-weight: 300;
+      padding: 0;
+    }
+  }
+
+  .close_btn {
+    position: absolute;
+    background-color: var(--transparency);
     border-radius: 10px;
-  }
-`;
+    color: var(--bright);
+    padding: 5px;
+    right: -15px;
+    top: -25px;
 
-export const SpellOption = styled.div`
-  background-color: var(--background);
-  border-radius: 10px;
-  width: 100%;
-  padding: 5px;
-  gap: 8px;
-
-  .icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 10px;
-    background-color: var(--ground);
-    color: var(--basic);
-  }
-
-  .name {
-    font-size: var(--medium);
-  }
-
-  .add {
-    background-color: var(--ground);
-    color: var(--primary);
-    border: 1px solid var(--primary);
-    border-radius: 10px;
-    padding: 5px 20px;
-  }
-
-  .added {
-    color: var(--success);
-    border: 1px solid var(--success);
-  }
-`;
-
-export const Buttons = styled.div`
-  margin-top: 16px;
-  width: 100%;
-  gap: 16px;
-
-  button {
-    border-radius: 10px;
-    color: var(--white);
-    padding: 8px 24px;
-    min-width: 100px;
-    width: 100%;
-  }
-
-  .save {
-    background-color: var(--primary);
-  }
-
-  .cancel {
-    background-color: var(--background);
+    svg {
+      font-size: var(--big);
+    }
   }
 `;
 
 export const modalStyles = `
   border-radius: 10px;
-  top: 30vh;
+  padding: 30px 20px;
+  top: 20vh;
 `;

@@ -28,7 +28,7 @@ export const MenuSelector = ({ isOpen, setActiveMenu }: MenuSelectorProps) => {
         </div>
         <div
           className="option flex_csr"
-          id="Spells"
+          id="SpellsAndTricks"
           onClick={(e) => handleOptionClick(e)}
         >
           <div className="icon flex_ccc">

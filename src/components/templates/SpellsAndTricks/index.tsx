@@ -1,7 +1,9 @@
-import { SpellAditionModal } from "@/components";
+import { Spell, SpellAditionModal } from "@/components";
+import { SpellDescritionModal } from "@/components/molecules/SpellDescritionModal";
 import { Character } from "@/types";
 import { useEffect, useState } from "react";
 import { AddButton, SpellList } from "./styles";
+import { defaultSpell } from "@/constants";
 
 type SpellsAndTricksProps = {
   character: Character;
@@ -14,6 +16,8 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
   const { character, setCharacter, isEditing, activeMenu } = props;
   const [showSpellAditionModal, setShowSpellAditionModal] = useState(false);
   const [spellList, setSpellList] = useState(character.spells);
+  const [descriptionModal, setDescriptionModal] = useState(false);
+  const [selectedSpell, setSelectedSpell] = useState(defaultSpell);
 
   if (isEditing && !character) console.log(character, setCharacter, isEditing);
 
@@ -26,6 +30,7 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
   }, [character.spells]);
 
   if (activeMenu !== "SpellsAndTricks") return <></>;
+
   return (
     <>
       <AddButton onClick={() => setShowSpellAditionModal(true)}>
@@ -37,19 +42,21 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
         setCharacter={setCharacter}
         closeSpellAditionModal={closeSpellAditionModal}
       />
+      <SpellDescritionModal
+        isOpen={descriptionModal}
+        spell={selectedSpell}
+        onClose={() => setDescriptionModal(false)}
+      />
       <SpellList>
         {spellList.map((spell, index) => (
-          <div key={index} className="container flex_csb">
-            <div className="flex_csr" style={{ gap: 16 }}>
-              <div className="icon flex_ccc">{spell.level}</div>
-              <div className="info">
-                <p className="name">{spell.name}</p>
-                <p className="subinfo">
-                  {spell.school} - {spell.castingTime} - {spell.range}
-                </p>
-              </div>
-            </div>
-          </div>
+          <Spell
+            key={index}
+            spell={spell}
+            onClick={() => {
+              setDescriptionModal(true);
+              setSelectedSpell(spell);
+            }}
+          />
         ))}
       </SpellList>
     </>
