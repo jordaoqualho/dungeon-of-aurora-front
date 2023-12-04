@@ -1,44 +1,48 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  button {
-    font-size: var(--medium);
-    color: var(--background);
+  background-color: var(--ground);
+  padding: 5px 5px 5px 20px;
+  font-size: var(--medium);
+  border-radius: 10px;
+  width: 100%;
+  gap: 8px;
+
+  input {
+    background-color: var(--background);
+    min-width: 10px;
+    height: 15px;
+    width: 15px;
+  }
+
+  .type {
+    width: 50px;
+  }
+
+  .skill {
+    width: 140px;
+  }
+
+  .bonus {
+    background-color: var(--background);
+    border-radius: 10px;
+    padding: 7px;
+    width: 40px;
+  }
+
+  .roll_btn {
+    align-items: center;
+    background: var(--primary);
+    border: 1px solid var(--border);
+    gap: 6px;
+    padding: 7px 16px;
     border-radius: 15px;
     color: var(--basic);
-    min-height: 50px;
-    font-weight: 600;
-    padding: 10px;
-    width: 100%;
-
-    &:focus {
-      opacity: 0.75;
-    }
+    font-weight: 200;
+    height: 33px;
 
     img {
-      width: 20px;
-      margin-right: 15px;
-    }
-  }
-`;
-
-export const Loader = styled.span`
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--basic);
-  border-bottom-color: transparent;
-  border-radius: 50%;
-  display: inline-block;
-  padding: 0;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-
-  @keyframes rotation {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
+      width: 16px;
     }
   }
 `;
