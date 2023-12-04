@@ -1,3 +1,5 @@
+import { Spell } from ".";
+
 export type Character = {
   _id: string;
   name: string;
@@ -44,36 +46,6 @@ type Feature = {
   level: number;
   description: string;
   classes: string;
-};
-
-export type Spell = {
-  name: string;
-  level: number;
-  description: string;
-  upgrade: string;
-  school: string;
-  castingTime: string;
-  range: string;
-  duration: string;
-  ritual: boolean;
-  concentration: boolean;
-  classes: string;
-  damage?: Damage;
-};
-
-export type Damage = {
-  type: string;
-  characterLevel: DamageAtLevel;
-  slotLevel: DamageAtLevel;
-};
-
-export type DamageAtLevel = {
-  [level: number]: DiceRolls;
-};
-
-export type DiceRolls = {
-  quantity: number;
-  dice: string;
 };
 
 export type Skill = {
