@@ -1,8 +1,9 @@
 export const defaultSpell = {
+  _id: "",
   name: "",
   level: 0,
-  description: "",
-  upgrade: "",
+  description: [""],
+  upgrade: [""],
   school: "",
   castingTime: "",
   range: "",

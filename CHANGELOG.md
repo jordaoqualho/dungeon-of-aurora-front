@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.17](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.1.16...v0.1.17) (2023-12-04)
+
+
+### Features
+
+* 🎸 add roll button on proficiency ([fec5b62](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/fec5b6283c76fe99a28898c9dc1cd1c2b6de2033))
+* 🎸 change the code to use the spell data from our api ([33f8f5f](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/33f8f5f41acb860b2ed311a14070ef403b267a46))
+
 ### 0.1.16 (2023-11-30)
 
 

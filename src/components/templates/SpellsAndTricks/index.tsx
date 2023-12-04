@@ -1,9 +1,9 @@
 import { Spell, SpellAditionModal } from "@/components";
 import { SpellDescritionModal } from "@/components/molecules/SpellDescritionModal";
+import { defaultSpell } from "@/constants";
 import { Character } from "@/types";
 import { useEffect, useState } from "react";
 import { AddButton, SpellList } from "./styles";
-import { defaultSpell } from "@/constants";
 
 type SpellsAndTricksProps = {
   character: Character;

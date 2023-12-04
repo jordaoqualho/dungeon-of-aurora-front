@@ -1,3 +1,4 @@
-import google_logo from './google_logo.svg';
+import d20 from "./d20.svg";
+import google_logo from "./google_logo.svg";
 
-export { google_logo };
+export { d20, google_logo };
