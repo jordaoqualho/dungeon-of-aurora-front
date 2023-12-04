@@ -35,7 +35,7 @@ export const showPromiseToast = (
   const options = getToastOptions(message, type);
 
   const functionThatReturnsPromise = () =>
-    new Promise((resolve) => setTimeout(resolve, 2000));
+    new Promise((resolve) => setTimeout(resolve, 1000));
 
   return toast.promise(
     functionThatReturnsPromise,
