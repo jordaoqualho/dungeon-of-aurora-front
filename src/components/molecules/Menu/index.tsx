@@ -1,4 +1,4 @@
-import ViewListRoundedIcon from "@mui/icons-material/ViewListRounded";
+import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { useState } from "react";
 import { MenuSelector } from "../MenuSelector";
 import { Container } from "./styles";
@@ -14,31 +14,29 @@ export const Menu = ({ setActiveMenu, activeMenu }: MenuProps) => {
   const getSelectedMenu = () => {
     switch (activeMenu) {
       case "Abilities":
-        return "Habilidades";
+        return "Atributos & Proeficiências";
 
       case "SpellsAndTricks":
-        return "Magias e Truques";
+        return "Magias & Truques";
 
       case "Equipments":
         return "Equipamentos";
 
       case "TurnActions":
-        return "Ações no turno";
+        return "Ações no Turno";
 
       default:
-        return "Habilidades";
+        return "Atributos & Proeficiências";
     }
   };
 
   return (
     <Container
-      className="flex_csr"
+      className="flex_ccr"
       onClick={() => setIsSelectorOpen(!isSelectorOpen)}
     >
-      <div className="icon_box flex_ccc">
-        <ViewListRoundedIcon className="menu_icon" />
-      </div>
       <p className="title">{getSelectedMenu()}</p>
+      <KeyboardArrowDownRoundedIcon className="menu_icon" />
       <MenuSelector isOpen={isSelectorOpen} setActiveMenu={setActiveMenu} />
     </Container>
   );

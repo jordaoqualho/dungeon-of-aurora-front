@@ -1,26 +1,21 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: var(--ground);
-  border-radius: 10px;
+  background-color: var(--secundary);
+  border-radius: 2dvh;
   padding: 10px;
   width: 100%;
   gap: 16px;
 
-  .icon_box {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
-    background-color: var(--background);
-
-    .menu_icon {
-      font-size: var(--huge);
-    }
+  .menu_icon {
+    color: var(--background);
+    font-size: var(--large);
   }
 
   .title {
-    text-transform: uppercase;
-    font-family: var(--main);
-    font-size: var(--huge);
+    font-size: var(--medium);
+    color: var(--background);
+    font-weight: var(--semiBold);
+    margin-left: 18px;
   }
 `;
