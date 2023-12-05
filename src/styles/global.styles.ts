@@ -18,11 +18,6 @@ export default createGlobalStyle<GlobalStyleProps>`
     --ground: ${(props) => props.theme.color.ground};
     --transparency: ${(props) => props.theme.color.transparency};
 
-    /* Gradients */
-    --priGrad: ${(props) => props.theme.gradient.priGrad};
-    --secGrad: ${(props) => props.theme.gradient.secGrad};
-    --bacGrad: ${(props) => props.theme.gradient.bacGrad};
-
     /* Texts */
     --basic: ${(props) => props.theme.text.basic};
     --contrast: ${(props) => props.theme.text.contrast};
@@ -39,6 +34,13 @@ export default createGlobalStyle<GlobalStyleProps>`
     --huge: ${(props) => props.theme.font.huge};
     --subtitle: ${(props) => props.theme.font.subtitle};
     --title: ${(props) => props.theme.font.title};
+    --thin: ${(props) => props.theme.font.thin};
+    --extraBight: ${(props) => props.theme.font.extraBight};
+    --light: ${(props) => props.theme.font.light};
+    --normal: ${(props) => props.theme.font.normal};
+    --semiBold: ${(props) => props.theme.font.semiBold};
+    --bold: ${(props) => props.theme.font.bold};
+    --extraBold: ${(props) => props.theme.font.extraBold};
 
     /* Shadows */
     --basicShadow: ${(props) => props.theme.shadow.basic};
@@ -82,7 +84,7 @@ export default createGlobalStyle<GlobalStyleProps>`
   }
 
   * {
-    font-family: var(--second);
+    font-family: var(--main);
     position: relative;
     box-sizing: border-box;
     outline: none;

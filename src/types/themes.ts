@@ -11,6 +11,13 @@ export default interface Theme {
     huge: string;
     subtitle: string;
     title: string;
+    thin: number;
+    extraBight: number;
+    light: number;
+    normal: number;
+    semiBold: number;
+    bold: number;
+    extraBold: number;
   };
   color: {
     primary: string;
