@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  background-color: var(--ground);
+  border-radius: 10px;
+  padding: 8px;
   width: 100%;
   gap: 24px;
 
@@ -9,29 +12,31 @@ export const Container = styled.div`
     background: var(--primary);
     font-family: var(--main);
     font-size: var(--small);
-    padding: 8px 12px;
-    border-radius: 10px;
+    color: var(--background);
+    font-weight: 600;
+    border-radius: 15px;
     margin-left: -15px;
+    margin-top: 35px;
+    width: 20px;
+    height: 20px;
   }
 
   .photo {
-    width: 80px;
-    height: 80px;
+    width: 56px;
     border-radius: 50%;
     object-fit: cover;
-    outline: 3px solid var(--primary);
   }
 
   .name {
     font-family: var(--main);
-    padding: 0;
-    font-size: var(--big);
-    text-transform: uppercase;
+    font-size: var(--large);
     margin-bottom: 4px;
+    font-weight: 600;
+    padding: 0;
   }
 
   .info {
-    font-size: var(--medium);
+    font-size: var(--small);
     font-weight: 200;
     border-radius: 5px;
     gap: 8px;
