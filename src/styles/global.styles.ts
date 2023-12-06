@@ -35,7 +35,7 @@ export default createGlobalStyle<GlobalStyleProps>`
     --subtitle: ${(props) => props.theme.font.subtitle};
     --title: ${(props) => props.theme.font.title};
     --thin: ${(props) => props.theme.font.thin};
-    --extraBight: ${(props) => props.theme.font.extraBight};
+    --extraLight: ${(props) => props.theme.font.extraLight};
     --light: ${(props) => props.theme.font.light};
     --normal: ${(props) => props.theme.font.normal};
     --semiBold: ${(props) => props.theme.font.semiBold};

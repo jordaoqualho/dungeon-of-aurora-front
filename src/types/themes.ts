@@ -12,7 +12,7 @@ export default interface Theme {
     subtitle: string;
     title: string;
     thin: number;
-    extraBight: number;
+    extraLight: number;
     light: number;
     normal: number;
     semiBold: number;
