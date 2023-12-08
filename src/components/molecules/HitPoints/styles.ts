@@ -31,8 +31,8 @@ export const Container = styled.div`
 
     p {
       font-weight: var(--extraLight);
-      color: var(--background);
       font-size: var(--small);
+      color: var(--secundary);
     }
 
     .dices {
@@ -40,8 +40,8 @@ export const Container = styled.div`
       gap: 4px;
 
       img {
-        width: 12px;
-        height: 12.887px;
+        width: 18px;
+        height: 18px;
         flex-shrink: 0;
       }
     }
@@ -55,6 +55,7 @@ export const Container = styled.div`
       p {
         font-size: var(--medium);
         font-weight: var(--normal);
+        color: var(--background);
       }
     }
   }

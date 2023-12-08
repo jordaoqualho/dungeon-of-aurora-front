@@ -22,11 +22,12 @@ export const Container = styled.div<Props>`
 
     input {
       z-index: 5;
-      min-width: 50px;
+      min-width: 70px;
       text-align: center;
       font-size: var(--big);
       font-family: var(--main);
       font-weight: var(--semiBold);
+      background-color: transparent;
     }
   }
 
