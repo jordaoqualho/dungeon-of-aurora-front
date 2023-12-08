@@ -11,7 +11,7 @@ export const Container = styled.div<ContainerProps>`
   border-radius: 20px;
   position: fixed;
   padding: 20px;
-  z-index: 10;
+  z-index: 20;
   left: 20px;
   top: 85vh;
 

@@ -3,9 +3,13 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: var(--ground);
   border-radius: 10px;
-  padding: 10px;
+  padding: 24px;
   width: 100%;
-  gap: 16px;
+
+  .title {
+    font-size: var(--medium);
+    margin-bottom: 4px;
+  }
 
   .points {
     gap: 8px;
@@ -16,7 +20,41 @@ export const Container = styled.div`
     min-width: 50px;
     padding: 5px;
     background: var(--background);
-    font-size: 20px;
+    font-size: var(--big);
+    font-weight: var(--semiBold);
     text-align: center;
+  }
+
+  .life_dices {
+    width: 100%;
+    margin-top: 18px;
+
+    p {
+      font-weight: var(--extraLight);
+      font-size: var(--small);
+    }
+
+    .dices {
+      margin-top: 4px;
+      gap: 4px;
+
+      img {
+        width: 12px;
+        height: 12.887px;
+        flex-shrink: 0;
+      }
+    }
+
+    button {
+      background-color: var(--primary);
+      border-radius: 20px;
+      padding: 8px 12px;
+      gap: 4px;
+
+      p {
+        font-size: var(--medium);
+        font-weight: var(--normal);
+      }
+    }
   }
 `;

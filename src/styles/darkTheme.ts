@@ -2,7 +2,7 @@ export default {
   title: "dark",
 
   font: {
-    main: "Bebas Neue",
+    main: "Inter",
     second: "Rubik",
     micro: "1rem",
     small: "1.2rem",
@@ -12,29 +12,48 @@ export default {
     huge: "3.2rem",
     subtitle: "3.8rem",
     title: "4.8rem",
+    thin: 100,
+    extraLight: 200,
+    light: 300,
+    normal: 400,
+    semiBold: 600,
+    bold: 700,
+    extraBold: 800,
+  },
+
+  wheith: {
+    main: "Inter",
+    second: "Rubik",
+    micro: "1rem",
+    small: "1.2rem",
+    medium: "1.6rem",
+    large: "1.8rem",
+    big: "2.2rem",
+    huge: "3.2rem",
+    subtitle: "3.8rem",
+    title: "4.8rem",
   },
 
   color: {
-    primary: "#874EFE",
-    secundary: "#FE852C",
-    background: "#232428",
-    success: "#22a590",
+    primary: "#04EE9A",
+    secundary: "#f5f5f5",
+    background: "#0C0C0C",
+    success: "#04EE9A",
     warning: "#F9F871",
     error: "#b53523",
-    border: "#292929",
-    ground: "#1A1A1A",
+    border: "#004F32",
+    ground: "#191919",
     transparency: "rgba(32, 32, 44, 0.25)",
   },
 
-  gradient: {
-    priGrad: "linear-gradient(0deg, rgba(135, 78, 254, 0.56) 0%, rgba(135, 78, 254, 0.86) 50%, #874efe 100%)",
-    secGrad: "linear-gradient(0deg, rgba(254, 133, 44, 0.56) 0%, rgba(254, 133, 44, 0.86) 50%, #FE852C 100%);",
-    bacGrad: "linear-gradient(180deg, rgba(54, 57, 70, 0.86) 0%, #2d2f38 51.04%, #262834 100%)",
-  },
+  // gradient: {
+  //   priGrad:
+  //     "linear-gradient(0deg, rgba(135, 78, 254, 0.56) 0%, rgba(135, 78, 254, 0.86) 50%, #874efe 100%)",
+  // },
 
   text: {
     basic: "#f5f5f5",
-    contrast: "#161922",
+    contrast: "#0C0C0C",
     bright: "#a9a9a9",
   },
 

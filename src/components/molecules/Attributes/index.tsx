@@ -25,6 +25,7 @@ export const Attributes = (props: AttributesProps) => {
 
   return (
     <Container className="flex_ccr">
+      <div className="title">Atributos</div>
       <Attribute
         label="Força"
         name="strength"

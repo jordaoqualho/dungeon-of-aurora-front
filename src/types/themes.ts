@@ -11,6 +11,13 @@ export default interface Theme {
     huge: string;
     subtitle: string;
     title: string;
+    thin: number;
+    extraLight: number;
+    light: number;
+    normal: number;
+    semiBold: number;
+    bold: number;
+    extraBold: number;
   };
   color: {
     primary: string;
@@ -22,11 +29,6 @@ export default interface Theme {
     border: string;
     ground: string;
     transparency: string;
-  };
-  gradient: {
-    priGrad: string;
-    secGrad: string;
-    bacGrad: string;
   };
   text: {
     basic: string;

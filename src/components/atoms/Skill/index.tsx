@@ -1,4 +1,3 @@
-import { d20 } from "@/assets";
 import { showPromiseToast } from "@/providers";
 import { Character } from "@/types";
 import { calculateModifier, getAbilityScoreModifier } from "@/utils";
@@ -66,6 +65,7 @@ export function Skill({
   return (
     <Container
       className={`prof flex_csb ${isEditing ? "editing" : ""}`}
+      $isProficient={isProficient}
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onClick={() => toggleSkill()}
     >
@@ -77,9 +77,6 @@ export function Skill({
           {calculateModifier(isProficient, abilityScoreModifier, proficiency)}
         </p>
       </div>
-      <button className="flex roll_btn">
-        <img src={d20} alt="d20" />
-      </button>
     </Container>
   );
 }
