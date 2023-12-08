@@ -10,6 +10,7 @@ export const Container = styled.div`
     button {
       border-radius: 10px;
       color: var(--white);
+      font-weight: var(--semiBold);
       padding: 8px 24px;
       min-width: 100px;
       width: 100%;
@@ -17,10 +18,11 @@ export const Container = styled.div`
 
     .save {
       background-color: var(--primary);
+      color: var(--background);
     }
 
     .cancel {
-      background-color: var(--border);
+      background-color: var(--background);
     }
   }
 `;
