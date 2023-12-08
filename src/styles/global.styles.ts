@@ -194,7 +194,7 @@ export default createGlobalStyle<GlobalStyleProps>`
 
   
   .editing {
-    outline: 1px solid var(--primary) ;
+    outline: 1px solid var(--bright) ;
   }
 
   button, a, input {
