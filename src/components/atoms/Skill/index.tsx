@@ -1,4 +1,3 @@
-import { d20 } from "@/assets";
 import { showPromiseToast } from "@/providers";
 import { Character } from "@/types";
 import { calculateModifier, getAbilityScoreModifier } from "@/utils";

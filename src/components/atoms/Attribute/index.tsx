@@ -14,7 +14,6 @@ type AttributeProps = {
 export function Attribute(props: AttributeProps) {
   const { label, value, name, handeChange, isEditing } = props;
   const modifier: string = getAbilityModifier(value);
-  const modifierValue: number = parseInt(modifier, 10);
 
   return (
     <Container className="flex_ccc">
