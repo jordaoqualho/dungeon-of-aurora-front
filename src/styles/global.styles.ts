@@ -89,7 +89,6 @@ export default createGlobalStyle<GlobalStyleProps>`
     box-sizing: border-box;
     outline: none;
     border: none;
-    z-index: 5;
     margin: 0;
   }
   

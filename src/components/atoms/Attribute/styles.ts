@@ -17,6 +17,7 @@ export const Container = styled.div`
       font-weight: var(--semiBold);
       background-color: transparent;
       margin-bottom: 46px;
+      z-index: 5;
     }
   }
 
