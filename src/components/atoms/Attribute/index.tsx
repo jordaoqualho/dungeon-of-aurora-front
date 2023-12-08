@@ -1,5 +1,7 @@
+import { hexagon_primary } from "@/assets";
 import { getAbilityModifier } from "@/utils";
 import { ChangeEvent } from "react";
+import { Container } from "./styles";
 
 type AttributeProps = {
   label: string;
@@ -13,12 +15,11 @@ export function Attribute(props: AttributeProps) {
   const { label, value, name, handeChange, isEditing } = props;
   const modifier: string = getAbilityModifier(value);
   const modifierValue: number = parseInt(modifier, 10);
-  const isNegative: boolean = modifierValue < 0;
-  const quantity = Math.abs(modifierValue);
 
   return (
-    <div className="capability flex_csr">
+    <Container className="flex_ccc">
       <div className={`mod flex_ccc ${isEditing ? "editing" : ""}`}>
+        <p>{label}</p>
         <input
           type="text"
           name={name}
@@ -26,21 +27,9 @@ export function Attribute(props: AttributeProps) {
           onChange={handeChange}
           readOnly={!isEditing}
         />
+        <span>{modifier}</span>
+        <img src={hexagon_primary} alt="hexagon_primary" />
       </div>
-      <p>{label}</p>
-      <div className="points flex_ccc">
-        {new Array(5).fill(0).map((_, index) => (
-          <div key={index} className="mark" />
-        ))}
-      </div>
-      <div className="points flex_ccc">
-        {new Array(quantity).fill(0).map((_, index) => (
-          <div
-            key={index}
-            className={`${isNegative ? "negative" : "positive"} `}
-          />
-        ))}
-      </div>
-    </div>
+    </Container>
   );
 }
