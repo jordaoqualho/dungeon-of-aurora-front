@@ -88,8 +88,9 @@ export default createGlobalStyle<GlobalStyleProps>`
     position: relative;
     box-sizing: border-box;
     outline: none;
-    margin: 0;
     border: none;
+    z-index: 5;
+    margin: 0;
   }
   
 /* 
