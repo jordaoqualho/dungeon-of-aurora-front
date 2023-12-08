@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.18](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.1.17...v0.1.18) (2023-12-08)
+
+
+### Features
+
+* 🎸 add d20 icons ([c952da9](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/c952da9209f49d6cd76c345f8ae748ced250b022))
+* 🎸 adding hexagon images ([62f913a](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/62f913a7faff82179b03bf68214cce2b69a2d8d3))
+* 🎸 ading global z-index ([772fd16](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/772fd16d5c4bac2aa6f920fe3306c6339f434ad4))
+* 🎸 creating dice roll function helper ([745f0aa](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/745f0aa53fd6605d2448b751e307ce1d3bc643c0))
+* 🎸 re-styling skills component ([50df214](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/50df214ac94e8e58a35c3d2f2aced8df6c4b8db1))
+
+
+### Bug Fixes
+
+* 🐛 fixing axios problem update ([14a8cbf](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/14a8cbfbd3394356f45ced2ad6f02128e40f017e))
+* 🐛 resolving theme errros ([4789494](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/47894945e8d75a283dc9f128183a8089391888ad))
+* 🐛 resolving z-index problem ([fbdd475](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/fbdd475677e9ac7abbfc7d908b3852d9239e19a0))
+
 ### [0.1.17](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.1.16...v0.1.17) (2023-12-04)
 
 
