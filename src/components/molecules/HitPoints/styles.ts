@@ -31,6 +31,7 @@ export const Container = styled.div`
 
     p {
       font-weight: var(--extraLight);
+      color: var(--background);
       font-size: var(--small);
     }
 

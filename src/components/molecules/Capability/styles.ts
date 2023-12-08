@@ -22,7 +22,7 @@ export const Container = styled.div<Props>`
 
     input {
       z-index: 5;
-      min-width: 25px;
+      min-width: 50px;
       text-align: center;
       font-size: var(--big);
       font-family: var(--main);
