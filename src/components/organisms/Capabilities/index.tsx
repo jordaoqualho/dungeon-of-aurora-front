@@ -27,6 +27,7 @@ export const Capabilities = (props: CapabilitiesProps) => {
       <Capability
         label={"CA"}
         inputName={"armorClass"}
+        hexagonBorder
         inputValue={character.armorClass}
         onChange={handleInputChange}
         readOnly={!isEditing}
