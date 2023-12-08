@@ -3,11 +3,8 @@ import styled from "styled-components";
 export const Modal = styled.form`
   padding: 20px;
   border-radius: 20px;
-  background: rgba(0, 0, 0, -0.2);
+  background: var(--ground);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(5px);
-  border: 2px solid #54296f;
   position: relative;
 
   .title {
@@ -56,12 +53,13 @@ export const Divisor = styled.div`
 `;
 
 export const login_btn = {
-  background: "var(--priGrad)",
+  background: "var(--primary)",
+  color: "var(--ground)",
   margin: "40px 0 15px 0",
 };
 
 export const signin_btn = {
-  background: "var(--bacGrad)",
+  background: "var(--background)",
 };
 
 export const google_btn = {

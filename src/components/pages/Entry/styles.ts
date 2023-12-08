@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: -webkit-fill-available;
+  background-color: var(--background);
   position: relative;
   height: 100vh;
   padding: 20px;

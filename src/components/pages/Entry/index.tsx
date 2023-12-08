@@ -1,4 +1,3 @@
-import { giphy } from "@/assets";
 import { Welcome } from "@/components/templates/Welcome";
 import { User } from "@/types";
 import { useEffect } from "react";
@@ -18,7 +17,7 @@ export function Entry() {
 
   return (
     <Container title="container">
-      <img src={giphy} alt="landscape" className="landscape" />
+      {/* <img src={giphy} alt="landscape" className="landscape" /> */}
       <Welcome />
       <p className="version">Versão {APP_VERSION}</p>
     </Container>

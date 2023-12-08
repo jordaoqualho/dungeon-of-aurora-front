@@ -21,14 +21,17 @@ export const Container = styled.div<ContainerProps>`
     border-radius: 15px;
     padding: 11.5px 0 11.5px 50px;
     margin-bottom: 15px;
-    border: ${(props) => (props.$error ? "1px solid var(--error) !important" : "1px solid #73308952")};
+    border: ${(props) =>
+      props.$error
+        ? "1px solid var(--error) !important"
+        : "1px solid var(--border)"};
 
     &::placeholder {
       color: var(--bright);
     }
 
     &:focus {
-      border: 1px solid var(--bright);
+      border: 1px solid var(--primary);
     }
   }
 `;
