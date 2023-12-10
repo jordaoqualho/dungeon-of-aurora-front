@@ -5,4 +5,3 @@ import hexagon_border from "./hexagon_border.svg";
 import hexagon_primary from "./hexagon_primary.svg";
 
 export { d20, d20_white, google_logo, hexagon_border, hexagon_primary };
-
