@@ -7,8 +7,8 @@ const manifestForPlugin: Partial<ManifestOptions> = {
   short_name: "Aurora",
   start_url: ".",
   display: "standalone",
-  background_color: "#232428",
-  theme_color: "#232428",
+  background_color: "#0C0C0C",
+  theme_color: "#0C0C0C",
   description: "Web application to explore the magical world of Aurora.",
   icons: [
     {
