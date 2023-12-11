@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const AddButton = styled.button`
-  background: var(--primary);
-  color: var(--background);
+  box-shadow: var(--normalShadow);
   font-weight: var(--semiBold);
+  background: var(--secundary);
+  color: var(--background);
   font-size: var(--huge);
   border-radius: 30px;
   align-items: center;
@@ -14,6 +15,8 @@ export const AddButton = styled.button`
   width: 48px;
   bottom: 40px;
   right: 20px;
+  z-index: 10;
+  padding: 0;
 `;
 
 export const SpellList = styled.div`
@@ -21,5 +24,7 @@ export const SpellList = styled.div`
   margin-top: 8px;
   display: flex;
   width: 100%;
+  max-height: calc(100dvh - 200px);
+  overflow: auto;
   gap: 8px;
 `;
