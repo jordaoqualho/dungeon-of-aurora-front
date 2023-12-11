@@ -32,15 +32,15 @@ export const SpellOption = styled.div`
 
   .add {
     background-color: var(--ground);
-    color: var(--primary);
-    border: 1px solid var(--primary);
+    color: var(--bright);
+    border: 1px solid var(--ground);
     border-radius: 10px;
     padding: 5px 20px;
   }
 
   .added {
-    color: var(--success);
-    border: 1px solid var(--success);
+    color: var(--primary);
+    border: 1px solid var(--primary);
   }
 `;
 
@@ -59,6 +59,8 @@ export const Buttons = styled.div`
 
   .save {
     background-color: var(--primary);
+    font-weight: var(--semiBold);
+    color: var(--background);
   }
 
   .cancel {

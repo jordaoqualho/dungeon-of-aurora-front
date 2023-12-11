@@ -130,6 +130,13 @@ export default createGlobalStyle<GlobalStyleProps>`
     flex-direction: column;
   }
 
+  .flex_ssc {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;    
+    flex-direction: column;
+  }
+
   .flex_csr {
     display: flex;
     align-items: center;

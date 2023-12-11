@@ -33,9 +33,7 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
 
   return (
     <>
-      <AddButton onClick={() => setShowSpellAditionModal(true)}>
-        adicionar truque ou magia
-      </AddButton>
+      <AddButton onClick={() => setShowSpellAditionModal(true)}>+</AddButton>
       <SpellAditionModal
         isOpen={showSpellAditionModal}
         character={character}

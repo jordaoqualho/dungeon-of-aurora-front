@@ -8,13 +8,13 @@ import {
   TurnActions,
 } from "@/components";
 import { characterService } from "@/connection";
+import { defaultCharacter } from "@/constants";
 import { useCharacter } from "@/hooks/useCharacter";
 import { showToast } from "@/providers";
 import { Character, User } from "@/types";
 import { useEffect, useState } from "react";
 import { useReadLocalStorage } from "usehooks-ts";
 import { Container } from "./styles";
-import { defaultCharacter } from "@/constants";
 
 export function Character() {
   const [character, setCharacter] = useState<Character>(defaultCharacter);
@@ -55,7 +55,7 @@ export function Character() {
   }, [isEditing]);
 
   return (
-    <Container className="flex_ccc">
+    <Container className="flex_ssc">
       <CharacterInfo
         character={character}
         setCharacter={setCharacter}
