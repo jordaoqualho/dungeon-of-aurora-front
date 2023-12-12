@@ -1,20 +1,21 @@
 import styled from "styled-components";
 
 export const AddButton = styled.button`
-  width: 100%;
-  padding: 8px 0;
-  border-radius: 10px;
-  background: var(--primary);
-  border: 1px solid var(--border);
-  color: var(--basic);
-  font-weight: 500;
+  box-shadow: var(--normalShadow);
+  font-weight: var(--semiBold);
+  background: var(--secundary);
+  color: var(--background);
+  font-size: var(--huge);
+  border-radius: 30px;
+  align-items: center;
+  position: fixed;
+  line-height: 0;
+  display: grid;
+  height: 48px;
+  width: 48px;
+  top: 90dvh;
+  right: 20px;
+  z-index: 10;
+  padding: 0;
 `;
 
-export const SpellList = styled.div`
-  flex-direction: column;
-  margin-top: 8px;
-  display: flex;
-  width: 100%;
-  gap: 8px;
-
-`;

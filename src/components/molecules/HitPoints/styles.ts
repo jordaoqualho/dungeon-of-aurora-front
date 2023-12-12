@@ -40,8 +40,8 @@ export const Container = styled.div`
       gap: 4px;
 
       img {
-        width: 18px;
-        height: 18px;
+        width: 14px;
+        height: 14px;
         flex-shrink: 0;
       }
     }

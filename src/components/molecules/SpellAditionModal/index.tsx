@@ -29,8 +29,8 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
         .filter((spell) =>
           spell.name.toLowerCase().includes(search.toLowerCase())
         )
-        .slice(0, 6)
-    : spells.slice(0, 6);
+        .slice(0, 20)
+    : spells.slice(0, 20);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
@@ -89,28 +89,32 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
           value={search}
           onChange={handleInputChange}
         />
-        {filteredSpells.map((spell: Spell) => (
-          <SpellOption key={spell._id} className="flex_csb">
-            <div className="flex_csr" style={{ gap: 10 }}>
-              <div className="icon flex_ccc">
-                <BlurOnIcon />
+
+        <div className="spell_container">
+          {filteredSpells.map((spell: Spell) => (
+            <SpellOption key={spell._id} className="flex_csb">
+              <div className="flex_csr" style={{ gap: 10 }}>
+                <div className="icon flex_ccc">
+                  <BlurOnIcon />
+                </div>
+                <p className="name">{spell.name}</p>
               </div>
-              <p className="name">{spell.name}</p>
-            </div>
-            <button
-              className={`add flex_ccc ${
-                alreadyHaveTheSpell(spell.name) ? "added" : ""
-              }`}
-              onClick={() =>
-                !alreadyHaveTheSpell(spell.name)
-                  ? addSpell(spell)
-                  : removeSpell(spell.name)
-              }
-            >
-              {alreadyHaveTheSpell(spell.name) ? <CheckIcon /> : <AddIcon />}
-            </button>
-          </SpellOption>
-        ))}
+              <button
+                className={`add flex_ccc ${
+                  alreadyHaveTheSpell(spell.name) ? "added" : ""
+                }`}
+                onClick={() =>
+                  !alreadyHaveTheSpell(spell.name)
+                    ? addSpell(spell)
+                    : removeSpell(spell.name)
+                }
+              >
+                {alreadyHaveTheSpell(spell.name) ? <CheckIcon /> : <AddIcon />}
+              </button>
+            </SpellOption>
+          ))}
+        </div>
+
         <Buttons className="flex_csr">
           <button className="cancel" onClick={() => cancelSelection()}>
             Cancelar

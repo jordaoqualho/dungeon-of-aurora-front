@@ -3,35 +3,42 @@ import styled from "styled-components";
 export const Container = styled.div`
   background-color: var(--ground);
   border-radius: 10px;
+  padding: 16px;
   width: 100%;
-  padding: 5px;
   gap: 8px;
+`;
 
-  .icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
-    background-color: var(--background);
-    color: var(--basic);
-    font-size: var(--big);
-    font-family: var(--main);
-  }
+export const SpellHeader = styled.div`
+  width: 100%;
 
   .name {
     font-size: var(--large);
-    color: var(--primary);
+    color: var(--secundary);
   }
+
+  .level {
+    background-color: var(--background);
+    color: var(--secundary);
+    border-radius: 16px;
+    padding: 4px 16px;
+  }
+`;
+
+export const SpellInfo = styled.div`
+  gap: 8;
+  width: 100%;
 
   .subinfo {
     font-size: var(--small);
     color: var(--bright);
   }
 
-  .damage {
-    border: 1px solid var(--primary);
-    border-radius: 10px;
-    padding: 10px;
-    color: var(--primary);
-    font-weight: 500;
+  .roll_btn {
+    background-color: var(--primary);
+    color: var(--background);
+    font-size: var(--medium);
+    border-radius: 16px;
+    padding: 6px 10px;
+    gap: 4px;
   }
 `;

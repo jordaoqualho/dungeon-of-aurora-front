@@ -1,9 +1,9 @@
-import { Spell, SpellAditionModal } from "@/components";
+import { SpellAditionModal, SpellList } from "@/components";
 import { SpellDescritionModal } from "@/components/molecules/SpellDescritionModal";
 import { defaultSpell } from "@/constants";
-import { Character } from "@/types";
+import { Character, Spell as SpellType } from "@/types";
 import { useEffect, useState } from "react";
-import { AddButton, SpellList } from "./styles";
+import { AddButton } from "./styles";
 
 type SpellsAndTricksProps = {
   character: Character;
@@ -15,9 +15,16 @@ type SpellsAndTricksProps = {
 export function SpellsAndTricks(props: SpellsAndTricksProps) {
   const { character, setCharacter, isEditing, activeMenu } = props;
   const [showSpellAditionModal, setShowSpellAditionModal] = useState(false);
-  const [spellList, setSpellList] = useState(character.spells);
   const [descriptionModal, setDescriptionModal] = useState(false);
   const [selectedSpell, setSelectedSpell] = useState(defaultSpell);
+  const [accordionControl, setAccordionControl] = useState({
+    cantrips: true,
+    spells: true,
+  });
+  const [organizedSpellList, setOrganizedSpellList] = useState({
+    cantrips: character.spells,
+    spells: character.spells,
+  });
 
   if (isEditing && !character) console.log(character, setCharacter, isEditing);
 
@@ -25,17 +32,25 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
     setShowSpellAditionModal(false);
   };
 
+  const organizeSpells = (spellsList: SpellType[]) => {
+    const cantrips = spellsList.filter((spell) => spell.level === 0);
+    const spells = spellsList
+      .filter((spell) => spell.level !== 0)
+      .sort((a, b) => a.level - b.level);
+
+    return { cantrips, spells };
+  };
+
   useEffect(() => {
-    setSpellList([...character.spells]);
+    const organizedSpells = organizeSpells(character.spells);
+    setOrganizedSpellList(organizedSpells);
   }, [character.spells]);
 
   if (activeMenu !== "SpellsAndTricks") return <></>;
 
   return (
     <>
-      <AddButton onClick={() => setShowSpellAditionModal(true)}>
-        adicionar truque ou magia
-      </AddButton>
+      <AddButton onClick={() => setShowSpellAditionModal(true)}>+</AddButton>
       <SpellAditionModal
         isOpen={showSpellAditionModal}
         character={character}
@@ -47,18 +62,34 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
         spell={selectedSpell}
         onClose={() => setDescriptionModal(false)}
       />
-      <SpellList>
-        {spellList.map((spell, index) => (
-          <Spell
-            key={index}
-            spell={spell}
-            onClick={() => {
-              setDescriptionModal(true);
-              setSelectedSpell(spell);
-            }}
-          />
-        ))}
-      </SpellList>
+
+      <SpellList
+        title="Truques"
+        setDescriptionModal={setDescriptionModal}
+        setSelectedSpell={setSelectedSpell}
+        spellList={organizedSpellList.cantrips}
+        isOpen={accordionControl.cantrips}
+        setIsOpen={() =>
+          setAccordionControl({
+            ...accordionControl,
+            cantrips: !accordionControl.cantrips,
+          })
+        }
+      />
+
+      <SpellList
+        title="Magias"
+        setDescriptionModal={setDescriptionModal}
+        setSelectedSpell={setSelectedSpell}
+        spellList={organizedSpellList.spells}
+        isOpen={accordionControl.spells}
+        setIsOpen={() =>
+          setAccordionControl({
+            ...accordionControl,
+            spells: !accordionControl.spells,
+          })
+        }
+      />
     </>
   );
 }
