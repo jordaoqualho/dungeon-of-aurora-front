@@ -49,7 +49,7 @@ export default createGlobalStyle<GlobalStyleProps>`
 
     /* Transitions */
     --fast: ${(props) => props.theme.transition.fast};
-    --normal: ${(props) => props.theme.transition.normal};
+    --regular: ${(props) => props.theme.transition.regular};
     --slow: ${(props) => props.theme.transition.slow};
 
     --toastify-color-light: var(--basic);

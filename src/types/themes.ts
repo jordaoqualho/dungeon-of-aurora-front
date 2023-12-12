@@ -42,7 +42,7 @@ export default interface Theme {
   };
   transition: {
     fast: string;
-    normal: string;
+    regular: string;
     slow: string;
   };
 }

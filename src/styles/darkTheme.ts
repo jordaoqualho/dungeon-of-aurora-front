@@ -65,7 +65,7 @@ export default {
 
   transition: {
     fast: "0.1s ease",
-    normal: "0.5s ease",
+    regular: "0.3s ease",
     slow: "1s ease",
   },
 };
