@@ -12,3 +12,4 @@ export * from "./PictureModal";
 export * from "./Proficiency";
 export * from "./RaceSelector";
 export * from "./SpellAditionModal";
+export * from "./SpellList";

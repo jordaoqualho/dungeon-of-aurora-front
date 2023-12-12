@@ -9,7 +9,7 @@ export const Container = styled.div`
 
     h4 {
       font-size: var(--huge);
-      line-height: 20px;
+      line-height: 24px;
     }
 
     span {

@@ -8,23 +8,14 @@ export const AddButton = styled.button`
   font-size: var(--huge);
   border-radius: 30px;
   align-items: center;
-  position: absolute;
+  position: fixed;
   line-height: 0;
   display: grid;
   height: 48px;
   width: 48px;
-  bottom: 40px;
+  top: 90dvh;
   right: 20px;
   z-index: 10;
   padding: 0;
 `;
 
-export const SpellList = styled.div`
-  flex-direction: column;
-  margin-top: 8px;
-  display: flex;
-  width: 100%;
-  max-height: calc(100dvh - 200px);
-  overflow: auto;
-  gap: 8px;
-`;
