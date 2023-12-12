@@ -1,5 +1,6 @@
 import { d20 } from "@/assets";
 import { spellIcons } from "@/constants";
+import { showToast } from "@/providers";
 import { Spell } from "@/types";
 import { Container, SpellHeader, SpellInfo } from "./styles";
 
@@ -18,6 +19,11 @@ export function Spell({ spell, onClick }: SpellProps) {
     const alt: string = spellSchool;
     const src: string = spellIcons[spellSchool] || spellIcons["default"];
     return { src, alt };
+  };
+
+  const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation(); // Prevent event propagation
+    showToast("O dano ainda não está pronto mano", "warning");
   };
 
   return (
@@ -41,7 +47,7 @@ export function Spell({ spell, onClick }: SpellProps) {
             <p className="subinfo">{spell.range}</p>
           </div>
 
-          <button className="roll_btn flex_ccr">
+          <button className="roll_btn flex_ccr" onClick={handleButtonClick}>
             <img src={d20} alt="d20" />
             <p>3d8</p>
           </button>

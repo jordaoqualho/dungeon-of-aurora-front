@@ -13,7 +13,7 @@ export const SpellHeader = styled.div`
 
   .name {
     font-size: var(--large);
-    color: var(--primary);
+    color: var(--secundary);
   }
 
   .level {
