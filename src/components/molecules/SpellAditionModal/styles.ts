@@ -9,6 +9,12 @@ export const Container = styled.div`
     padding: 12px 16px;
     border-radius: 10px;
   }
+
+  .spell_container {
+    overflow: auto;
+    width: 100%;
+    height: 220px;
+  }
 `;
 
 export const SpellOption = styled.div`
