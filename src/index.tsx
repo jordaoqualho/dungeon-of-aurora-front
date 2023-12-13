@@ -12,6 +12,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StyledToast } from "./styles/toast.styes";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 const queryClient = new QueryClient();
 
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <QueryClientProvider client={queryClient}>
       <GoogleOAuthProvider clientId={env.google_client_id}>
         <StyledToast />
+        <SpeedInsights />
         <GlobalStyle theme={darkTheme} />
         <AppContainer className="flex_ssr">
           <Routes />
