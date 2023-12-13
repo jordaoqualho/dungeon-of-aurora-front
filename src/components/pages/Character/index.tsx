@@ -3,6 +3,7 @@ import {
   CharacterInfo,
   EditingModal,
   Equipments,
+  LoadingScreen,
   Menu,
   SpellsAndTricks,
   TurnActions,
@@ -92,6 +93,7 @@ export function Character() {
         isEditing={isEditing}
         activeMenu={activeMenu}
       />
+      <LoadingScreen isLoading={isLoading} />
     </Container>
   );
 }
