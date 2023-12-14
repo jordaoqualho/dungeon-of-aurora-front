@@ -3,6 +3,7 @@ import { spellsService } from "@/connection/spellsService";
 import { initialSpell } from "@/constants";
 import { showToast } from "@/providers";
 import { Character, Spell } from "@/types";
+import { filterSpells } from "@/utils";
 import AddIcon from "@mui/icons-material/Add";
 import CheckIcon from "@mui/icons-material/Check";
 import { useEffect, useState } from "react";
@@ -14,10 +15,6 @@ type SpellAditionModalProps = {
   setCharacter: (value: Character) => void;
   closeSpellAditionModal: () => void;
 };
-
-const removeAccents = (str: string) =>
-  str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-
 export const SpellAditionModal = (props: SpellAditionModalProps) => {
   const { isOpen, character, setCharacter, closeSpellAditionModal } = props;
   const [selectedSpells, setSelectedSpells] = useState<Spell[]>(
@@ -26,16 +23,7 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
   const [search, setSearch] = useState("");
   const [spells, setSpells] = useState<Spell[]>([initialSpell]);
 
-  const filteredSpells = search
-    ? spells
-        .filter((spell) =>
-          removeAccents(spell.name.toLowerCase()).includes(
-            removeAccents(search.toLowerCase())
-          )
-        )
-        .slice(0, 20)
-        .sort((a, b) => a.level - b.level)
-    : spells.slice(0, 20).sort((a, b) => a.level - b.level);
+  const filteredSpells = filterSpells(spells, search);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
