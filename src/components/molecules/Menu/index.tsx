@@ -1,6 +1,6 @@
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { useState } from "react";
-import { MenuSelector } from "../MenuSelector";
+import { MenuDropdown } from "..";
 import { Container } from "./styles";
 
 type MenuProps = {
@@ -9,7 +9,7 @@ type MenuProps = {
 };
 
 export const Menu = ({ setActiveMenu, activeMenu }: MenuProps) => {
-  const [isSelectorOpen, setIsSelectorOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const getSelectedMenu = () => {
     switch (activeMenu) {
@@ -33,11 +33,16 @@ export const Menu = ({ setActiveMenu, activeMenu }: MenuProps) => {
   return (
     <Container
       className="flex_ccr"
-      onClick={() => setIsSelectorOpen(!isSelectorOpen)}
+      $isDropdownOpen={isDropdownOpen}
+      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
     >
       <p className="title">{getSelectedMenu()}</p>
       <KeyboardArrowDownRoundedIcon className="menu_icon" />
-      <MenuSelector isOpen={isSelectorOpen} setActiveMenu={setActiveMenu} />
+      <MenuDropdown
+        isOpen={isDropdownOpen}
+        setActiveMenu={setActiveMenu}
+        activeMenu={activeMenu}
+      />
     </Container>
   );
 };

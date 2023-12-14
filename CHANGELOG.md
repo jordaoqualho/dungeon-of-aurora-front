@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.1.20...v0.2.0) (2023-12-14)
+
+
+### Features
+
+* 🎸 create function that disregards accents ([95abd71](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/95abd719ea2bfd71d0320d04ed553f4767fbd613))
+* 🎸 create menu dropdown component ([5260936](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/5260936aecfc0cc053f939c4a15a1e7dd7f5d839))
+* 🎸 implement a loading screen to characters page ([7698ff5](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/7698ff5a8660750b1b596f2fb320d75b2b72b68a))
+* 🎸 implement a loading screen to characters page ([#15](https://github.com/jordaoqualho/dungeon-of-aurora-front/issues/15)) ([068b7c6](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/068b7c63854dc4d32f9d02a5cedec4483a6b29fa))
+
 ### [0.1.20](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.1.19...v0.1.20) (2023-12-12)
 
 ### [0.1.19](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.1.18...v0.1.19) (2023-12-08)

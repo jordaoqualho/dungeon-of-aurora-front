@@ -1,7 +1,7 @@
 {
   "name": "dungeonsofaurora",
   "private": true,
-  "version": "0.1.20",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "build": "tsc && vite build",
@@ -11,9 +11,6 @@
     "start:dev": "set VITE_ENVIRONMENT=development&& vite --host",
     "start:prod": "set VITE_ENVIRONMENT=production&& vite --host",
     "prepare": "husky install",
-    "push": "npm version patch && git push",
-    "push-minor": "npm version minor && git push",
-    "push-major": "npm version major && git push",
     "release": "standard-version"
   },
   "husky": {

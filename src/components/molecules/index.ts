@@ -8,7 +8,7 @@ export * from "./HitPoints";
 export * from "./LevelSelector";
 export * from "./LoadingScreen";
 export * from "./Menu";
-export * from "./MenuSelector";
+export * from "./MenuDropdown";
 export * from "./PictureModal";
 export * from "./Proficiency";
 export * from "./RaceSelector";
