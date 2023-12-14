@@ -1,8 +1,13 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Container = styled.div`
+type Props = {
+  $isDropdownOpen: boolean;
+};
+
+export const Container = styled.div<Props>`
   background-color: var(--secundary);
   border-radius: 2dvh;
+  position: relative;
   padding: 10px;
   width: 100%;
   gap: 16px;
@@ -10,6 +15,13 @@ export const Container = styled.div`
   .menu_icon {
     color: var(--background);
     font-size: var(--large);
+    transition: var(--regular);
+
+    ${({ $isDropdownOpen }) =>
+      $isDropdownOpen &&
+      css`
+        transform: rotate(180deg);
+      `}
   }
 
   .title {
