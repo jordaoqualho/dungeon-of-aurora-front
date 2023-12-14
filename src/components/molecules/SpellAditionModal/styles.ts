@@ -13,7 +13,8 @@ export const Container = styled.div`
   .spell_container {
     overflow: auto;
     width: 100%;
-    height: 220px;
+    height: 280px;
+    gap: 4px;
   }
 `;
 
@@ -29,11 +30,15 @@ export const SpellOption = styled.div`
     height: 30px;
     border-radius: 10px;
     background-color: var(--ground);
-    color: var(--basic);
+    color: var(--secundary);
   }
 
   .name {
     font-size: var(--medium);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 185px;
   }
 
   .add {
