@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.21](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.1.20...v0.1.21) (2023-12-14)
+
+
+### Features
+
+* 🎸 create function that disregards accents ([95abd71](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/95abd719ea2bfd71d0320d04ed553f4767fbd613))
+
 ### [0.1.20](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.1.19...v0.1.20) (2023-12-12)
 
 ### [0.1.19](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.1.18...v0.1.19) (2023-12-08)
