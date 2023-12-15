@@ -200,7 +200,16 @@ export default createGlobalStyle<GlobalStyleProps>`
 
   
   .editing {
-    outline: 1px solid var(--bright) ;
+    animation: glowing 0.56s infinite alternate ease-in-out;
+  }
+
+  @keyframes glowing {
+    0% {
+      outline: 1px solid var(--ground);
+    }
+    100% {
+      outline: 1px solid #454545;
+    }
   }
 
   button, a, input {

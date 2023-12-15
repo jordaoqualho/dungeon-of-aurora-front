@@ -49,7 +49,7 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
       <div className="flex_csr">
         <PhotoAndLevel className="flex_ccr">
           <img
-            className="photo"
+            className={`photo ${isEditing ? "editing" : ""}`}
             src={character?.picture || male_character}
             alt="photo"
             onClick={() => isEditing && setShowPictureModal(true)}
