@@ -7,12 +7,18 @@ import { ChangeEvent, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "usehooks-ts";
 import { LevelSelector } from "../LevelSelector";
-import { Container, Controls } from "./styles";
+import {
+  Container,
+  ManageButton,
+  ManageOptions,
+  NameAndInfo,
+  PhotoAndLevel,
+} from "./styles";
 
 type CharacterInfoProps = {
+  isEditing: boolean;
   character: Character;
   setCharacter: (char: Character) => void;
-  isEditing: boolean;
   setIsEditing: (value: boolean) => void;
 };
 
@@ -22,7 +28,7 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
   const [showClassSelector, setShowClassSelector] = useState(false);
   const [showLevelSelector, setShowLevelSelector] = useState(false);
   const [showPictureModal, setShowPictureModal] = useState(false);
-  const [showControls, setShowControls] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
   const { character, setCharacter, isEditing, setIsEditing } = props;
   const navigate = useNavigate();
 
@@ -39,74 +45,75 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
   };
 
   return (
-    <Container className="flex_csr">
-      <section className="photo_level flex_ccr">
-        <img
-          className="photo"
-          src={character?.picture || male_character}
-          alt="photo"
-          onClick={() => isEditing && setShowPictureModal(true)}
-        />
-        <div
-          className="level flex_ccr"
-          onClick={() => isEditing && setShowLevelSelector(true)}
-        >
-          <p>{character.level}</p>
-        </div>
-      </section>
-      <section className="name_info flex_scc">
-        <input
-          className={`name ${isEditing ? "editing" : ""}`}
-          name="name"
-          value={character.name || ""}
-          placeholder="Nome do Personagem"
-          onChange={handleInputChange}
-          readOnly={!isEditing}
-        />
-        <div className="info flex_ccr">
-          <button
-            className={`race ${isEditing ? "editing" : ""}`}
-            onClick={() => isEditing && setShowRaceSelector(!showRaceSelector)}
+    <Container className="flex_ccc">
+      <div className="flex_csr">
+        <PhotoAndLevel className="flex_ccr">
+          <img
+            className="photo"
+            src={character?.picture || male_character}
+            alt="photo"
+            onClick={() => isEditing && setShowPictureModal(true)}
+          />
+          <div
+            className="level flex_ccr"
+            onClick={() => isEditing && setShowLevelSelector(true)}
           >
-            {character.race || "Raça"}
-          </button>
-          <p>/</p>
-          <button
-            className={`class ${isEditing ? "editing" : ""}`}
-            onClick={() =>
-              isEditing && setShowClassSelector(!showClassSelector)
-            }
-          >
-            {character.class || "Classe"}
-          </button>
-        </div>
-      </section>
+            <p>{character.level}</p>
+          </div>
+        </PhotoAndLevel>
+        <NameAndInfo className="flex_scc">
+          <input
+            className={`name ${isEditing ? "editing" : ""}`}
+            name="name"
+            value={character.name || ""}
+            placeholder="Nome do Personagem"
+            onChange={handleInputChange}
+            readOnly={!isEditing}
+          />
+          <div className="info flex_ccr">
+            <button
+              className={`race ${isEditing ? "editing" : ""}`}
+              onClick={() =>
+                isEditing && setShowRaceSelector(!showRaceSelector)
+              }
+            >
+              {character.race || "Raça"}
+            </button>
+            <p>/</p>
+            <button
+              className={`class ${isEditing ? "editing" : ""}`}
+              onClick={() =>
+                isEditing && setShowClassSelector(!showClassSelector)
+              }
+            >
+              {character.class || "Classe"}
+            </button>
+          </div>
+        </NameAndInfo>
 
-      <Controls>
-        <button
-          className="control_button flex_ccc"
-          onClick={() => setShowControls(!showControls)}
+        <ManageButton
+          className="flex_ccc"
+          onClick={() => setShowOptions(!showOptions)}
         >
-          {showControls ? (
+          {showOptions ? (
             <CloseIcon className="icon" />
           ) : (
             <MoreVertIcon className="icon" />
           )}
+        </ManageButton>
+      </div>
+
+      <ManageOptions className="flex_ccc" $showOptions={showOptions}>
+        <button
+          onClick={() => {
+            setIsEditing(!isEditing);
+            setShowOptions(false);
+          }}
+        >
+          Editar Personagem
         </button>
-        {showControls && (
-          <div className="control_options flex_scc">
-            <button
-              onClick={() => {
-                setIsEditing(!isEditing);
-                setShowControls(false);
-              }}
-            >
-              Editar
-            </button>
-            <button onClick={() => handleExit()}>Sair</button>
-          </div>
-        )}
-      </Controls>
+        <button onClick={() => handleExit()}>Sair da Conta</button>
+      </ManageOptions>
 
       <RaceSelector
         isOpen={showRaceSelector}

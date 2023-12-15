@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const Container = styled.div`
   background-color: var(--ground);
@@ -6,6 +6,10 @@ export const Container = styled.div`
   padding: 8px;
   width: 100%;
   gap: 24px;
+`;
+
+export const PhotoAndLevel = styled.section`
+  margin-right: 24px;
 
   .level {
     box-shadow: -5px 5px 5px 0px #00000047;
@@ -26,8 +30,11 @@ export const Container = styled.div`
     border-radius: 50%;
     object-fit: cover;
   }
+`;
 
+export const NameAndInfo = styled.section`
   .name {
+    background-color: var(--ground);
     font-family: var(--main);
     font-size: var(--large);
     margin-bottom: 4px;
@@ -55,40 +62,49 @@ export const Container = styled.div`
   }
 `;
 
-export const Controls = styled.section`
-  position: relative;
+export const ManageButton = styled.section`
+  background-color: var(--ground);
+  color: var(--basic);
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 5px;
 
-  .control_button {
-    background-color: var(--ground);
-    color: var(--basic);
-    border-radius: 20px;
-    cursor: pointer;
-    padding: 5px;
-
-    .icon {
-      font-size: var(--big);
-    }
+  .icon {
+    font-size: var(--big);
   }
+`;
 
-  .control_options {
-    box-shadow: -5px 5px 10px 0px #0000003d;
+type OptionProps = {
+  $showOptions: boolean;
+};
+
+export const ManageOptions = styled.div<OptionProps>`
+  box-shadow: -1px 16px 7px 0px #00000030;
+  transition: transform 0.15s ease;
+  transform-origin: top;
+  transform: scaleY(0);
+  background-color: #191919;
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 16px;
+  position: absolute;
+  z-index: 200;
+  padding: 16px;
+  width: 100%;
+  top: 65px;
+  gap: 8px;
+
+  ${({ $showOptions }) =>
+    $showOptions &&
+    css`
+      transform: scaleY(1);
+    `}
+
+  button {
+    border: 1px solid var(--primary);
     background-color: var(--ground);
-    border-radius: 10px;
-    position: absolute;
-    padding: 20px;
-    z-index: 100;
-    top: 40px;
-    gap: 5px;
-    right: 0;
-
-    button {
-      color: var(--basic);
-      font-weight: 400;
-      min-width: 100px;
-      text-align: center;
-      padding: 10px;
-      border-radius: 10px;
-      background-color: var(--background);
-    }
+    border-radius: 8px;
+    color: var(--primary);
+    padding: 4px 20px;
+    width: 200px;
   }
 `;
