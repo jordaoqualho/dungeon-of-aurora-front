@@ -17,7 +17,7 @@ export const Container = styled.div<ContainerProps>`
   position: fixed;
   overflow: auto;
   width: 100%;
-  z-index: 20;
+  z-index: 30;
   bottom: -60%;
   left: 0;
 
