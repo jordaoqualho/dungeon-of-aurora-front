@@ -28,6 +28,7 @@ export const Container = styled.div`
   }
 
   .name {
+    background-color: var(--ground);
     font-family: var(--main);
     font-size: var(--large);
     margin-bottom: 4px;
