@@ -22,9 +22,12 @@ export const Capability: React.FC<CapabilityProps> = ({
   label,
 }) => {
   return (
-    <Container className="flex_ccc" $hexagonBorder={hexagonBorder}>
+    <Container
+      className={`flex_ccc ${isEditing && readOnly ? "read_only" : ""}`}
+      $hexagonBorder={hexagonBorder}
+    >
       <p>{label}</p>
-      <div className={`mod flex_ccc ${isEditing ? "editing" : ""}`}>
+      <div className="mod flex_ccc">
         <input
           type="text"
           name={inputName}

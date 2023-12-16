@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 import { showPromiseToast } from "@/providers";
 import { Character } from "@/types";
 import { calculateModifier, getAbilityScoreModifier } from "@/utils";
@@ -66,7 +67,6 @@ export function Skill({
     <Container
       className={`prof flex_csb ${isEditing ? "editing" : ""}`}
       $isProficient={isProficient}
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onClick={() => toggleSkill()}
     >
       <Checkbox checked={isProficient} />

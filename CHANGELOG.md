@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.1...v0.2.2) (2023-12-16)
+
+
+### Bug Fixes
+
+* 🐛 prevent checkbox propagation on proficiency ([6f2b197](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/6f2b1974cfa248e2a3c9321a5df9528f21160fa0))
+* 🐛 resolving hitpoints logic ([087381a](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/087381a7feaacbe2eecb33f975c8bef40d999d1a))
+
 ### [0.2.1](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.0...v0.2.1) (2023-12-15)
 
 

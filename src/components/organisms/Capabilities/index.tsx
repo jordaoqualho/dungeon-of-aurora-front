@@ -23,6 +23,7 @@ export const Capabilities = (props: CapabilitiesProps) => {
       <Capability
         label={"Proficiência"}
         inputValue={getProficiencyBonus(character.level)}
+        isEditing={isEditing}
       />
       <Capability
         label={"CA"}
@@ -31,11 +32,13 @@ export const Capabilities = (props: CapabilitiesProps) => {
         inputValue={character.armorClass}
         onChange={handleInputChange}
         readOnly={!isEditing}
+        isEditing={isEditing}
       />
       <Capability
         label={"Iniciativa"}
         inputValue={getAbilityModifier(character.attributes.dexterity)}
         onChange={handleInputChange}
+        isEditing={isEditing}
       />
       <Capability
         label={"Desloc."}
@@ -43,6 +46,7 @@ export const Capabilities = (props: CapabilitiesProps) => {
         inputValue={character.speed}
         onChange={handleInputChange}
         readOnly={!isEditing}
+        isEditing={isEditing}
       />
     </Container>
   );

@@ -30,6 +30,10 @@ export const HitPoints = (props: HitPointsProps) => {
         updatedCharacter.maxHitPoints = numberValue;
       }
 
+      if (name === "maxHitPoints" && numberValue < character.hitPoints) {
+        updatedCharacter.hitPoints = numberValue;
+      }
+
       setCharacter(updatedCharacter);
     } else {
       showToast("Pontos de vida inválidos", "warning");
@@ -59,10 +63,11 @@ export const HitPoints = (props: HitPointsProps) => {
     <Container className="flex_ccc">
       <p className="title">PV Atual / PV Máximo</p>
       <div className="points flex_csr">
-        <div className="actual">
+        <div>
           <input
             type="text"
             name="hitPoints"
+            className={` ${isEditing ? "editing" : ""}`}
             value={character.hitPoints}
             onChange={handleInputChange}
             readOnly={!isEditing}
@@ -73,6 +78,7 @@ export const HitPoints = (props: HitPointsProps) => {
           <input
             type="text"
             name="maxHitPoints"
+            className={` ${isEditing ? "editing" : ""}`}
             value={character.maxHitPoints}
             onChange={handleInputChange}
             readOnly={!isEditing}
