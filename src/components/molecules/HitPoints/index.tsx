@@ -30,6 +30,10 @@ export const HitPoints = (props: HitPointsProps) => {
         updatedCharacter.maxHitPoints = numberValue;
       }
 
+      if (name === "maxHitPoints" && numberValue < character.hitPoints) {
+        updatedCharacter.hitPoints = numberValue;
+      }
+
       setCharacter(updatedCharacter);
     } else {
       showToast("Pontos de vida inválidos", "warning");
