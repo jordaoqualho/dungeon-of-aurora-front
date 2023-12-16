@@ -24,11 +24,7 @@ export function Character() {
     useState<Character>(defaultCharacter);
   const [isEditing, setIsEditing] = useState(false);
   const user = useReadLocalStorage<User>("user");
-  const { isLoading, error, data } = useCharacter(user?._id);
-
-  if (error) {
-    console.log(isLoading, error);
-  }
+  const { isLoading, data } = useCharacter(user?._id);
 
   const saveCharacterData = async () => {
     try {

@@ -13,8 +13,6 @@ type SpellDescritionModalProps = {
 export const SpellDescritionModal = (props: SpellDescritionModalProps) => {
   const { isOpen, spell, onClose } = props;
 
-  console.log(Array.isArray(spell.description));
-
   const isCantrip = (level: number) => {
     if (level === 0) {
       return "Truque de";
