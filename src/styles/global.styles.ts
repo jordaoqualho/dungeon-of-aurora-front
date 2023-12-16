@@ -197,8 +197,11 @@ export default createGlobalStyle<GlobalStyleProps>`
     border: 1px solid gray;
     border-radius: 20px;
   }
-
   
+  .read_only {
+    opacity: .5;
+  }
+
   .editing {
     animation: glowing 0.56s infinite alternate ease-in-out;
   }
