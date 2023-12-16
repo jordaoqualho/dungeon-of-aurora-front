@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.2...v0.2.3) (2023-12-16)
+
+
+### Features
+
+* 🎸 adding save to the spell page ([2ba8596](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/2ba859626a78930f723887beaee70b5b6f72129e))
+* 🎸 creating dispatch action using context ([a516817](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/a516817402acfc7b4e85e548e60693c97ab98065))
+
+
+### Bug Fixes
+
+* 🐛 removing unused useFetch ([8958173](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/8958173dc66a2b8ba5a6946e02346a085050a3e6))
+
 ### [0.2.2](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.1...v0.2.2) (2023-12-16)
 
 

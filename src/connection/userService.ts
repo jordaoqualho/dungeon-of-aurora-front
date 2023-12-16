@@ -1,5 +1,5 @@
 import { backend } from '@/config';
-import { UserInterface } from '@/interfaces';
+import { UserInterface } from "@/providers/interfaces";
 import { ResponseAxios, User } from '@/types';
 
 class UserService implements UserInterface {

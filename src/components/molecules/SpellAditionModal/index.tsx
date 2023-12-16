@@ -1,6 +1,7 @@
 import { Modal } from "@/components";
 import { spellsService } from "@/connection/spellsService";
 import { initialSpell } from "@/constants";
+import { useActionContext } from "@/contexts";
 import { showToast } from "@/providers";
 import { Character, Spell } from "@/types";
 import { filterSpells } from "@/utils";
@@ -22,7 +23,7 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
   );
   const [search, setSearch] = useState("");
   const [spells, setSpells] = useState<Spell[]>([initialSpell]);
-
+  const actionContext = useActionContext();
   const filteredSpells = filterSpells(spells, search);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,13 +50,19 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
   };
 
   const saveSpells = () => {
-    setCharacter({
+    const newCharacterData = {
       ...character,
       spells: [...selectedSpells],
-    });
+    };
+
+    setCharacter(newCharacterData);
     showToast("Magias e truques salvos", "success");
     setSearch("");
     closeSpellAditionModal();
+    actionContext?.dispatchAction({
+      action: "saveCharacter",
+      content: newCharacterData,
+    });
   };
 
   useEffect(() => {

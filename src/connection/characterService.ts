@@ -1,5 +1,5 @@
 import { backend } from "@/config";
-import { CharacterInterface } from "@/interfaces";
+import { CharacterInterface } from "@/providers/interfaces";
 import { Character, ResponseAxios } from "@/types";
 
 class CharacterService implements CharacterInterface {

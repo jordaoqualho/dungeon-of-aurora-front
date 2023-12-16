@@ -75,7 +75,6 @@ export function GoogleButton() {
   // useGoogleOneTapLogin({
   //   onSuccess: (response) => {
   //     const credentials = parseJwt(response.credential) as GoogleCredentials;
-  //     console.log(credentials);
   //     // successLogin();
   //   },
   //   onError: failedLogin,
