@@ -3,7 +3,7 @@ import { SpellDescritionModal } from "@/components/molecules/SpellDescritionModa
 import { defaultSpell } from "@/constants";
 import { Character, Spell as SpellType } from "@/types";
 import { useEffect, useState } from "react";
-import { AddButton } from "./styles";
+import { AddButton, Container } from "./styles";
 
 type SpellsAndTricksProps = {
   character: Character;
@@ -49,7 +49,7 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
   if (activeMenu !== "SpellsAndTricks") return <></>;
 
   return (
-    <>
+    <Container>
       <AddButton onClick={() => setShowSpellAditionModal(true)}>+</AddButton>
       <SpellAditionModal
         isOpen={showSpellAditionModal}
@@ -90,6 +90,6 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
           })
         }
       />
-    </>
+    </Container>
   );
 }
