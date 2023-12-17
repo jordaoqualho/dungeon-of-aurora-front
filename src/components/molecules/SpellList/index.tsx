@@ -22,6 +22,8 @@ export const SpellList = (props: SpellDescritionModalProps) => {
     setSelectedSpell,
   } = props;
 
+  if (spellList.length === 0) return <></>;
+
   return (
     <Container $isOpen={isOpen}>
       <button className="title flex_ccr" onClick={setIsOpen}>
