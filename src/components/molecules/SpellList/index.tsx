@@ -6,8 +6,9 @@ import { Container } from "./styles";
 type SpellDescritionModalProps = {
   setDescriptionModal: (value: boolean) => void;
   setSelectedSpell: (value: SpellType) => void;
-  setIsOpen: () => void;
+  characterLevel: number;
   spellList: SpellType[];
+  setIsOpen: () => void;
   isOpen: boolean;
   title: string;
 };
@@ -20,7 +21,10 @@ export const SpellList = (props: SpellDescritionModalProps) => {
     title,
     setDescriptionModal,
     setSelectedSpell,
+    characterLevel,
   } = props;
+
+  if (spellList.length === 0) return <></>;
 
   return (
     <Container $isOpen={isOpen}>
@@ -34,6 +38,7 @@ export const SpellList = (props: SpellDescritionModalProps) => {
           <Spell
             key={index}
             spell={spell}
+            characterLevel={characterLevel}
             onClick={() => {
               setDescriptionModal(true);
               setSelectedSpell(spell);
