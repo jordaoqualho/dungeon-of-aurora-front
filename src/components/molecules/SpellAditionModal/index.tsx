@@ -13,11 +13,20 @@ import { Buttons, Container, SpellOption, modalStyles } from "./styles";
 type SpellAditionModalProps = {
   isOpen: boolean;
   character: Character;
-  setCharacter: (value: Character) => void;
   closeSpellAditionModal: () => void;
+  setCharacter: (value: Character) => void;
+  setDescriptionModal: (value: boolean) => void;
+  setSelectedSpell: (value: Spell) => void;
 };
 export const SpellAditionModal = (props: SpellAditionModalProps) => {
-  const { isOpen, character, setCharacter, closeSpellAditionModal } = props;
+  const {
+    isOpen,
+    character,
+    setCharacter,
+    closeSpellAditionModal,
+    setDescriptionModal,
+    setSelectedSpell,
+  } = props;
   const [selectedSpells, setSelectedSpells] = useState<Spell[]>(
     character.spells
   );
@@ -88,7 +97,14 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
 
         <div className="spell_container flex_ssc">
           {filteredSpells.map((spell: Spell) => (
-            <SpellOption key={spell._id} className="flex_csb">
+            <SpellOption
+              key={spell._id}
+              className="flex_csb"
+              onClick={() => {
+                setDescriptionModal(true);
+                setSelectedSpell(spell);
+              }}
+            >
               <div className="flex_csr" style={{ gap: 10 }}>
                 <div className="icon flex_ccc">{spell.level}</div>
                 <p className="name">{spell.name}</p>
@@ -97,11 +113,16 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
                 className={`add flex_ccc ${
                   alreadyHaveTheSpell(spell.name) ? "added" : ""
                 }`}
-                onClick={() =>
-                  !alreadyHaveTheSpell(spell.name)
-                    ? addSpell(spell)
-                    : removeSpell(spell.name)
-                }
+                onClick={(
+                  event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+                ) => {
+                  event.stopPropagation();
+                  if (!alreadyHaveTheSpell(spell.name)) {
+                    addSpell(spell);
+                  } else {
+                    removeSpell(spell.name);
+                  }
+                }}
               >
                 {alreadyHaveTheSpell(spell.name) ? <CheckIcon /> : <AddIcon />}
               </button>
