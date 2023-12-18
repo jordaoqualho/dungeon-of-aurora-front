@@ -56,6 +56,8 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
         character={character}
         setCharacter={setCharacter}
         closeSpellAditionModal={closeSpellAditionModal}
+        setDescriptionModal={setDescriptionModal}
+        setSelectedSpell={setSelectedSpell}
       />
       <SpellDescritionModal
         isOpen={descriptionModal}
