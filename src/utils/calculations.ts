@@ -1,4 +1,5 @@
 import { attributeMap } from "@/constants";
+import { Damage } from "@/types";
 
 export function getProficiencyBonus(level: number): string {
   const proficiency = "+" + Math.ceil(1 + level / 4).toString();
@@ -30,4 +31,35 @@ export const calculateModifier = (
 ): string => {
   const totalModifier = isProficient ? modifier + proficiency : modifier;
   return totalModifier >= 0 ? `+${totalModifier}` : `${totalModifier}`;
+};
+
+export const getSpellDamage = (damage: Damage, level: number) => {
+  if (damage.characterLevel) {
+    const options = Object.keys(damage.characterLevel);
+    const closestLevel = options
+      .map(Number)
+      .sort((a, b) => a - b)
+      .reduce((acc, curr) => (curr <= level ? curr : acc), -1);
+
+    const spellDamage = damage.characterLevel[closestLevel];
+    const [spellDice, adition] = spellDamage.dice
+      .split("+")
+      .map((string) => string.trim());
+
+    const actualDamage = { dice: spellDice, quantity: spellDamage.quantity };
+    const damageText = `${spellDamage.quantity}${spellDamage.dice}`;
+    const damageAdition = adition ? parseInt(adition) : 0;
+
+    return { options, actualDamage, damageText, damageAdition };
+  }
+
+  const spellDamage = damage.slotLevel[level];
+  const [spellDice, adition] = spellDamage.dice
+    .split("+")
+    .map((string) => string.trim());
+  const damageText = `${spellDamage.quantity}${spellDamage.dice}`;
+  const actualDamage = { dice: spellDice, quantity: spellDamage.quantity };
+  const damageAdition = adition ? parseInt(adition) : 0;
+
+  return { actualDamage, damageAdition, damageText };
 };
