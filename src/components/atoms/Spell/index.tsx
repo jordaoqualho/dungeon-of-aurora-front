@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { d20 } from "@/assets";
 import { spellIcons } from "@/constants";
-import { showPromiseToast, showToast } from "@/providers";
+import { showPromiseToast } from "@/providers";
 import { Spell } from "@/types";
 import { DiceType, getSpellDamage, rollDice } from "@/utils";
 import { useState } from "react";
@@ -19,7 +19,7 @@ type IconProps = {
 };
 
 export function Spell({ spell, onClick, characterLevel }: SpellProps) {
-  const [spellLevel, setSpellLevel] = useState<number>(() => {
+  const [spellLevel] = useState<number>(() => {
     const slotLevel = spell?.damage?.slotLevel;
     if (slotLevel) {
       const keys = Object.keys(slotLevel);
