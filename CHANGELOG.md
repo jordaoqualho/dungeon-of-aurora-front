@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.4](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.3...v0.2.4) (2023-12-18)
+
+
+### Features
+
+* 🎸 adding spell damage dice rolls to atack spells ([d035e7e](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/d035e7e83ea93f90ff1ad6abb3e86b0f1bb2b3a9))
+
+
+### Bug Fixes
+
+* 🐛 adding margin bottom to the spell list container ([b1eb3e1](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/b1eb3e19fb34ceaa820a59d1600d392d89be721e))
+* 🐛 remove spell or cantrip list when it is empty ([699d1b1](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/699d1b10bff87570b291487f40fc2dfbace72d5f))
+* 🐛 resolving some eslint errors ([f1553bb](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/f1553bb29fd69ae8b2cc8fe7ee6512ba745b8ba5))
+
 ### [0.2.3](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.2...v0.2.3) (2023-12-16)
 
 
