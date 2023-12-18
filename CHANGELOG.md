@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.5](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.4...v0.2.5) (2023-12-18)
+
+
+### Features
+
+* 🎸 adding spell description to adition modal ([25fae8f](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/25fae8fd0111a34468291b9019e4a97164b1891d))
+
 ### [0.2.4](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.3...v0.2.4) (2023-12-18)
 
 
