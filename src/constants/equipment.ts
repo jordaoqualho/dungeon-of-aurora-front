@@ -1,0 +1,32 @@
+import { DamageTypes, Equipment, Pieces } from "@/types";
+
+export const initialEquipment: Equipment = {
+  _id: "",
+  name: "",
+  cost: { quantity: "0", unit: Pieces.PECAS_DE_COBRE },
+  category: "",
+  description: [""],
+  special: [""],
+  properties: [""],
+  weight: 0,
+  minimumStrength: 0,
+  contents: [{ item: "", quantity: 0 }],
+  quantity: 0,
+  stealthDisadvantage: false,
+  armorCategory: "",
+  categoryRange: "",
+  weaponRange: "",
+  weaponCategory: "",
+  vehicleCategory: "",
+  toolCategory: "",
+  capacity: "",
+  armorClass: { base: 0, dex_bonus: false },
+  range: { normal: 2 },
+  throwRange: { normal: 10, long: 20 },
+  speed: { unit: "", quantity: 0 },
+  damage: { type: DamageTypes.CONTUNDENTE, dice: { quantity: 0, dice: "" } },
+  twoHandedDamage: {
+    type: DamageTypes.CONTUNDENTE,
+    dice: { quantity: 0, dice: "" },
+  },
+};
