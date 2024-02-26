@@ -32,7 +32,7 @@ export function Character() {
       await characterService.put(character);
       showToast("Alterações Salvas", "success");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

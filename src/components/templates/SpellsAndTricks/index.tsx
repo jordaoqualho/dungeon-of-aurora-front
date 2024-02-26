@@ -13,7 +13,7 @@ type SpellsAndTricksProps = {
 };
 
 export function SpellsAndTricks(props: SpellsAndTricksProps) {
-  const { character, setCharacter, isEditing, activeMenu } = props;
+  const { character, setCharacter, activeMenu } = props;
   const [showSpellAditionModal, setShowSpellAditionModal] = useState(false);
   const [descriptionModal, setDescriptionModal] = useState(false);
   const [selectedSpell, setSelectedSpell] = useState(defaultSpell);
@@ -25,8 +25,6 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
     cantrips: character.spells,
     spells: character.spells,
   });
-
-  if (isEditing && !character) console.log(character, setCharacter, isEditing);
 
   const closeSpellAditionModal = () => {
     setShowSpellAditionModal(false);

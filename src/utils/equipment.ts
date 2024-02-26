@@ -10,6 +10,11 @@ export const getEquipmentIcon = (equipment: Equipment): IconProps => {
   const { category, name } = equipment;
   let src = "",
     alt = "";
+
+  if (!category || !name) {
+    return { src, alt };
+  }
+
   if (name.includes("armadura") || category.includes("Armadura")) {
     src = equipmentIcons["Armaduras"];
     alt = "Armadura";
