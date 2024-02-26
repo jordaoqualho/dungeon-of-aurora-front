@@ -8,6 +8,13 @@ class EquipmentService {
     );
     return response.data.data;
   }
+
+  async getById(id: string): Promise<Equipment[]> {
+    const response = await backend.get<ResponseAxios<Equipment[]>>(
+      `/equipment/${id}`
+    );
+    return response.data.data;
+  }
 }
 
 export const equipmentService = new EquipmentService();

@@ -51,7 +51,7 @@ export default function RegisterModal({
         successRegister();
       })
       .catch((error) => {
-        console.log("📌  registerUser Error → ", error);
+        console.error("📌  registerUser Error → ", error);
         showToast("Usuário ou senha inválido");
       })
       .finally(() => setLoading(false));

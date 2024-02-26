@@ -8,10 +8,9 @@ type TurnActionsProps = {
 };
 
 export function TurnActions(props: TurnActionsProps) {
-  const { character, setCharacter, isEditing, activeMenu } = props;
+  const { activeMenu } = props;
 
   if (activeMenu !== "TurnActions") return <></>;
-  if (isEditing && !character) console.log(character, setCharacter, isEditing);
 
   return <></>;
 }
