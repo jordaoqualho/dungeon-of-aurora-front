@@ -1,6 +1,5 @@
 import { EquipmentAditionModal, EquipmentList } from "@/components";
 import { EquipmentDescritionModal } from "@/components/molecules";
-import { equipmentService } from "@/connection";
 import { initialEquipment } from "@/constants/equipment";
 import { Character, Equipment } from "@/types";
 import { useEffect, useState } from "react";
