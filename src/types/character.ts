@@ -1,4 +1,4 @@
-import { Spell } from ".";
+import { Equipment, Spell } from ".";
 
 export type Character = {
   _id: string;
@@ -17,7 +17,7 @@ export type Character = {
   spells: Spell[];
   userId: string;
   skills: string[];
-  equipments: string[];
+  equipments: Equipment[];
   gold: number;
   quests: Quest[];
   inspiration: number;

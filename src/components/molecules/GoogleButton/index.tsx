@@ -69,7 +69,7 @@ export function GoogleButton() {
         showToast(`Bem vindo ${response.name}`, "success");
         navigate("/character");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   };
 
   // useGoogleOneTapLogin({
