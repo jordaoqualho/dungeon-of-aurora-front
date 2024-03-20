@@ -10,6 +10,7 @@ export const skills: Skill[] = [
   { name: "Percepção", attribute: "SAB" },
   { name: "Intimidação", attribute: "CAR" },
   { name: "Investigação", attribute: "INT" },
+  { name: "Intuição", attribute: "SAB" },
   { name: "Medicina", attribute: "SAB" },
   { name: "Natureza", attribute: "INT" },
   { name: "Performance", attribute: "CAR" },
