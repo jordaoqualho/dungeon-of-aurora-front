@@ -2,7 +2,6 @@ import { Modal } from "@/components";
 import { equipmentService } from "@/connection";
 import { initialEquipment } from "@/constants/equipment";
 import { useActionContext } from "@/contexts";
-import { showToast } from "@/providers";
 import { Character, Equipment } from "@/types";
 import { filterEquipments, getEquipmentIcon } from "@/utils";
 import AddIcon from "@mui/icons-material/Add";

@@ -1,6 +1,5 @@
 import { Equipment } from "@/components";
 import { useActionContext } from "@/contexts";
-import { showToast } from "@/providers";
 import { Character, Equipment as EquipmentType } from "@/types";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { Container } from "./styles";
