@@ -39,8 +39,8 @@ export const EquipmentAditionModal = (props: EquipmentAditionModalProps) => {
     setSearch(event.target.value);
   };
 
-  const alreadyHaveTheEquipment = (equipmentName: string): boolean =>
-    !!selectedEquipments?.some((equipment) => equipment.name === equipmentName);
+  const alreadyHaveTheEquipment = (equipmentId: string): boolean =>
+    !!selectedEquipments?.some((equipment) => equipment._id === equipmentId);
 
   const addEquipment = (equipmentToBeAdded: Equipment) => {
     setSelectedEquipments([...selectedEquipments, equipmentToBeAdded]);
@@ -65,7 +65,6 @@ export const EquipmentAditionModal = (props: EquipmentAditionModalProps) => {
     };
 
     setCharacter(newCharacterData);
-    showToast("Equipamento salvo", "success");
     setSearch("");
     closeEquipmentAditionModal();
     actionContext?.dispatchAction({
@@ -83,11 +82,16 @@ export const EquipmentAditionModal = (props: EquipmentAditionModalProps) => {
       .catch((error) => console.error(error));
   }, []);
 
+  useEffect(() => {
+    setSelectedEquipments([...character.equipments]);
+  }, [character.equipments]);
+
   return (
     <Modal isOpen={isOpen} customStyle={modalStyles}>
       <Container className="flex_ccc">
         <h4>Equipamentos</h4>
         <input
+          autoFocus
           type="text"
           className="search_input"
           placeholder="Digite o nome do equipamento"
@@ -113,20 +117,20 @@ export const EquipmentAditionModal = (props: EquipmentAditionModalProps) => {
               </div>
               <button
                 className={`add flex_ccc ${
-                  alreadyHaveTheEquipment(equipment.name) ? "added" : ""
+                  alreadyHaveTheEquipment(equipment._id) ? "added" : ""
                 }`}
                 onClick={(
                   event: React.MouseEvent<HTMLButtonElement, MouseEvent>
                 ) => {
                   event.stopPropagation();
-                  if (!alreadyHaveTheEquipment(equipment.name)) {
+                  if (!alreadyHaveTheEquipment(equipment._id)) {
                     addEquipment(equipment);
                   } else {
                     removeEquipment(equipment.name);
                   }
                 }}
               >
-                {alreadyHaveTheEquipment(equipment.name) ? (
+                {alreadyHaveTheEquipment(equipment._id) ? (
                   <CheckIcon />
                 ) : (
                   <AddIcon />

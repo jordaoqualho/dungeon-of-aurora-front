@@ -70,6 +70,8 @@ export function Equipments(props: EquipmentsProps) {
       />
       <EquipmentList
         title="Armas"
+        character={character}
+        setCharacter={setCharacter}
         setDescriptionModal={setDescriptionModal}
         setSelectedEquipment={setSelectedEquipment}
         equipmentList={organizedEquipmentList.weapons}
@@ -85,6 +87,8 @@ export function Equipments(props: EquipmentsProps) {
 
       <EquipmentList
         title="Armaduras"
+        character={character}
+        setCharacter={setCharacter}
         setDescriptionModal={setDescriptionModal}
         setSelectedEquipment={setSelectedEquipment}
         equipmentList={organizedEquipmentList.armors}

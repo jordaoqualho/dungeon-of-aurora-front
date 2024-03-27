@@ -17,6 +17,7 @@ import potion_icon from "./potion_icon.svg";
 import ranged_weapon_icon from "./ranged_weapon_icon.svg";
 import tool_icon from "./tool_icon.svg";
 import transmutation_icon from "./transmutation_icon.svg";
+import trash_icon from "./trash_icon.svg";
 import valuable_icon from "./valuable_icon.svg";
 import weapon_icon from "./weapon_icon.svg";
 
@@ -40,6 +41,7 @@ export {
   ranged_weapon_icon,
   tool_icon,
   transmutation_icon,
+  trash_icon,
   valuable_icon,
   weapon_icon,
 };

@@ -1,14 +1,18 @@
 import { Equipment } from "@/components";
-import { Equipment as EquipmentType } from "@/types";
+import { useActionContext } from "@/contexts";
+import { showToast } from "@/providers";
+import { Character, Equipment as EquipmentType } from "@/types";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { Container } from "./styles";
 
 type EquipmentDescritionModalProps = {
   setDescriptionModal: (value: boolean) => void;
   setSelectedEquipment: (value: EquipmentType) => void;
+  setCharacter: (value: Character) => void;
+  setIsOpen: () => void;
+  character: Character;
   characterLevel: number;
   equipmentList: EquipmentType[];
-  setIsOpen: () => void;
   isOpen: boolean;
   title: string;
 };
@@ -22,7 +26,28 @@ export const EquipmentList = (props: EquipmentDescritionModalProps) => {
     setDescriptionModal,
     setSelectedEquipment,
     characterLevel,
+    character,
+    setCharacter,
   } = props;
+  const actionContext = useActionContext();
+
+  const removeEquipment = (equipmentId: string) => {
+    const selectedEquipments = [...character.equipments];
+    const updateEquipmentList = selectedEquipments.filter(
+      (equipment) => equipment._id !== equipmentId
+    );
+
+    const newCharacterData = {
+      ...character,
+      equipments: [...updateEquipmentList],
+    };
+
+    setCharacter(newCharacterData);
+    actionContext?.dispatchAction({
+      action: "saveCharacter",
+      content: newCharacterData,
+    });
+  };
 
   if (equipmentList.length === 0) return <></>;
 
@@ -34,11 +59,12 @@ export const EquipmentList = (props: EquipmentDescritionModalProps) => {
       </button>
 
       <div className="equipments_container">
-        {equipmentList.map((equipment, index) => (
+        {equipmentList.map((equipment) => (
           <Equipment
-            key={index}
+            key={equipment._id}
             equipment={equipment}
             characterLevel={characterLevel}
+            removeEquipment={removeEquipment}
             onClick={() => {
               setDescriptionModal(true);
               setSelectedEquipment(equipment);
