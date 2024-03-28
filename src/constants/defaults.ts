@@ -11,6 +11,7 @@ export const defaultSpell = {
   ritual: false,
   concentration: false,
   classes: "",
+  originalName: "",
 };
 
 export const defaultCharacter = {

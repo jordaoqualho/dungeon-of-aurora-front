@@ -18,7 +18,10 @@ export const filterSpells = (
   const normalizedSearchTerm = removeAccents(search.toLowerCase());
 
   const matchesSearchTerm = (spell: Spell) =>
-    removeAccents(spell.name.toLowerCase()).includes(normalizedSearchTerm);
+    removeAccents(spell.name.toLowerCase()).includes(normalizedSearchTerm) ||
+    removeAccents(spell?.originalName?.toLowerCase() ?? "").includes(
+      normalizedSearchTerm
+    );
 
   const filtered = spells
     .filter(matchesSearchTerm)

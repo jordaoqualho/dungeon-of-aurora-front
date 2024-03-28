@@ -12,6 +12,7 @@ export type Spell = {
   concentration: boolean;
   classes: string;
   damage?: Damage;
+  originalName: string;
 };
 
 export type Damage = {

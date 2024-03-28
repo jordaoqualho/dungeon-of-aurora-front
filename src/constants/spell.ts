@@ -23,6 +23,7 @@ export const initialSpell: Spell = {
   ritual: false,
   concentration: false,
   classes: "",
+  originalName: "",
   damage: {
     type: "",
     characterLevel: {},
