@@ -4,13 +4,16 @@ import { spellIcons } from "@/constants";
 import { showPromiseToast } from "@/providers";
 import { Spell } from "@/types";
 import { DiceType, getSpellDamage, rollDice } from "@/utils";
-import { useState } from "react";
-import { Container, SpellHeader, SpellInfo } from "./styles";
+import { useEffect, useState } from "react";
+import SwipeToDelete from "react-swipe-to-delete-ios";
+import { DeleteSwipe } from "..";
+import { Container, SpellContainer, SpellHeader, SpellInfo } from "./styles";
 
 type SpellProps = {
   spell: Spell;
   onClick: () => void;
   characterLevel: number;
+  removeSpell: (equipmentName: string) => void;
 };
 
 type IconProps = {
@@ -18,7 +21,13 @@ type IconProps = {
   alt: string;
 };
 
-export function Spell({ spell, onClick, characterLevel }: SpellProps) {
+export function Spell({
+  spell,
+  onClick,
+  characterLevel,
+  removeSpell,
+}: SpellProps) {
+  const [wasDeleted, setWasDeleted] = useState(false);
   const [spellLevel] = useState<number>(() => {
     const slotLevel = spell?.damage?.slotLevel;
     if (slotLevel) {
@@ -53,34 +62,53 @@ export function Spell({ spell, onClick, characterLevel }: SpellProps) {
     );
   };
 
+  useEffect(() => {
+    if (!wasDeleted) return;
+    setTimeout(() => {
+      removeSpell(spell._id);
+    }, 500);
+  }, [wasDeleted]);
+
   return (
-    <Container className="flex_csb" onClick={onClick}>
-      <div className="flex_ssc" style={{ gap: 16, width: "100%" }}>
-        <SpellHeader className="flex_csb">
-          <div className="flex_ccr" style={{ gap: 8 }}>
-            <img
-              src={getIconProps(spell.school).src}
-              alt={getIconProps(spell.school).alt}
-            />
-            <p className="name">{spell.name}</p>
+    <Container $wasDeleted={wasDeleted}>
+      <SwipeToDelete
+        onDelete={() => setWasDeleted(true)}
+        id={spell._id}
+        deleteComponent={<DeleteSwipe />}
+        className="swiper"
+      >
+        <SpellContainer className="flex_csb" onClick={onClick}>
+          <div className="flex_ssc" style={{ gap: 16, width: "100%" }}>
+            <SpellHeader className="flex_csb">
+              <div className="flex_ccr" style={{ gap: 8 }}>
+                <img
+                  src={getIconProps(spell.school).src}
+                  alt={getIconProps(spell.school).alt}
+                />
+                <p className="name">{spell.name}</p>
+              </div>
+              <button className="level">N.{spell.level}</button>
+            </SpellHeader>
+            <SpellInfo className="flex_csb">
+              <div>
+                <p className="subinfo">
+                  {spell.castingTime} - {spell.duration}
+                </p>
+                <p className="subinfo">{spell.range}</p>
+              </div>
+              {spell?.damage && (
+                <button
+                  className="roll_btn flex_ccr"
+                  onClick={handleButtonClick}
+                >
+                  <img src={d20} alt="d20" />
+                  <p>{spellDamage?.damageText}</p>
+                </button>
+              )}
+            </SpellInfo>
           </div>
-          <button className="level">N.{spell.level}</button>
-        </SpellHeader>
-        <SpellInfo className="flex_csb">
-          <div>
-            <p className="subinfo">
-              {spell.castingTime} - {spell.duration}
-            </p>
-            <p className="subinfo">{spell.range}</p>
-          </div>
-          {spell?.damage && (
-            <button className="roll_btn flex_ccr" onClick={handleButtonClick}>
-              <img src={d20} alt="d20" />
-              <p>{spellDamage?.damageText}</p>
-            </button>
-          )}
-        </SpellInfo>
-      </div>
+        </SpellContainer>
+      </SwipeToDelete>
     </Container>
   );
 }

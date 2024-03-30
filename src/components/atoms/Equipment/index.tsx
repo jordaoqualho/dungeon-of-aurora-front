@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { d20, trash_icon } from "@/assets";
+import { d20 } from "@/assets";
 import { showPromiseToast } from "@/providers";
 import { Equipment } from "@/types";
 import { DiceType, getEquipmentIcon, rollDice } from "@/utils";
 import { useEffect, useState } from "react";
 import SwipeToDelete from "react-swipe-to-delete-ios";
+import { DeleteSwipe } from "..";
 import {
   Container,
   EquipmentContainer,
@@ -39,10 +40,6 @@ export function Equipment({
       "success"
     );
   };
-
-  function DeleteSwipe() {
-    return <img src={trash_icon} alt="trash_icon" />;
-  }
 
   useEffect(() => {
     if (!wasDeleted) return;

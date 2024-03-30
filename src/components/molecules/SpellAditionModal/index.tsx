@@ -83,6 +83,10 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
       .catch((error) => console.error(error));
   }, []);
 
+  useEffect(() => {
+    setSelectedSpells([...character.spells]);
+  }, [character.spells]);
+
   return (
     <Modal isOpen={isOpen} customStyle={modalStyles}>
       <Container className="flex_ccc">

@@ -1,6 +1,7 @@
 export * from "./Attribute";
 export * from "./Button";
 export * from "./Checkbox";
+export * from "./DeleteSwipe";
 export * from "./Dropdown";
 export * from "./Equipment";
 export * from "./Input";
