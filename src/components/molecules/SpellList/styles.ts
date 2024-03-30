@@ -37,7 +37,6 @@ export const Container = styled.div<Props>`
   }
 
   .spells_container {
-    gap: 8px;
     display: flex;
     flex-direction: column;
     transition: var(--regular);

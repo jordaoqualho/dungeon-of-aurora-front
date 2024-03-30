@@ -1,5 +1,5 @@
 import { backend } from "@/config";
-import { AuthInterface } from "@/providers/interfaces";
+import { AuthInterface } from "@/interfaces";
 import { LoginData, LoginResponse, ResponseAxios } from "@/types";
 
 class AuthService implements AuthInterface {

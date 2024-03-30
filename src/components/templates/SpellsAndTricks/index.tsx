@@ -70,6 +70,8 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
         spellList={organizedSpellList.cantrips}
         isOpen={accordionControl.cantrips}
         characterLevel={character.level}
+        character={character}
+        setCharacter={setCharacter}
         setIsOpen={() =>
           setAccordionControl({
             ...accordionControl,
@@ -85,6 +87,8 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
         spellList={organizedSpellList.spells}
         isOpen={accordionControl.spells}
         characterLevel={character.level}
+        character={character}
+        setCharacter={setCharacter}
         setIsOpen={() =>
           setAccordionControl({
             ...accordionControl,

@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.6](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.5...v0.2.6) (2024-03-30)
+
+
+### Features
+
+* 🎸 adding constant icons for equipment ([b28a50b](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/b28a50b47be6870499ceebfb9b4f11aac5bd8d6e))
+* 🎸 adding search by originalName on spells ([ff2651c](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/ff2651cfc61bd252d568210d36f9bd2ae010bc02))
+* 🎸 adding swipe to delete the equipment ([8585ffd](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/8585ffdd7dc18f77a57326ad7fbc4da888e6d2dc))
+* 🎸 creating equipment filter and default constant ([d1b9593](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/d1b95931037066f1ec7b47a17e60feedfdd0ce82))
+* 🎸 creating equipment service ([7345ef8](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/7345ef885e002aba29be01feb7b7e53611e2dcb2))
+* 🎸 creating equipment types and add to character ([8219a73](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/8219a7328f245c146433ebd998bcbe8ceec14475))
+* 🎸 creating get icon for equipments ([288eba5](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/288eba591f7b1a0b74187c10caa37b112b8ecf4a))
+* 🎸 swipe delete spells ([5e19fdc](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/5e19fdc339f3aab087c5fff63cbc8b0cf243c3d5))
+
+
+### Bug Fixes
+
+* 🐛 add intuition to the proficiency ([2754f14](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/2754f1456af1f72fb08b6cd41c9d0eefed97f324))
+* 🐛 remove unused imports ([a797b49](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/a797b49babcad0bce7396945efde1e9111ecf5e6))
+* 🐛 resolving lint errors ([82f14da](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/82f14daea417113acc8516890bd9791bad038885))
+
 ### [0.2.5](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.4...v0.2.5) (2023-12-18)
 
 
