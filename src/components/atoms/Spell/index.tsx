@@ -3,7 +3,7 @@ import { d20 } from "@/assets";
 import { spellIcons } from "@/constants";
 import { showPromiseToast } from "@/providers";
 import { Spell } from "@/types";
-import { DiceType, getSpellDamage, rollDice } from "@/utils";
+import { DiceType, getSpellDamage, getSpellIcon, rollDice } from "@/utils";
 import { useEffect, useState } from "react";
 import SwipeToDelete from "react-swipe-to-delete-ios";
 import { DeleteSwipe } from "..";
@@ -14,11 +14,6 @@ type SpellProps = {
   onClick: () => void;
   characterLevel: number;
   removeSpell: (equipmentName: string) => void;
-};
-
-type IconProps = {
-  src: string;
-  alt: string;
 };
 
 export function Spell({
@@ -41,12 +36,6 @@ export function Spell({
   const spellDamage = spell?.damage
     ? getSpellDamage(spell?.damage, spellLevel)
     : undefined;
-
-  const getIconProps = (spellSchool: string): IconProps => {
-    const alt: string = spellSchool;
-    const src: string = spellIcons[spellSchool] || spellIcons["default"];
-    return { src, alt };
-  };
 
   const handleButtonClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -82,8 +71,8 @@ export function Spell({
             <SpellHeader className="flex_csb">
               <div className="flex_ccr" style={{ gap: 8 }}>
                 <img
-                  src={getIconProps(spell.school).src}
-                  alt={getIconProps(spell.school).alt}
+                  src={getSpellIcon(spell.school).src}
+                  alt={getSpellIcon(spell.school).alt}
                 />
                 <p className="name">{spell.name}</p>
               </div>

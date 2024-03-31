@@ -20,7 +20,7 @@ export const Container = styled.div`
 
 export const SpellOption = styled.div`
   background-color: var(--background);
-  border-radius: 10px;
+  border-radius: 16px;
   width: 100%;
   padding: 5px;
   gap: 8px;
@@ -38,15 +38,22 @@ export const SpellOption = styled.div`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 185px;
+    width: 150px;
+  }
+
+  .level {
+    background-color: var(--ground);
+    font-size: var(--small);
+    border-radius: 16px;
+    padding: 4px 16px;
   }
 
   .add {
     background-color: var(--ground);
     color: var(--bright);
     border: 1px solid var(--ground);
-    border-radius: 10px;
-    padding: 5px 20px;
+    border-radius: 16px;
+    padding: 8px 16px;
   }
 
   .added {
