@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 type Props = {
   $isFilterOpen: boolean;
-  noActiveFilter: boolean;
+  $noActiveFilter: boolean;
 };
 
 export const Container = styled.div<Props>`
@@ -24,8 +24,8 @@ export const Container = styled.div<Props>`
         transform: rotate(180deg);
       `}
 
-    ${({ noActiveFilter }) =>
-      !noActiveFilter &&
+    ${({ $noActiveFilter }) =>
+      !$noActiveFilter &&
       css`
         color: var(--primary);
       `}
@@ -40,8 +40,8 @@ export const Container = styled.div<Props>`
     overflow: hidden;
     text-overflow: ellipsis;
 
-    ${({ noActiveFilter }) =>
-      !noActiveFilter &&
+    ${({ $noActiveFilter }) =>
+      !$noActiveFilter &&
       css`
         color: var(--primary);
       `}

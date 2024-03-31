@@ -101,7 +101,11 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
           onChange={handleInputChange}
         />
 
-        <SpellsFilters filters={filters} setFilters={setFilters} />
+        <SpellsFilters
+          filters={filters}
+          setFilters={setFilters}
+          character={character}
+        />
 
         <div className="spell_container flex_ssc">
           {filteredSpells.map((spell: Spell) => (

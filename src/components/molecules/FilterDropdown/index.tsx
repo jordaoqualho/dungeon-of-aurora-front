@@ -22,8 +22,9 @@ export const FilterDropdown = (props: FilterDropdownProps) => {
         {filterOptions.map((option) => (
           <div
             className="option flex_ccc"
-            id={option}
             onClick={(e) => handleOptionClick(e)}
+            key={option}
+            id={option}
           >
             <p className="text">{option}</p>
           </div>

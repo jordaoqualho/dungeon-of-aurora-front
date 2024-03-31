@@ -49,7 +49,7 @@ export function Filter(props: FilterProps) {
       className="flex_csb"
       $isFilterOpen={isFilterOpen}
       onClick={() => setIsFilterOpen(!isFilterOpen)}
-      noActiveFilter={noActiveFilter}
+      $noActiveFilter={noActiveFilter}
       ref={dropdownRef}
     >
       <p className="title">{getSelectedFilter()}</p>
