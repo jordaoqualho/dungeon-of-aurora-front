@@ -4,6 +4,7 @@ export * from "./Checkbox";
 export * from "./DeleteSwipe";
 export * from "./Dropdown";
 export * from "./Equipment";
+export * from "./Filter";
 export * from "./Input";
 export * from "./Modal";
 export * from "./Selector";

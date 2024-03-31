@@ -1,4 +1,4 @@
-import { Modal } from "@/components";
+import { Modal, SpellsFilters } from "@/components";
 import { spellsService } from "@/connection/spellsService";
 import { initialSpell } from "@/constants";
 import { useActionContext } from "@/contexts";
@@ -92,12 +92,15 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
       <Container className="flex_ccc">
         <h4>Magias e Truques</h4>
         <input
+          autoFocus
           type="text"
           className="search_input"
           placeholder="Digite o nome da magia ou truque"
           value={search}
           onChange={handleInputChange}
         />
+
+        <SpellsFilters />
 
         <div className="spell_container flex_ssc">
           {filteredSpells.map((spell: Spell) => (
