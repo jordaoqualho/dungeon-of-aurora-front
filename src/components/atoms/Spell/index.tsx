@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { d20 } from "@/assets";
-import { spellIcons } from "@/constants";
 import { showPromiseToast } from "@/providers";
 import { Spell } from "@/types";
 import { DiceType, getSpellDamage, getSpellIcon, rollDice } from "@/utils";

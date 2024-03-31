@@ -49,8 +49,14 @@ export const filterEquipments = (
   equipments: Equipment[],
   search: string | undefined
 ): Equipment[] => {
+  const equipables = equipments
+    .filter(
+      (equip) => equip.category === "Arma" || equip.category === "Armadura"
+    )
+    .sort((a, b) => a.name.localeCompare(b.name));
+
   if (!search) {
-    return equipments;
+    return equipables;
   }
 
   const normalizedSearchTerm = removeAccents(search.toLowerCase());
@@ -58,7 +64,7 @@ export const filterEquipments = (
   const matchesSearchTerm = (equipment: Equipment) =>
     removeAccents(equipment.name.toLowerCase()).includes(normalizedSearchTerm);
 
-  const filtered = equipments.filter(matchesSearchTerm);
+  const filtered = equipables.filter(matchesSearchTerm);
 
   return filtered;
 };
