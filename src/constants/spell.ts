@@ -46,3 +46,39 @@ export const spellIcons: SpellIconMap = {
   Ilusão: ilusion_icon,
   default: evocation_icon,
 };
+
+export const schoolsOfMagic: string[] = [
+  "Abjuração",
+  "Conjuração",
+  "Divinação",
+  "Encantamento",
+  "Evocação",
+  "Ilusão",
+  "Necromancia",
+  "Transmutação",
+];
+
+export const magicClasses: string[] = [
+  "Mago",
+  "Bruxo",
+  "Bardo",
+  "Clérigo",
+  "Druida",
+  "Feiticeiro",
+  "Paladino",
+  "Patrulheiro",
+  "Artífice",
+];
+
+export const spellLevels: string[] = [
+  "Truque 0",
+  "Nível 1",
+  "Nível 2",
+  "Nível 3",
+  "Nível 4",
+  "Nível 5",
+  "Nível 6",
+  "Nível 7",
+  "Nível 8",
+  "Nível 9",
+];

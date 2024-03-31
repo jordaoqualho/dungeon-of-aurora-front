@@ -1,10 +1,10 @@
-import { Modal } from "@/components";
+import { Modal, SpellsFilters } from "@/components";
 import { spellsService } from "@/connection/spellsService";
 import { initialSpell } from "@/constants";
 import { useActionContext } from "@/contexts";
 import { showToast } from "@/providers";
 import { Character, Spell } from "@/types";
-import { filterSpells } from "@/utils";
+import { filterSpells, getSpellIcon } from "@/utils";
 import AddIcon from "@mui/icons-material/Add";
 import CheckIcon from "@mui/icons-material/Check";
 import { useEffect, useState } from "react";
@@ -32,8 +32,9 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
   );
   const [search, setSearch] = useState("");
   const [spells, setSpells] = useState<Spell[]>([initialSpell]);
+  const [filters, setFilters] = useState({ school: "", class: "", level: "" });
   const actionContext = useActionContext();
-  const filteredSpells = filterSpells(spells, search);
+  const filteredSpells = filterSpells(spells, search, filters);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
@@ -92,11 +93,18 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
       <Container className="flex_ccc">
         <h4>Magias e Truques</h4>
         <input
+          autoFocus
           type="text"
           className="search_input"
           placeholder="Digite o nome da magia ou truque"
           value={search}
           onChange={handleInputChange}
+        />
+
+        <SpellsFilters
+          filters={filters}
+          setFilters={setFilters}
+          character={character}
         />
 
         <div className="spell_container flex_ssc">
@@ -110,8 +118,14 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
               }}
             >
               <div className="flex_csr" style={{ gap: 10 }}>
-                <div className="icon flex_ccc">{spell.level}</div>
+                <div className="icon flex_ccc">
+                  <img
+                    src={getSpellIcon(spell.school).src}
+                    alt={getSpellIcon(spell.school).alt}
+                  />
+                </div>
                 <p className="name">{spell.name}</p>
+                <p className="level">N.{spell.level}</p>
               </div>
               <button
                 className={`add flex_ccc ${

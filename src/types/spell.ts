@@ -30,4 +30,8 @@ export type DiceRolls = {
   dice: string;
 };
 
-
+export type SpellFilters = {
+  school: string;
+  level: string;
+  class: string;
+};

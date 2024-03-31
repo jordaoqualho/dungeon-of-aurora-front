@@ -6,6 +6,7 @@ export * from "./EditingModal";
 export * from "./EquipmentAditionModal";
 export * from "./EquipmentDescritionModal";
 export * from "./EquipmentList";
+export * from "./FilterDropdown";
 export * from "./GoogleButton";
 export * from "./HitPoints";
 export * from "./LevelSelector";
@@ -15,6 +16,6 @@ export * from "./MenuDropdown";
 export * from "./PictureModal";
 export * from "./Proficiency";
 export * from "./RaceSelector";
-export * from "./SpellAditionModal";
 export * from "./SpellList";
+export * from "./SpellsFilters";
 
