@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.7](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.6...v0.2.7) (2024-03-31)
+
+
+### Features
+
+* 🎸 define default filter selection ([cd54617](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/cd54617847585a90a5d31ad1355cb03da5d3cf26))
+* 🎸 filter equipments on adition ([a9095a3](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/a9095a3250a7f18cd7ba38f007823f34bfe69897))
+* 🎸 implement filter search ([beffb53](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/beffb53c93650e46cf05346f0fa2a9fb7e6ff998))
+* 🎸 styling spell filter ([3a54d17](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/3a54d17f8dbc30e44a3f3b4fce914439d11c21db))
+
 ### [0.2.6](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.5...v0.2.6) (2024-03-30)
 
 
