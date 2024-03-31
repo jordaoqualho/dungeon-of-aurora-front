@@ -1,4 +1,4 @@
-import { Equipment, Spell } from "@/types";
+import { Equipment, Spell, SpellFilters } from "@/types";
 
 export const removeAccents = (str: string) =>
   str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -9,26 +9,40 @@ export const sortSpellsByLevel = (spells: Spell[]): Spell[] => {
 
 export const filterSpells = (
   spells: Spell[],
-  search: string | undefined
+  search: string | undefined,
+  filters: SpellFilters
 ): Spell[] => {
-  if (!search) {
-    return sortSpellsByLevel(spells);
+  let filteredSpells = spells;
+  if (search) {
+    const normalizedSearchTerm = removeAccents(search.toLowerCase());
+    const matchesSearchTerm = (spell: Spell) =>
+      removeAccents(spell.name.toLowerCase()).includes(normalizedSearchTerm) ||
+      removeAccents(spell?.originalName?.toLowerCase() ?? "").includes(
+        normalizedSearchTerm
+      );
+    filteredSpells = spells.filter(matchesSearchTerm);
   }
 
-  const normalizedSearchTerm = removeAccents(search.toLowerCase());
-
-  const matchesSearchTerm = (spell: Spell) =>
-    removeAccents(spell.name.toLowerCase()).includes(normalizedSearchTerm) ||
-    removeAccents(spell?.originalName?.toLowerCase() ?? "").includes(
-      normalizedSearchTerm
+  if (filters.school) {
+    filteredSpells = filteredSpells.filter(
+      (spell) => spell.school === filters.school
     );
+  }
+  if (filters.class) {
+    filteredSpells = filteredSpells.filter((spell) =>
+      spell.classes.includes(filters.class)
+    );
+  }
+  if (filters.level) {
+    const numberLevel = parseInt(filters.level.replace(/\D/g, ""), 10);
+    filteredSpells = filteredSpells.filter(
+      (spell) => spell.level === numberLevel
+    );
+  }
 
-  const filtered = spells
-    .filter(matchesSearchTerm)
-    .sort((a, b) => a.level - b.level)
-    .slice(0, 20);
+  filteredSpells = sortSpellsByLevel(filteredSpells).slice(0, 20);
 
-  return filtered;
+  return filteredSpells;
 };
 
 export const filterEquipments = (

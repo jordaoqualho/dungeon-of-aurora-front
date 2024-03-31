@@ -7,12 +7,13 @@ import { Container } from "./styles";
 type FilterProps = {
   title: string;
   filterOptions: string[];
+  activeFilter: string;
+  setActiveFilter: (value: string) => void;
 };
 
 export function Filter(props: FilterProps) {
-  const { title, filterOptions } = props;
+  const { title, filterOptions, activeFilter, setActiveFilter } = props;
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [activeFilter, setActiveFilter] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
   const noActiveFilter = activeFilter === "" || isFilterOpen;
 

@@ -59,22 +59,19 @@ export const schoolsOfMagic: string[] = [
 ];
 
 export const magicClasses: string[] = [
-  "Bárbaro",
+  "Mago",
+  "Bruxo",
   "Bardo",
   "Clérigo",
   "Druida",
-  "Guerreiro",
   "Feiticeiro",
   "Paladino",
-  "Ranger",
-  "Ladino",
-  "Mago",
-  "Bruxo",
+  "Patrulheiro",
   "Artífice",
 ];
 
 export const spellLevels: string[] = [
-  "Truque",
+  "Truque 0",
   "Nível 1",
   "Nível 2",
   "Nível 3",

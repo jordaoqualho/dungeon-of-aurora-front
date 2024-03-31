@@ -32,8 +32,9 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
   );
   const [search, setSearch] = useState("");
   const [spells, setSpells] = useState<Spell[]>([initialSpell]);
+  const [filters, setFilters] = useState({ school: "", class: "", level: "" });
   const actionContext = useActionContext();
-  const filteredSpells = filterSpells(spells, search);
+  const filteredSpells = filterSpells(spells, search, filters);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
@@ -100,7 +101,7 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
           onChange={handleInputChange}
         />
 
-        <SpellsFilters />
+        <SpellsFilters filters={filters} setFilters={setFilters} />
 
         <div className="spell_container flex_ssc">
           {filteredSpells.map((spell: Spell) => (
