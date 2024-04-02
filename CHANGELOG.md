@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.8](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.7...v0.2.8) (2024-04-02)
+
+
+### Features
+
+* 🎸 adding search equipment by original name ([dcd0938](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/dcd09388c5d8d79ff10ac49afa5d0fcb88abf01a))
+* 🎸 adjusting spell descritption and modal scroll ([e90a3d1](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/e90a3d1e73925cb57156373991dd01e17d7acdc5))
+* 🎸 improving equipment description modal ([7d8b025](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/7d8b025a75cbe054bced65639a3925b439ad5a1f))
+
 ### [0.2.7](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.6...v0.2.7) (2024-03-31)
 
 
