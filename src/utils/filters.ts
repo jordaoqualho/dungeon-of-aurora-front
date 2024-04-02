@@ -62,7 +62,12 @@ export const filterEquipments = (
   const normalizedSearchTerm = removeAccents(search.toLowerCase());
 
   const matchesSearchTerm = (equipment: Equipment) =>
-    removeAccents(equipment.name.toLowerCase()).includes(normalizedSearchTerm);
+    removeAccents(equipment.name.toLowerCase()).includes(
+      normalizedSearchTerm
+    ) ||
+    removeAccents(equipment?.originalName?.toLowerCase() ?? "").includes(
+      normalizedSearchTerm
+    );
 
   const filtered = equipables.filter(matchesSearchTerm);
 

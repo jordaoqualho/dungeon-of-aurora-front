@@ -21,7 +21,8 @@ export const Container = styled.div`
 export const SpellOption = styled.div`
   background-color: var(--background);
   border-radius: 16px;
-  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
   padding: 5px;
   gap: 8px;
 
@@ -38,7 +39,7 @@ export const SpellOption = styled.div`
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 150px;
+    width: calc(100vw - 280px);
   }
 
   .level {
@@ -68,7 +69,7 @@ export const Buttons = styled.div`
   gap: 16px;
 
   button {
-    border-radius: 10px;
+    border-radius: 15px;
     color: var(--white);
     padding: 8px 24px;
     min-width: 100px;

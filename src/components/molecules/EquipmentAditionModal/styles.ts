@@ -61,7 +61,7 @@ export const Buttons = styled.div`
   gap: 16px;
 
   button {
-    border-radius: 10px;
+    border-radius: 15px;
     color: var(--white);
     padding: 8px 24px;
     min-width: 100px;

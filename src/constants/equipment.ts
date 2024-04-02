@@ -13,6 +13,7 @@ import { DamageTypes, Equipment, Pieces } from "@/types";
 export const initialEquipment: Equipment = {
   _id: "",
   name: "",
+  originalName: "",
   cost: { quantity: "0", unit: Pieces.PECAS_DE_COBRE },
   category: "",
   description: [""],

@@ -83,15 +83,18 @@ export const SpellDescritionModal = (props: SpellDescritionModalProps) => {
           Tempo de Conjuração: <span>{spell.castingTime}</span>
         </h5>
 
-        <h5 className="text description">
-          Descrição: {renderSpellDescription(spell.description)}
-        </h5>
-
-        {spell?.upgrade[0] && (
-          <h5 className="text">
-            Melhoria: <span>{spell.upgrade}</span>
-          </h5>
-        )}
+        <h5 className="text ">Descrição</h5>
+        <div className="description">
+          <h5 className="text ">{renderSpellDescription(spell.description)}</h5>
+          <br />
+          {spell?.upgrade[0] && (
+            <h5 className="text">
+              Em níveis superiores
+              <br />
+              <span>{spell.upgrade}</span>
+            </h5>
+          )}
+        </div>
       </Container>
     </Modal>
   );
