@@ -1,6 +1,7 @@
 export type Equipment = {
   _id: string;
   name: string;
+  originalName: string;
   cost: Cost;
   category: string;
   description?: string[];
