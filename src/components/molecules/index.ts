@@ -1,6 +1,7 @@
 export * from "./Attributes";
 export * from "./Capability";
 export * from "./CharacterInfo";
+export * from "./ClassCharacteristics";
 export * from "./ClassSelector";
 export * from "./EditingModal";
 export * from "./EquipmentAditionModal";

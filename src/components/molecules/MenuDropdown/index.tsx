@@ -41,10 +41,10 @@ export const MenuDropdown = (props: MenuDropdownProps) => {
         </div>
         <div
           className="option flex_ccc"
-          id="TurnActions"
+          id="Characteristics"
           onClick={(e) => handleOptionClick(e)}
         >
-          <p className="text">Ações no Turno</p>
+          <p className="text">Características</p>
         </div>
       </Container>
     </Dropdown>

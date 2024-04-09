@@ -22,8 +22,8 @@ export const Menu = ({ setActiveMenu, activeMenu }: MenuProps) => {
       case "Equipments":
         return "Equipamentos";
 
-      case "TurnActions":
-        return "Ações no Turno";
+      case "Characteristics":
+        return "Características";
 
       default:
         return "Atributos & Proeficiências";
