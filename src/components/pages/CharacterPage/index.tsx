@@ -86,7 +86,6 @@ export function CharacterPage() {
       <Characteristics
         character={character}
         setCharacter={setCharacter}
-        isEditing={isEditing}
         activeMenu={activeMenu}
       />
       <LoadingScreen isLoading={isLoading} />
