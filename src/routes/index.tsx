@@ -1,4 +1,4 @@
-import { Character, Entry, NotFound } from "@/components";
+import { CharacterPage, Entry, NotFound } from "@/components";
 import { ProtectedRoute } from "@/utils";
 import {
   BrowserRouter,
@@ -15,7 +15,7 @@ export default function Routes() {
           path="/character"
           element={
             <ProtectedRoute>
-              <Character />
+              <CharacterPage />
             </ProtectedRoute>
           }
         />

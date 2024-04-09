@@ -22,7 +22,7 @@ export const Container = styled.div<Props>`
       $activeMenu &&
       css`
         &[id="${$activeMenu}"] {
-          display: none;
+          background-color: var(--primary);
         }
       `}
   }

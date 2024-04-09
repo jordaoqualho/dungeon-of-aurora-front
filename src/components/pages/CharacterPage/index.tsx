@@ -1,12 +1,12 @@
 import {
   Abilities,
   CharacterInfo,
+  Characteristics,
   EditingModal,
   Equipments,
   LoadingScreen,
   Menu,
   SpellsAndTricks,
-  TurnActions,
 } from "@/components";
 import { characterService } from "@/connection";
 import { defaultCharacter } from "@/constants";
@@ -17,7 +17,7 @@ import { useEffect, useState } from "react";
 import { useReadLocalStorage } from "usehooks-ts";
 import { Container } from "./styles";
 
-export function Character() {
+export function CharacterPage() {
   const [character, setCharacter] = useState<Character>(defaultCharacter);
   const [activeMenu, setActiveMenu] = useState("Abilities");
   const [initialCharacter, setInitialCharacter] =
@@ -83,10 +83,9 @@ export function Character() {
         isEditing={isEditing}
         activeMenu={activeMenu}
       />
-      <TurnActions
+      <Characteristics
         character={character}
         setCharacter={setCharacter}
-        isEditing={isEditing}
         activeMenu={activeMenu}
       />
       <LoadingScreen isLoading={isLoading} />

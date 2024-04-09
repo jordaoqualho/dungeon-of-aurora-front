@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.9](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.8...v0.2.9) (2024-04-09)
+
+
+### Features
+
+* 🎸 creating character caracteristics component structure ([fb5cf05](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/fb5cf05576a5917a6d81271a53df1f18f75539fe))
+
+
+### Bug Fixes
+
+* 🐛 changing character page and fix menu strucutre ([ba083ab](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/ba083ab2d3be8998427a375513d5d153fa629f45))
+* 🐛 resolving eslint erro isEditing not assigned ([9b2339d](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/9b2339d7052b0738a93470552ebf763136bc540c))
+* 🐛 resolving original name error ([8cf14c5](https://github.com/jordaoqualho/dungeon-of-aurora-front/commit/8cf14c5942d8531bd61a2dd8dedc17204581a442))
+
 ### [0.2.8](https://github.com/jordaoqualho/dungeon-of-aurora-front/compare/v0.2.7...v0.2.8) (2024-04-02)
 
 

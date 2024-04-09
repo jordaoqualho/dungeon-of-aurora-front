@@ -1,3 +1,3 @@
-export * from "./Character";
+export * from "./CharacterPage";
 export * from "./Entry";
 export * from "./NotFound";
