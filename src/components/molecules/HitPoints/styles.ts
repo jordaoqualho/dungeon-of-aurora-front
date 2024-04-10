@@ -15,6 +15,20 @@ export const Container = styled.div`
     gap: 8px;
   }
 
+  .sleep_button {
+    background-color: var(--secundary);
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    border-radius: 50%;
+    padding: 2px 4px;
+
+    img {
+      margin-bottom: -1px;
+      margin-top: 2px;
+    }
+  }
+
   input {
     width: 20px;
     min-width: 60px;
@@ -58,7 +72,7 @@ export const Container = styled.div`
 
   .life_dices {
     width: 100%;
-    margin-top: 18px;
+    margin-top: 24px;
 
     p {
       font-weight: var(--extraLight);

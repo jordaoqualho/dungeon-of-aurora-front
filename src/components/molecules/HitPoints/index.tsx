@@ -10,6 +10,7 @@ import {
   d8_dice_icon,
   damage_icon,
   healing_icon,
+  sleep_icon,
 } from "@/assets";
 import { useActionContext } from "@/contexts";
 import { showToast } from "@/providers";
@@ -129,10 +130,44 @@ export const HitPoints = (props: HitPointsProps) => {
     if (index + 1 > leftDices) return true;
   };
 
+  const restoreResources = () => {
+    const { hitPointDices, maxHitPoints, level } = character;
+
+    const spentHitDice = level - hitPointDices.quantity;
+    const maxRegainedHitDice = Math.max(1, Math.floor(level / 2));
+    const regainedHitDice = Math.min(maxRegainedHitDice, spentHitDice);
+
+    const newHitPoints = maxHitPoints;
+    const newHitDiceQuantity = Math.min(
+      level,
+      hitPointDices.quantity + regainedHitDice
+    );
+
+    const newCharacterData = {
+      ...character,
+      hitPoints: newHitPoints,
+      hitPointDices: {
+        ...hitPointDices,
+        quantity: newHitDiceQuantity,
+      },
+    };
+
+    showToast("Você finalizou um descanso longo", "success");
+
+    setCharacter(newCharacterData);
+    actionContext?.dispatchAction({
+      action: "saveCharacter",
+      content: newCharacterData,
+    });
+  };
+
   return (
     <>
       <Container className="flex_ccc">
         <p className="title">PV Atual / PV Máximo</p>
+        <button className="sleep_button" onClick={() => restoreResources()}>
+          <img src={sleep_icon} alt="sleep_icon" />
+        </button>
         <div className="points flex_csr">
           <div className="flex_ccr">
             <button

@@ -25,6 +25,7 @@ import mount_icon from "./mount_icon.svg";
 import necromancy_icon from "./necromancy_icon.svg";
 import potion_icon from "./potion_icon.svg";
 import ranged_weapon_icon from "./ranged_weapon_icon.svg";
+import sleep_icon from "./sleep_icon.svg";
 import tool_icon from "./tool_icon.svg";
 import transmutation_icon from "./transmutation_icon.svg";
 import trash_icon from "./trash_icon.svg";
@@ -59,6 +60,7 @@ export {
   necromancy_icon,
   potion_icon,
   ranged_weapon_icon,
+  sleep_icon,
   tool_icon,
   transmutation_icon,
   trash_icon,
