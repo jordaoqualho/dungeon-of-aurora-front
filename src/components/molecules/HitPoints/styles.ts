@@ -15,9 +15,23 @@ export const Container = styled.div`
     gap: 8px;
   }
 
+  .sleep_button {
+    background-color: var(--secundary);
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    border-radius: 50%;
+    padding: 2px 4px;
+
+    img {
+      margin-bottom: -1px;
+      margin-top: 2px;
+    }
+  }
+
   input {
     width: 20px;
-    min-width: 50px;
+    min-width: 60px;
     padding: 5px;
     background: var(--background);
     font-size: var(--big);
@@ -25,9 +39,40 @@ export const Container = styled.div`
     text-align: center;
   }
 
+  .damage {
+    background-color: var(--secundary);
+    border-radius: 4px;
+    margin-right: 8px;
+    padding: 4px 6px;
+
+    img {
+      width: 12px;
+      margin-bottom: -1px;
+      color: red;
+    }
+  }
+
+  .healing {
+    background-color: var(--primary);
+    border-radius: 4px;
+    margin-left: 8px;
+    padding: 4px 6px;
+
+    img {
+      width: 12px;
+      margin-bottom: -1px;
+    }
+  }
+
+  .damage:disabled,
+  .healing:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
   .life_dices {
     width: 100%;
-    margin-top: 18px;
+    margin-top: 24px;
 
     p {
       font-weight: var(--extraLight);
@@ -36,12 +81,16 @@ export const Container = styled.div`
     }
 
     .dices {
+      flex-wrap: wrap;
       margin-top: 4px;
+      max-width: 55vw;
       gap: 4px;
 
+      .used {
+        opacity: 0.25;
+      }
       img {
-        width: 14px;
-        height: 14px;
+        width: 16px;
         flex-shrink: 0;
       }
     }

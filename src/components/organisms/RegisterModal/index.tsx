@@ -48,17 +48,18 @@ export default function RegisterModal({
         await characterService.post({
           userId: createdUser?._id,
         });
-        successRegister();
+        successRegister(createdUser.name);
       })
       .catch((error) => {
         console.error("📌  registerUser Error → ", error);
+        console.error("📌  registerUser Error → ", signUpData);
         showToast("Usuário ou senha inválido");
       })
       .finally(() => setLoading(false));
   };
 
-  const successRegister = () => {
-    showToast(`Bem vindo ${user.name}`, "success");
+  const successRegister = (name: string) => {
+    showToast(`Bem vindo ${user?.name || name}`, "success");
     navigate("/character");
   };
 

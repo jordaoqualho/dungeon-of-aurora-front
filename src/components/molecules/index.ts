@@ -3,6 +3,7 @@ export * from "./Capability";
 export * from "./CharacterInfo";
 export * from "./ClassCharacteristics";
 export * from "./ClassSelector";
+export * from "./DamageAndHealingModal";
 export * from "./EditingModal";
 export * from "./EquipmentAditionModal";
 export * from "./EquipmentDescritionModal";

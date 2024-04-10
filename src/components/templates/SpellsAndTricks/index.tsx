@@ -1,7 +1,7 @@
 import { SpellAditionModal, SpellList } from "@/components";
 import { SpellDescritionModal } from "@/components/molecules/SpellDescritionModal";
 import { defaultSpell } from "@/constants";
-import { Character, Spell as SpellType } from "@/types";
+import { Character, SpellType } from "@/types";
 import { useEffect, useState } from "react";
 import { AddButton, Container } from "./styles";
 

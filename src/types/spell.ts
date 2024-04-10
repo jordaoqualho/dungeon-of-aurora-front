@@ -1,4 +1,4 @@
-export type Spell = {
+export type SpellType = {
   _id: string;
   name: string;
   level: number;

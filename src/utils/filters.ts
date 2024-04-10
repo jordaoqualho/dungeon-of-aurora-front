@@ -1,21 +1,21 @@
-import { Equipment, Spell, SpellFilters } from "@/types";
+import { Equipment, SpellType, SpellFilters } from "@/types";
 
 export const removeAccents = (str: string) =>
   str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-export const sortSpellsByLevel = (spells: Spell[]): Spell[] => {
+export const sortSpellsByLevel = (spells: SpellType[]): SpellType[] => {
   return spells.slice(0, 20).sort((a, b) => a.level - b.level);
 };
 
 export const filterSpells = (
-  spells: Spell[],
+  spells: SpellType[],
   search: string | undefined,
   filters: SpellFilters
-): Spell[] => {
+): SpellType[] => {
   let filteredSpells = spells;
   if (search) {
     const normalizedSearchTerm = removeAccents(search.toLowerCase());
-    const matchesSearchTerm = (spell: Spell) =>
+    const matchesSearchTerm = (spell: SpellType) =>
       removeAccents(spell.name.toLowerCase()).includes(normalizedSearchTerm) ||
       removeAccents(spell?.originalName?.toLowerCase() ?? "").includes(
         normalizedSearchTerm

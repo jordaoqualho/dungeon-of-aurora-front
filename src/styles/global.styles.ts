@@ -142,6 +142,12 @@ export default createGlobalStyle<GlobalStyleProps>`
     justify-content: flex-start;
   }
 
+  .flex_ccr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .flex_csb {
     display: flex;
     align-items: center;

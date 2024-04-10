@@ -1,40 +1,49 @@
 import { Selector } from "@/components";
+import { classService } from "@/connection";
+import { Class } from "@/types";
+import { DiceType } from "@/utils";
 import BlurOnIcon from "@mui/icons-material/BlurOn";
+import { useEffect, useState } from "react";
 import { Container } from "./styles";
 
-type MenuSelectorProps = {
+type ClassSelectorProps = {
   isOpen: boolean;
-  setSelection: (value: string) => void;
+  setSelection: (className: string, hitDice: DiceType) => void;
 };
 
-export const ClassSelector = ({ isOpen, setSelection }: MenuSelectorProps) => {
-  const classes = [
-    "Bárbaro",
-    "Bardo",
-    "Bruxo",
-    "Clérigo",
-    "Druida",
-    "Feiticeiro",
-    "Guerreiro",
-    "Ladino",
-    "Mago",
-    "Monge",
-    "Paladino",
-    "Patrulheiro",
-  ];
+export const ClassSelector = ({ isOpen, setSelection }: ClassSelectorProps) => {
+  const [classes, setClasses] = useState<Class[]>([]);
+
+  useEffect(() => {
+    classService
+      .get()
+      .then((allClasses: Class[]) => {
+        setClasses(allClasses);
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
   return (
     <Selector isOpen={isOpen}>
       <Container className="flex">
-        {classes.map((classItem, index) => (
-          <div key={index} className="option flex_csr" onClick={() => setSelection(classItem)}>
+        {classes.map((cls, index) => (
+          <div
+            key={index}
+            className="option flex_csr"
+            onClick={() => {
+              console.log(`d${cls.hitDice}`);
+              setSelection(cls.name, `d${cls.hitDice}` as DiceType);
+            }}
+          >
             <div className="icon flex_ccc">
               <BlurOnIcon />
             </div>
-            <p className="text">{classItem}</p>
+            <p className="text">{cls.name}</p>
           </div>
         ))}
       </Container>
     </Selector>
   );
 };
+
+export default ClassSelector;

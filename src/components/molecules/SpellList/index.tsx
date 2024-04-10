@@ -1,8 +1,8 @@
 import { Spell } from "@/components";
-import { Character, Spell as SpellType } from "@/types";
+import { useActionContext } from "@/contexts";
+import { Character, SpellType } from "@/types";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { Container } from "./styles";
-import { useActionContext } from "@/contexts";
 
 type SpellDescritionModalProps = {
   setDescriptionModal: (value: boolean) => void;

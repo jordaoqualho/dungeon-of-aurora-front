@@ -18,7 +18,6 @@ export function Characteristics(props: CharacteristicsProps) {
       .search(character.class)
       .then((response) => {
         setCharClass(response[0]);
-        console.log(response[0]);
       })
       .catch((error) => console.error(error));
   }, [character]);

@@ -44,6 +44,7 @@ export function CharacterPage() {
   useEffect(() => {
     if (!data || !data[0]) return;
     setCharacter(data[0]);
+    if (data[0].name === "") setIsEditing(true);
   }, [data]);
 
   useEffect(() => {

@@ -1,9 +1,11 @@
-import { Equipment, Spell } from ".";
+import { DiceType } from "@/utils";
+import { Equipment, SpellType } from ".";
 
 export type Character = {
   _id: string;
   name: string;
   attributes: Attributes;
+  hitPointDices: HitPointDices;
   armorClass: number;
   race: string;
   class: string;
@@ -14,7 +16,7 @@ export type Character = {
   maxHitPoints: number;
   status: string[];
   languages: string[];
-  spells: Spell[];
+  spells: SpellType[];
   userId: string;
   skills: string[];
   equipments: Equipment[];
@@ -46,6 +48,11 @@ type Feature = {
   level: number;
   description: string;
   classes: string;
+};
+
+type HitPointDices = {
+  quantity: number;
+  dice: DiceType;
 };
 
 export type Skill = {
