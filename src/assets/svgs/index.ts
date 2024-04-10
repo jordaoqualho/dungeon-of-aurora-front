@@ -4,10 +4,12 @@ import armor_icon from "./armor_icon.svg";
 import conjuration_icon from "./conjuration_icon.svg";
 import d20 from "./d20.svg";
 import d20_white from "./d20_white.svg";
+import damage_icon from "./damage_icon.svg";
 import divination_icon from "./divination_icon.svg";
 import encantation_icon from "./encantation_icon.svg";
 import evocation_icon from "./evocation_icon.svg";
 import google_logo from "./google_logo.svg";
+import healing_icon from "./healing_icon.svg";
 import hexagon_border from "./hexagon_border.svg";
 import hexagon_primary from "./hexagon_primary.svg";
 import ilusion_icon from "./ilusion_icon.svg";
@@ -28,10 +30,12 @@ export {
   conjuration_icon,
   d20,
   d20_white,
+  damage_icon,
   divination_icon,
   encantation_icon,
   evocation_icon,
   google_logo,
+  healing_icon,
   hexagon_border,
   hexagon_primary,
   ilusion_icon,

@@ -17,12 +17,43 @@ export const Container = styled.div`
 
   input {
     width: 20px;
-    min-width: 50px;
+    min-width: 60px;
     padding: 5px;
     background: var(--background);
     font-size: var(--big);
     font-weight: var(--semiBold);
     text-align: center;
+  }
+
+  .damage {
+    background-color: var(--secundary);
+    border-radius: 4px;
+    margin-right: 8px;
+    padding: 4px 6px;
+
+    img {
+      width: 12px;
+      margin-bottom: -1px;
+      color: red;
+    }
+  }
+
+  .healing {
+    background-color: var(--primary);
+    border-radius: 4px;
+    margin-left: 8px;
+    padding: 4px 6px;
+
+    img {
+      width: 12px;
+      margin-bottom: -1px;
+    }
+  }
+
+  .damage:disabled,
+  .healing:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
   }
 
   .life_dices {
