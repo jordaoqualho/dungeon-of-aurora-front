@@ -1,5 +1,5 @@
 import { DiceType } from "@/utils";
-import { Equipment, SpellType } from ".";
+import { EquipmentType, SpellType } from ".";
 
 export type Character = {
   _id: string;
@@ -19,7 +19,7 @@ export type Character = {
   spells: SpellType[];
   userId: string;
   skills: string[];
-  equipments: Equipment[];
+  equipments: EquipmentType[];
   gold: number;
   quests: Quest[];
   inspiration: number;

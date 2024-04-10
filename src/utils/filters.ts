@@ -1,4 +1,4 @@
-import { Equipment, SpellType, SpellFilters } from "@/types";
+import { EquipmentType, SpellFilters, SpellType } from "@/types";
 
 export const removeAccents = (str: string) =>
   str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -46,9 +46,9 @@ export const filterSpells = (
 };
 
 export const filterEquipments = (
-  equipments: Equipment[],
+  equipments: EquipmentType[],
   search: string | undefined
-): Equipment[] => {
+): EquipmentType[] => {
   const equipables = equipments
     .filter(
       (equip) => equip.category === "Arma" || equip.category === "Armadura"
@@ -61,7 +61,7 @@ export const filterEquipments = (
 
   const normalizedSearchTerm = removeAccents(search.toLowerCase());
 
-  const matchesSearchTerm = (equipment: Equipment) =>
+  const matchesSearchTerm = (equipment: EquipmentType) =>
     removeAccents(equipment.name.toLowerCase()).includes(
       normalizedSearchTerm
     ) ||

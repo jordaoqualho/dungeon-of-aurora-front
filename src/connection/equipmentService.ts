@@ -1,16 +1,16 @@
 import { backend } from "@/config";
-import { Equipment, ResponseAxios } from "@/types";
+import { EquipmentType, ResponseAxios } from "@/types";
 
 class EquipmentService {
-  async get(): Promise<Equipment[]> {
-    const response = await backend.get<ResponseAxios<Equipment[]>>(
+  async get(): Promise<EquipmentType[]> {
+    const response = await backend.get<ResponseAxios<EquipmentType[]>>(
       `/equipment`
     );
     return response.data.data;
   }
 
-  async getById(id: string): Promise<Equipment[]> {
-    const response = await backend.get<ResponseAxios<Equipment[]>>(
+  async getById(id: string): Promise<EquipmentType[]> {
+    const response = await backend.get<ResponseAxios<EquipmentType[]>>(
       `/equipment/${id}`
     );
     return response.data.data;

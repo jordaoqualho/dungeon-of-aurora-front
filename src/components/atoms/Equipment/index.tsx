@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { d20 } from "@/assets";
 import { showPromiseToast } from "@/providers";
-import { Equipment } from "@/types";
+import { EquipmentType } from "@/types";
 import { DiceType, getEquipmentIcon, rollDice } from "@/utils";
 import { useEffect, useState } from "react";
 import SwipeToDelete from "react-swipe-to-delete-ios";
@@ -14,7 +14,7 @@ import {
 } from "./styles";
 
 type EquipmentProps = {
-  equipment: Equipment;
+  equipment: EquipmentType;
   onClick: () => void;
   characterLevel: number;
   removeEquipment: (equipmentName: string) => void;
@@ -30,7 +30,6 @@ export function Equipment({
   const handleButtonClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    // const adition = character?.damageAdition || 0;
     const dice = equipment?.damage?.dice.type as DiceType;
     const quantity = equipment?.damage?.dice.quantity ?? 1;
     const totalDamage = rollDice(dice, quantity).total;
