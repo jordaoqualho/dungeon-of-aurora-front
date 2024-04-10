@@ -90,7 +90,6 @@ export const EquipmentAditionModal = (props: EquipmentAditionModalProps) => {
       <Container className="flex_ccc">
         <h4>Equipamentos</h4>
         <input
-          autoFocus
           type="text"
           className="search_input"
           placeholder="Digite o nome do equipamento"

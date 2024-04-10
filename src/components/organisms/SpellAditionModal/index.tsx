@@ -93,7 +93,6 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
       <Container className="flex_ccc">
         <h4>Magias e Truques</h4>
         <input
-          autoFocus
           type="text"
           className="search_input"
           placeholder="Digite o nome da magia ou truque"

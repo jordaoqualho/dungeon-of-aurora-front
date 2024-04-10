@@ -85,9 +85,8 @@ export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
         value={credentials.email}
         placeholder="Seu email"
         onChange={handleChange}
-        name="email"
-        autoFocus
         inputError={error.email}
+        name="email"
       />
       <Input
         value={credentials.password}
