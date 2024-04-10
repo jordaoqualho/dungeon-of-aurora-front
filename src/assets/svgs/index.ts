@@ -2,8 +2,16 @@ import abjuration_icon from "./abjuration_icon.svg";
 import adventure_icon from "./adventure_icon.svg";
 import armor_icon from "./armor_icon.svg";
 import conjuration_icon from "./conjuration_icon.svg";
+import d10_dice_dark_icon from "./d10_dice_dark_icon.svg";
+import d10_dice_icon from "./d10_dice_icon.svg";
+import d12_dice_dark_icon from "./d12_dice_dark_icon.svg";
+import d12_dice_icon from "./d12_dice_icon.svg";
 import d20 from "./d20.svg";
 import d20_white from "./d20_white.svg";
+import d6_dice_dark_icon from "./d6_dice_dark_icon.svg";
+import d6_dice_icon from "./d6_dice_icon.svg";
+import d8_dice_dark_icon from "./d8_dice_dark_icon.svg";
+import d8_dice_icon from "./d8_dice_icon.svg";
 import damage_icon from "./damage_icon.svg";
 import divination_icon from "./divination_icon.svg";
 import encantation_icon from "./encantation_icon.svg";
@@ -28,8 +36,16 @@ export {
   adventure_icon,
   armor_icon,
   conjuration_icon,
+  d10_dice_dark_icon,
+  d10_dice_icon,
+  d12_dice_dark_icon,
+  d12_dice_icon,
   d20,
   d20_white,
+  d6_dice_dark_icon,
+  d6_dice_icon,
+  d8_dice_dark_icon,
+  d8_dice_icon,
   damage_icon,
   divination_icon,
   encantation_icon,

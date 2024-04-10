@@ -1,5 +1,16 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { d20, d20_white, damage_icon, healing_icon } from "@/assets";
+import {
+  d10_dice_dark_icon,
+  d10_dice_icon,
+  d12_dice_dark_icon,
+  d12_dice_icon,
+  d6_dice_dark_icon,
+  d6_dice_icon,
+  d8_dice_dark_icon,
+  d8_dice_icon,
+  damage_icon,
+  healing_icon,
+} from "@/assets";
 import { showPromiseToast, showToast } from "@/providers";
 import { Character } from "@/types";
 import { rollDice } from "@/utils";
@@ -15,7 +26,7 @@ type HitPointsProps = {
 
 export const HitPoints = (props: HitPointsProps) => {
   const { character, setCharacter, isEditing } = props;
-  const lifeDices = new Array(character.level || 1).fill(Math.random());
+  const lifeDices = new Array(character.level || 1).fill(0);
   const [damageAndHealingModal, setDamageAndHealingModal] = useState("closed");
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -59,6 +70,40 @@ export const HitPoints = (props: HitPointsProps) => {
       ...character,
       hitPoints: updatedHitPoints,
     });
+  };
+
+  const getDiceIcon = (theme = "light") => {
+    const { hitPointDices } = character;
+    const darkIcon = theme === "dark";
+    let src = "";
+
+    if (!hitPointDices)
+      return {
+        alt: "hit_dice_icon",
+        src: darkIcon ? d6_dice_dark_icon : d6_dice_icon,
+      };
+
+    switch (hitPointDices.dice) {
+      case "d8":
+        src = darkIcon ? d8_dice_dark_icon : d8_dice_icon;
+        break;
+
+      case "d10":
+        src = darkIcon ? d10_dice_dark_icon : d10_dice_icon;
+        break;
+
+      case "d12":
+        src = darkIcon ? d12_dice_dark_icon : d12_dice_icon;
+        break;
+
+      default:
+        src = darkIcon ? d6_dice_dark_icon : d6_dice_icon;
+    }
+
+    return {
+      alt: "hit_dice_icon",
+      src,
+    };
   };
 
   return (
@@ -107,13 +152,13 @@ export const HitPoints = (props: HitPointsProps) => {
             <p>Dados de vida</p>
             <div className="dices flex">
               {lifeDices.map((_, index) => (
-                <img key={index} src={d20_white} alt="d20_white" />
+                <img key={index} {...getDiceIcon()} />
               ))}
             </div>
           </div>
           <button className="flex_csr" onClick={() => handleHitPointDice()}>
-            <img src={d20} alt="d20" />
-            <p>1d8</p>
+            <img {...getDiceIcon("dark")} />
+            <p>1{character?.hitPointDices?.dice || "d8"}</p>
           </button>
         </div>
       </Container>

@@ -71,8 +71,7 @@ export const Container = styled.div`
       gap: 4px;
 
       img {
-        width: 14px;
-        height: 14px;
+        width: 16px;
         flex-shrink: 0;
       }
     }

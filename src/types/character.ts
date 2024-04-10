@@ -4,6 +4,7 @@ export type Character = {
   _id: string;
   name: string;
   attributes: Attributes;
+  hitPointDices: HitPointDices;
   armorClass: number;
   race: string;
   class: string;
@@ -46,6 +47,11 @@ type Feature = {
   level: number;
   description: string;
   classes: string;
+};
+
+type HitPointDices = {
+  quantity: number;
+  dice: string;
 };
 
 export type Skill = {
