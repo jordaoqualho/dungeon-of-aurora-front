@@ -1,9 +1,9 @@
 import { backend } from "@/config";
-import { ResponseAxios, Spell } from "@/types";
+import { ResponseAxios, SpellType } from "@/types";
 
 class SpellsService {
-  async get(): Promise<Spell[]> {
-    const response = await backend.get<ResponseAxios<Spell[]>>(`/spell`);
+  async get(): Promise<SpellType[]> {
+    const response = await backend.get<ResponseAxios<SpellType[]>>(`/spell`);
     return response.data.data;
   }
 }

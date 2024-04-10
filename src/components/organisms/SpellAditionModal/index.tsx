@@ -3,7 +3,7 @@ import { spellsService } from "@/connection/spellsService";
 import { initialSpell } from "@/constants";
 import { useActionContext } from "@/contexts";
 import { showToast } from "@/providers";
-import { Character, Spell } from "@/types";
+import { Character, SpellType } from "@/types";
 import { filterSpells, getSpellIcon } from "@/utils";
 import AddIcon from "@mui/icons-material/Add";
 import CheckIcon from "@mui/icons-material/Check";
@@ -16,7 +16,7 @@ type SpellAditionModalProps = {
   closeSpellAditionModal: () => void;
   setCharacter: (value: Character) => void;
   setDescriptionModal: (value: boolean) => void;
-  setSelectedSpell: (value: Spell) => void;
+  setSelectedSpell: (value: SpellType) => void;
 };
 export const SpellAditionModal = (props: SpellAditionModalProps) => {
   const {
@@ -27,11 +27,11 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
     setDescriptionModal,
     setSelectedSpell,
   } = props;
-  const [selectedSpells, setSelectedSpells] = useState<Spell[]>(
+  const [selectedSpells, setSelectedSpells] = useState<SpellType[]>(
     character.spells
   );
   const [search, setSearch] = useState("");
-  const [spells, setSpells] = useState<Spell[]>([initialSpell]);
+  const [spells, setSpells] = useState<SpellType[]>([initialSpell]);
   const [filters, setFilters] = useState({ school: "", class: "", level: "" });
   const actionContext = useActionContext();
   const filteredSpells = filterSpells(spells, search, filters);
@@ -43,7 +43,7 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
   const alreadyHaveTheSpell = (spellName: string): boolean =>
     !!selectedSpells?.some((spell) => spell.name === spellName);
 
-  const addSpell = (spellToBeAdded: Spell) => {
+  const addSpell = (spellToBeAdded: SpellType) => {
     setSelectedSpells([...selectedSpells, spellToBeAdded]);
   };
 
@@ -108,7 +108,7 @@ export const SpellAditionModal = (props: SpellAditionModalProps) => {
         />
 
         <div className="spell_container flex_ssc">
-          {filteredSpells.map((spell: Spell) => (
+          {filteredSpells.map((spell: SpellType) => (
             <SpellOption
               key={spell._id}
               className="flex_csb"

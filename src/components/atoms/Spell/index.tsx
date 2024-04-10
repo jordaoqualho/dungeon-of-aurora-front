@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { d20 } from "@/assets";
 import { showPromiseToast } from "@/providers";
-import { Spell } from "@/types";
+import { SpellType } from "@/types";
 import { DiceType, getSpellDamage, getSpellIcon, rollDice } from "@/utils";
 import { useEffect, useState } from "react";
 import SwipeToDelete from "react-swipe-to-delete-ios";
@@ -9,7 +9,7 @@ import { DeleteSwipe } from "..";
 import { Container, SpellContainer, SpellHeader, SpellInfo } from "./styles";
 
 type SpellProps = {
-  spell: Spell;
+  spell: SpellType;
   onClick: () => void;
   characterLevel: number;
   removeSpell: (equipmentName: string) => void;

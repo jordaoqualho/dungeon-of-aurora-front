@@ -1,5 +1,5 @@
 import { Modal } from "@/components";
-import { Spell } from "@/types";
+import { SpellType } from "@/types";
 import CloseIcon from "@mui/icons-material/Close";
 import React from "react";
 import { Container, modalStyles } from "./styles";
@@ -7,7 +7,7 @@ import { Container, modalStyles } from "./styles";
 type SpellDescritionModalProps = {
   onClose: () => void;
   isOpen: boolean;
-  spell: Spell;
+  spell: SpellType;
 };
 
 export const SpellDescritionModal = (props: SpellDescritionModalProps) => {

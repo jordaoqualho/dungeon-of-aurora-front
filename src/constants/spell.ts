@@ -8,9 +8,9 @@ import {
   necromancy_icon,
   transmutation_icon,
 } from "@/assets";
-import { Spell } from "@/types";
+import { SpellType } from "@/types";
 
-export const initialSpell: Spell = {
+export const initialSpell: SpellType = {
   _id: "",
   name: "",
   level: 0,

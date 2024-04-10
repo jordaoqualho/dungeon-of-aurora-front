@@ -1,4 +1,6 @@
-export const defaultSpell = {
+import { Character, SpellType } from "@/types";
+
+export const defaultSpell: SpellType = {
   _id: "",
   name: "",
   level: 0,
@@ -14,9 +16,13 @@ export const defaultSpell = {
   originalName: "",
 };
 
-export const defaultCharacter = {
+export const defaultCharacter: Character = {
   _id: "",
   name: "",
+  hitPointDices: {
+    quantity: 1,
+    dice: "d6",
+  },
   attributes: {
     strength: 0,
     dexterity: 0,
