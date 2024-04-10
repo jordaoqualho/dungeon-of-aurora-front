@@ -31,7 +31,9 @@ export const defaultCharacter: Character = {
     wisdom: 0,
     charisma: 0,
   },
-  armorClass: 0,
+  armorClass: {
+    value: 10,
+  },
   speed: 0,
   level: 1,
   experience: 0,

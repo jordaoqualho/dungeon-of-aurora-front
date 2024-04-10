@@ -1,4 +1,4 @@
-export type Equipment = {
+export type EquipmentType = {
   _id: string;
   name: string;
   originalName: string;

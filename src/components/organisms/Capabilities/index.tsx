@@ -29,7 +29,7 @@ export const Capabilities = (props: CapabilitiesProps) => {
         label={"CA"}
         inputName={"armorClass"}
         hexagonBorder
-        inputValue={character.armorClass}
+        inputValue={character.armorClass.value}
         onChange={handleInputChange}
         readOnly={!isEditing}
         isEditing={isEditing}

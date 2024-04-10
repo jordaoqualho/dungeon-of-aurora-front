@@ -1,6 +1,6 @@
 import { Equipment } from "@/components";
 import { useActionContext } from "@/contexts";
-import { Character, Equipment as EquipmentType } from "@/types";
+import { Character, EquipmentType } from "@/types";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { Container } from "./styles";
 
@@ -64,6 +64,8 @@ export const EquipmentList = (props: EquipmentDescritionModalProps) => {
             equipment={equipment}
             characterLevel={characterLevel}
             removeEquipment={removeEquipment}
+            character={character}
+            setCharacter={setCharacter}
             onClick={() => {
               setDescriptionModal(true);
               setSelectedEquipment(equipment);

@@ -1,12 +1,12 @@
 import { equipmentIcons } from "@/constants";
-import { Equipment } from "@/types";
+import { EquipmentType } from "@/types";
 
 type IconProps = {
   src: string;
   alt: string;
 };
 
-export const getEquipmentIcon = (equipment: Equipment): IconProps => {
+export const getEquipmentIcon = (equipment: EquipmentType): IconProps => {
   const { category, name } = equipment;
   let src = "",
     alt = "";

@@ -8,9 +8,9 @@ import {
   valuable_icon,
   weapon_icon,
 } from "@/assets";
-import { DamageTypes, Equipment, Pieces } from "@/types";
+import { DamageTypes, EquipmentType, Pieces } from "@/types";
 
-export const initialEquipment: Equipment = {
+export const initialEquipment: EquipmentType = {
   _id: "",
   name: "",
   originalName: "",

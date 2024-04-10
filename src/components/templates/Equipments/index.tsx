@@ -1,7 +1,7 @@
 import { EquipmentAditionModal, EquipmentList } from "@/components";
 import { EquipmentDescritionModal } from "@/components/molecules";
 import { initialEquipment } from "@/constants/equipment";
-import { Character, Equipment } from "@/types";
+import { Character, EquipmentType } from "@/types";
 import { useEffect, useState } from "react";
 import { AddButton, Container } from "./styles";
 
@@ -31,7 +31,7 @@ export function Equipments(props: EquipmentsProps) {
     setShowEquipmentAditionModal(false);
   };
 
-  const organizeEquipments = (equipmentsList: Equipment[]) => {
+  const organizeEquipments = (equipmentsList: EquipmentType[]) => {
     const armors = equipmentsList.filter(
       (equipment) => equipment.category !== "Arma"
     );

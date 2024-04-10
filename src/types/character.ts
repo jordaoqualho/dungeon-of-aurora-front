@@ -1,12 +1,12 @@
 import { DiceType } from "@/utils";
-import { Equipment, SpellType } from ".";
+import { EquipmentType, SpellType } from ".";
 
 export type Character = {
   _id: string;
   name: string;
   attributes: Attributes;
   hitPointDices: HitPointDices;
-  armorClass: number;
+  armorClass: CharacterArmorClass;
   race: string;
   class: string;
   speed: number;
@@ -19,7 +19,7 @@ export type Character = {
   spells: SpellType[];
   userId: string;
   skills: string[];
-  equipments: Equipment[];
+  equipments: EquipmentType[];
   gold: number;
   quests: Quest[];
   inspiration: number;
@@ -59,3 +59,8 @@ export type Skill = {
   name: string;
   attribute: string;
 };
+type CharacterArmorClass = {
+  value: number;
+  equipedArmor?: string;
+};
+

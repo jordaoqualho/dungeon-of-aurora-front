@@ -1,5 +1,5 @@
 import { Modal } from "@/components";
-import { Equipment } from "@/types";
+import { EquipmentType } from "@/types";
 import CloseIcon from "@mui/icons-material/Close";
 import React from "react";
 import { Container, modalStyles } from "./styles";
@@ -7,7 +7,7 @@ import { Container, modalStyles } from "./styles";
 type EquipmentDescritionModalProps = {
   onClose: () => void;
   isOpen: boolean;
-  equipment: Equipment;
+  equipment: EquipmentType;
 };
 
 export const EquipmentDescritionModal = (

@@ -2,7 +2,7 @@ import { Modal } from "@/components";
 import { equipmentService } from "@/connection";
 import { initialEquipment } from "@/constants/equipment";
 import { useActionContext } from "@/contexts";
-import { Character, Equipment } from "@/types";
+import { Character, EquipmentType } from "@/types";
 import { filterEquipments, getEquipmentIcon } from "@/utils";
 import AddIcon from "@mui/icons-material/Add";
 import CheckIcon from "@mui/icons-material/Check";
@@ -15,7 +15,7 @@ type EquipmentAditionModalProps = {
   closeEquipmentAditionModal: () => void;
   setCharacter: (value: Character) => void;
   setDescriptionModal: (value: boolean) => void;
-  setSelectedEquipment: (value: Equipment) => void;
+  setSelectedEquipment: (value: EquipmentType) => void;
 };
 export const EquipmentAditionModal = (props: EquipmentAditionModalProps) => {
   const {
@@ -26,11 +26,13 @@ export const EquipmentAditionModal = (props: EquipmentAditionModalProps) => {
     setDescriptionModal,
     setSelectedEquipment,
   } = props;
-  const [selectedEquipments, setSelectedEquipments] = useState<Equipment[]>(
+  const [selectedEquipments, setSelectedEquipments] = useState<EquipmentType[]>(
     character.equipments
   );
   const [search, setSearch] = useState("");
-  const [equipments, setEquipments] = useState<Equipment[]>([initialEquipment]);
+  const [equipments, setEquipments] = useState<EquipmentType[]>([
+    initialEquipment,
+  ]);
   const actionContext = useActionContext();
   const filteredEquipments = filterEquipments(equipments, search);
 
@@ -41,7 +43,7 @@ export const EquipmentAditionModal = (props: EquipmentAditionModalProps) => {
   const alreadyHaveTheEquipment = (equipmentId: string): boolean =>
     !!selectedEquipments?.some((equipment) => equipment._id === equipmentId);
 
-  const addEquipment = (equipmentToBeAdded: Equipment) => {
+  const addEquipment = (equipmentToBeAdded: EquipmentType) => {
     setSelectedEquipments([...selectedEquipments, equipmentToBeAdded]);
   };
 
@@ -98,7 +100,7 @@ export const EquipmentAditionModal = (props: EquipmentAditionModalProps) => {
         />
 
         <div className="equipment_container flex_ssc">
-          {filteredEquipments.map((equipment: Equipment) => (
+          {filteredEquipments.map((equipment: EquipmentType) => (
             <EquipmentOption
               key={equipment._id}
               className="flex_csb"
