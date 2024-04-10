@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { character, d20 } from "@/assets";
+import { d20 } from "@/assets";
 import { useActionContext } from "@/contexts";
 import { showPromiseToast, showToast } from "@/providers";
 import { Character, EquipmentType } from "@/types";
