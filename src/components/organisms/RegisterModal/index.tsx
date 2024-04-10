@@ -100,7 +100,6 @@ export default function RegisterModal({
         value={signUpData.name}
         onChange={handleChange}
         name="name"
-        autoFocus
         inputError={error.name}
       />
       <Input

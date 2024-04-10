@@ -73,7 +73,6 @@ export const DamageAndHealingModal = (props: DamageAndHealingModalProps) => {
       <Container className="flex_ccc">
         <h4>{getTitle()}</h4>
         <input
-          autoFocus
           type="number"
           className="search_input"
           placeholder="Insira um valor"
