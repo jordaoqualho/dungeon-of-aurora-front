@@ -82,6 +82,50 @@ export function Equipment({
     });
   };
 
+  const getCategory = () => {
+    const { category, armorCategory, weaponCategory } = equipment;
+
+    let categoryString = category;
+    if (armorCategory) {
+      categoryString += ` ${armorCategory}`;
+    } else if (weaponCategory) {
+      categoryString += ` ${weaponCategory}`;
+    }
+
+    return <p className="subinfo">{categoryString}</p>;
+  };
+
+  const getSubInfo = () => {
+    const { damage, twoHandedDamage, armorClass } = equipment;
+
+    if (damage) {
+      const { quantity, type } = damage.dice;
+      const damageString = twoHandedDamage
+        ? `${quantity}${type}/${twoHandedDamage.dice.quantity}${twoHandedDamage.dice.type}`
+        : `${quantity}${type}`;
+
+      return (
+        <p className="subinfo">
+          {damageString} ({damage.type})
+        </p>
+      );
+    }
+
+    if (armorClass) {
+      const { base, dex_bonus, max_bonus } = armorClass;
+      const dexBonusString = dex_bonus
+        ? `+ Mod. Dextreza ${max_bonus ? `(Máx. +${max_bonus})` : ""}`
+        : "";
+
+      return (
+        <p className="subinfo">
+          CA: {base} {dexBonusString}
+        </p>
+      );
+    }
+    return null;
+  };
+
   useEffect(() => {
     if (!wasDeleted) return;
     setTimeout(() => {
@@ -107,12 +151,8 @@ export function Equipment({
             </EquipmentHeader>
             <EquipmentInfo className="flex_csb">
               <div>
-                <p className="subinfo">
-                  {equipment.category} - {equipment.weight} Kg
-                </p>
-                <p className="subinfo">
-                  {equipment.cost.quantity + " " + equipment.cost.unit}
-                </p>
+                {getSubInfo()}
+                {getCategory()}
               </div>
               {equipment?.damage && (
                 <button
