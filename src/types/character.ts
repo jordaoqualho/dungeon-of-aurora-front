@@ -1,3 +1,4 @@
+import { DiceType } from "@/utils";
 import { Equipment, SpellType } from ".";
 
 export type Character = {
@@ -51,7 +52,7 @@ type Feature = {
 
 type HitPointDices = {
   quantity: number;
-  dice: string;
+  dice: DiceType;
 };
 
 export type Skill = {

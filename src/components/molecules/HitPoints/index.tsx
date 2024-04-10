@@ -11,7 +11,8 @@ import {
   damage_icon,
   healing_icon,
 } from "@/assets";
-import { showPromiseToast, showToast } from "@/providers";
+import { useActionContext } from "@/contexts";
+import { showToast } from "@/providers";
 import { Character } from "@/types";
 import { rollDice } from "@/utils";
 import { ChangeEvent, useState } from "react";
@@ -28,6 +29,7 @@ export const HitPoints = (props: HitPointsProps) => {
   const { character, setCharacter, isEditing } = props;
   const lifeDices = new Array(character.level || 1).fill(0);
   const [damageAndHealingModal, setDamageAndHealingModal] = useState("closed");
+  const actionContext = useActionContext();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
@@ -53,22 +55,38 @@ export const HitPoints = (props: HitPointsProps) => {
     }
   };
 
-  const handleHitPointDice = async () => {
-    const { hitPoints, maxHitPoints } = character;
+  const handleHitPointDice = () => {
+    const { hitPoints, maxHitPoints, hitPointDices } = character;
 
     if (hitPoints === maxHitPoints) {
       showToast("Você já está com vida máxima", "warning");
       return;
     }
 
-    const lifeDiceRoll = rollDice("d8").total;
+    if (hitPointDices.quantity <= 0) {
+      showToast("Sem dados de vida disponível", "warning");
+      return;
+    }
+
+    const lifeDiceRoll = rollDice(hitPointDices.dice).total;
     const healedHitPoints = hitPoints + lifeDiceRoll;
     const updatedHitPoints = Math.min(healedHitPoints, maxHitPoints);
 
-    await showPromiseToast(`Rolou ${lifeDiceRoll} no dado de vida`, "success");
-    setCharacter({
+    showToast(`Você recuperou ${lifeDiceRoll} de vida`, "success");
+
+    const newCharacterData = {
       ...character,
       hitPoints: updatedHitPoints,
+      hitPointDices: {
+        ...hitPointDices,
+        quantity: hitPointDices.quantity - 1,
+      },
+    };
+
+    setCharacter(newCharacterData);
+    actionContext?.dispatchAction({
+      action: "saveCharacter",
+      content: newCharacterData,
     });
   };
 
@@ -104,6 +122,11 @@ export const HitPoints = (props: HitPointsProps) => {
       alt: "hit_dice_icon",
       src,
     };
+  };
+
+  const isDiceUsed = (index: number) => {
+    const leftDices = character.hitPointDices.quantity;
+    if (index + 1 > leftDices) return true;
   };
 
   return (
@@ -152,7 +175,12 @@ export const HitPoints = (props: HitPointsProps) => {
             <p>Dados de vida</p>
             <div className="dices flex">
               {lifeDices.map((_, index) => (
-                <img key={index} {...getDiceIcon()} />
+                <img
+                  key={index}
+                  id={index.toString()}
+                  {...getDiceIcon()}
+                  className={isDiceUsed(index) ? "used" : ""}
+                />
               ))}
             </div>
           </div>

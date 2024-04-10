@@ -70,6 +70,9 @@ export const Container = styled.div`
       margin-top: 4px;
       gap: 4px;
 
+      .used {
+        opacity: 0.25;
+      }
       img {
         width: 16px;
         flex-shrink: 0;
