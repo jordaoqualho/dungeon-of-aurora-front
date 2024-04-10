@@ -1,6 +1,7 @@
 import { male_character } from "@/assets";
 import { ClassSelector, PictureModal, RaceSelector } from "@/components";
 import { Character, User, defaultUser } from "@/types";
+import { DiceType } from "@/utils";
 import CloseIcon from "@mui/icons-material/Close";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { ChangeEvent, useState } from "react";
@@ -117,22 +118,30 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
 
       <RaceSelector
         isOpen={showRaceSelector}
-        setSelection={(value: string) => {
-          setCharacter({ ...character, race: value });
+        setSelection={(newRace: string) => {
+          setCharacter({ ...character, race: newRace });
           setShowRaceSelector(false);
         }}
       />
       <ClassSelector
         isOpen={showClassSelector}
-        setSelection={(value: string) => {
-          setCharacter({ ...character, class: value });
+        setSelection={(className: string, hitDice: DiceType) => {
+          setCharacter({
+            ...character,
+            class: className,
+            hitPointDices: { ...character.hitPointDices, dice: hitDice },
+          });
           setShowClassSelector(false);
         }}
       />
       <LevelSelector
         isOpen={showLevelSelector}
-        setSelection={(value: number) => {
-          setCharacter({ ...character, level: value });
+        setSelection={(newLevel: number) => {
+          setCharacter({
+            ...character,
+            level: newLevel,
+            hitPointDices: { ...character.hitPointDices, quantity: newLevel },
+          });
           setShowLevelSelector(false);
         }}
       />

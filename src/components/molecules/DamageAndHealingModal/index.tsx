@@ -10,6 +10,7 @@ type DamageAndHealingModalProps = {
   character: Character;
   setCharacter: (value: Character) => void;
 };
+
 export const DamageAndHealingModal = (props: DamageAndHealingModalProps) => {
   const {
     damageAndHealingModal,
