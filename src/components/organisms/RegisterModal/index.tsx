@@ -59,7 +59,7 @@ export default function RegisterModal({
   };
 
   const successRegister = (name: string) => {
-    showToast(`Bem vindo ${name}`, "success");
+    showToast(`Bem vindo ${user?.name || name}`, "success");
     navigate("/character");
   };
 
