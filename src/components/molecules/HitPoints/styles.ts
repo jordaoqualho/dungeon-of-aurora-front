@@ -81,7 +81,9 @@ export const Container = styled.div`
     }
 
     .dices {
+      flex-wrap: wrap;
       margin-top: 4px;
+      max-width: 55vw;
       gap: 4px;
 
       .used {
