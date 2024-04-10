@@ -27,6 +27,7 @@ export const PhotoAndLevel = styled.section`
 
   .photo {
     width: 56px;
+    height: 56px;
     border-radius: 50%;
     object-fit: cover;
   }
