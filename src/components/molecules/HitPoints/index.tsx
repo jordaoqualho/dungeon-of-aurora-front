@@ -15,7 +15,7 @@ import {
 import { useActionContext } from "@/contexts";
 import { showToast } from "@/providers";
 import { Character } from "@/types";
-import { rollDice } from "@/utils";
+import { getAbilityModifier, rollDice } from "@/utils";
 import { ChangeEvent, useState } from "react";
 import { DamageAndHealingModal } from "../DamageAndHealingModal";
 import { Container } from "./styles";
@@ -69,7 +69,10 @@ export const HitPoints = (props: HitPointsProps) => {
       return;
     }
 
-    const lifeDiceRoll = rollDice(hitPointDices.dice).total;
+    const constitutionMod = parseInt(
+      getAbilityModifier(character.attributes.constitution)
+    );
+    const lifeDiceRoll = rollDice(hitPointDices.dice).total + constitutionMod;
     const healedHitPoints = hitPoints + lifeDiceRoll;
     const updatedHitPoints = Math.min(healedHitPoints, maxHitPoints);
 
