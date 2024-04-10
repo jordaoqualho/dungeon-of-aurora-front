@@ -75,4 +75,21 @@ export const EquipmentInfo = styled.div`
     padding: 6px 10px;
     gap: 4px;
   }
+
+  .equip_btn {
+    background-color: var(--primary);
+    color: var(--background);
+    font-size: var(--small);
+    font-weight: var(--semiBold);
+    border-radius: 16px;
+    padding: 6px 16px;
+    width: 87px;
+    gap: 4px;
+  }
+
+  .equip_btn:disabled {
+    background-color: var(--secundary);
+    color: var(--background);
+    cursor: not-allowed;
+  }
 `;

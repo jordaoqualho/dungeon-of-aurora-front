@@ -1,8 +1,14 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { d20 } from "@/assets";
-import { showPromiseToast } from "@/providers";
-import { EquipmentType } from "@/types";
-import { DiceType, getEquipmentIcon, rollDice } from "@/utils";
+import { character, d20 } from "@/assets";
+import { useActionContext } from "@/contexts";
+import { showPromiseToast, showToast } from "@/providers";
+import { Character, EquipmentType } from "@/types";
+import {
+  DiceType,
+  getAbilityModifier,
+  getEquipmentIcon,
+  rollDice,
+} from "@/utils";
 import { useEffect, useState } from "react";
 import SwipeToDelete from "react-swipe-to-delete-ios";
 import { DeleteSwipe } from "..";
@@ -18,14 +24,20 @@ type EquipmentProps = {
   onClick: () => void;
   characterLevel: number;
   removeEquipment: (equipmentName: string) => void;
+  character: Character;
+  setCharacter: (value: Character) => void;
 };
 
 export function Equipment({
   equipment,
   onClick,
   removeEquipment,
+  character,
+  setCharacter,
 }: EquipmentProps) {
   const [wasDeleted, setWasDeleted] = useState(false);
+  const isEquiped = character.armorClass?.equipedArmor === equipment._id;
+  const actionContext = useActionContext();
 
   const handleButtonClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
@@ -38,6 +50,36 @@ export function Equipment({
       `${equipment.name} deu ${totalDamage} de dano!`,
       "success"
     );
+  };
+
+  const equipArmor = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+
+    if (!equipment?.armorClass) return console.error("This is not an armor");
+
+    const { attributes } = character;
+    const { base, dex_bonus, max_bonus } = equipment.armorClass;
+
+    const dexMod = parseInt(getAbilityModifier(attributes.dexterity));
+    const dexBonus = Math.min(dexMod, max_bonus || 0);
+    const newArmorClass = base + (dex_bonus ? dexBonus : 0);
+
+    const newCharacterData = {
+      ...character,
+      armorClass: {
+        value: newArmorClass,
+        equipedArmor: equipment._id,
+      },
+    };
+
+    showToast(`dismissAll`);
+    showToast(`${equipment.name} Equipada`, "success");
+    showToast(`CA atualizada para ${newArmorClass}`, "success");
+    setCharacter(newCharacterData);
+    actionContext?.dispatchAction({
+      action: "saveCharacter",
+      content: newCharacterData,
+    });
   };
 
   useEffect(() => {
@@ -82,6 +124,15 @@ export function Equipment({
                     {equipment.damage.dice?.quantity}
                     {equipment.damage.dice?.type}
                   </p>
+                </button>
+              )}
+              {equipment?.category === "Armadura" && (
+                <button
+                  className="equip_btn flex_ccr"
+                  disabled={isEquiped}
+                  onClick={equipArmor}
+                >
+                  <p>{isEquiped ? "Equipado" : "Equipar"}</p>
                 </button>
               )}
             </EquipmentInfo>

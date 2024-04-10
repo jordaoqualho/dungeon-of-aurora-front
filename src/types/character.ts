@@ -6,7 +6,7 @@ export type Character = {
   name: string;
   attributes: Attributes;
   hitPointDices: HitPointDices;
-  armorClass: number;
+  armorClass: CharacterArmorClass;
   race: string;
   class: string;
   speed: number;
@@ -59,3 +59,8 @@ export type Skill = {
   name: string;
   attribute: string;
 };
+type CharacterArmorClass = {
+  value: number;
+  equipedArmor?: string;
+};
+

@@ -64,6 +64,8 @@ export const EquipmentList = (props: EquipmentDescritionModalProps) => {
             equipment={equipment}
             characterLevel={characterLevel}
             removeEquipment={removeEquipment}
+            character={character}
+            setCharacter={setCharacter}
             onClick={() => {
               setDescriptionModal(true);
               setSelectedEquipment(equipment);
