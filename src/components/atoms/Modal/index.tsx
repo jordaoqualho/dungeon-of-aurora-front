@@ -6,6 +6,7 @@ type ModalProps = {
   isOpen: boolean;
   customStyle?: string;
   overlay?: boolean;
+  lockScroll?: boolean;
 };
 
 export const Modal = ({
@@ -13,8 +14,11 @@ export const Modal = ({
   isOpen,
   customStyle,
   overlay = true,
+  lockScroll = true,
 }: ModalProps) => {
   useEffect(() => {
+    if (!lockScroll) return;
+
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {

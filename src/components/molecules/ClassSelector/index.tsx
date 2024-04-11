@@ -18,7 +18,7 @@ export const ClassSelector = ({ isOpen, setSelection }: ClassSelectorProps) => {
     classService
       .get()
       .then((allClasses: Class[]) => {
-        setClasses(allClasses);
+        setClasses(allClasses.sort((a, b) => a.name.localeCompare(b.name)));
       })
       .catch((error) => console.error(error));
   }, []);
