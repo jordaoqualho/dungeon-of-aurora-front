@@ -1,4 +1,4 @@
-import { SpellAditionModal, SpellList } from "@/components";
+import { SpellAditionModal, SpellList, SpellSlots } from "@/components";
 import { SpellDescritionModal } from "@/components/molecules/SpellDescritionModal";
 import { defaultSpell } from "@/constants";
 import { Character, SpellType } from "@/types";
@@ -62,6 +62,8 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
         spell={selectedSpell}
         onClose={() => setDescriptionModal(false)}
       />
+
+      <SpellSlots character={character} setCharacter={setCharacter} />
 
       <SpellList
         title="Truques"

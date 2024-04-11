@@ -12,6 +12,7 @@ import {
   healing_icon,
   sleep_icon,
 } from "@/assets";
+import { defaultSpellSlot } from "@/constants";
 import { useActionContext } from "@/contexts";
 import { showToast } from "@/providers";
 import { Character } from "@/types";
@@ -153,6 +154,7 @@ export const HitPoints = (props: HitPointsProps) => {
         ...hitPointDices,
         quantity: newHitDiceQuantity,
       },
+      spellSlots: defaultSpellSlot,
     };
 
     showToast("Você finalizou um descanso longo", "success");

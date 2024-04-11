@@ -7,6 +7,7 @@ export type Character = {
   attributes: Attributes;
   hitPointDices: HitPointDices;
   armorClass: CharacterArmorClass;
+  spellSlots: SpellSlotType;
   race: string;
   class: string;
   speed: number;
@@ -62,5 +63,22 @@ export type Skill = {
 type CharacterArmorClass = {
   value: number;
   equipedArmor?: string;
+};
+
+export type Slot = {
+  available: number;
+  max: number;
+};
+
+export type SpellSlotType = {
+  firstLevel: Slot;
+  secondLevel: Slot;
+  thirdLevel: Slot;
+  fourthLevel: Slot;
+  fifthLevel: Slot;
+  sixthLevel: Slot;
+  seventhLevel: Slot;
+  eighthLevel: Slot;
+  ninthLevel: Slot;
 };
 

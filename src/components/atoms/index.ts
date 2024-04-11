@@ -9,6 +9,7 @@ export * from "./Input";
 export * from "./Modal";
 export * from "./Selector";
 export * from "./Skill";
+export * from "./SlotLevel";
 export * from "./Spell";
 export * from "./Tiltbox";
 
