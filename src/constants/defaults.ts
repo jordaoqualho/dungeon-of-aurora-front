@@ -1,4 +1,16 @@
-import { Character, SpellType } from "@/types";
+import { Character, SpellSlotType, SpellType } from "@/types";
+
+export const defaultSpellSlot: SpellSlotType = {
+  firstLevel: { available: 4, max: 4 },
+  secondLevel: { available: 3, max: 3 },
+  thirdLevel: { available: 3, max: 3 },
+  fourthLevel: { available: 3, max: 3 },
+  fifthLevel: { available: 3, max: 3 },
+  sixthLevel: { available: 2, max: 2 },
+  seventhLevel: { available: 2, max: 2 },
+  eighthLevel: { available: 1, max: 1 },
+  ninthLevel: { available: 1, max: 1 },
+};
 
 export const defaultSpell: SpellType = {
   _id: "",
@@ -34,6 +46,7 @@ export const defaultCharacter: Character = {
   armorClass: {
     value: 10,
   },
+  spellSlots: defaultSpellSlot,
   speed: 0,
   level: 1,
   experience: 0,

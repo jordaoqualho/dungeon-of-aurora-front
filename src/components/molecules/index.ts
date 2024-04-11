@@ -19,5 +19,6 @@ export * from "./PictureModal";
 export * from "./Proficiency";
 export * from "./RaceSelector";
 export * from "./SpellList";
+export * from "./SpellSlots";
 export * from "./SpellsFilters";
 
