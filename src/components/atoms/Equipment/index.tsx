@@ -61,7 +61,7 @@ export function Equipment({
     const { base, dex_bonus, max_bonus } = equipment.armorClass;
 
     const dexMod = parseInt(getAbilityModifier(attributes.dexterity));
-    const dexBonus = Math.min(dexMod, max_bonus || 0);
+    const dexBonus = Math.min(dexMod, max_bonus || dexMod);
     const newArmorClass = base + (dex_bonus ? dexBonus : 0);
 
     const newCharacterData = {
