@@ -1,4 +1,4 @@
-export type Anotation = {
+export type AnotationType = {
   _id: string;
   title: string;
   information: string;

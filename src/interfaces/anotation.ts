@@ -1,8 +1,9 @@
-import { Anotation } from "@/types";
+import { AnotationType } from "@/types";
 
 export interface AnotationInterface {
-  get(): Promise<Anotation[]>;
-  getByCharacterId(characterId: string): Promise<Anotation[]>;
-  post(data: Partial<Anotation>): Promise<Anotation>;
-  put(data: Anotation): Promise<Anotation>;
+  get(): Promise<AnotationType[]>;
+  getByCharacterId(characterId: string): Promise<AnotationType[]>;
+  post(data: Partial<AnotationType>): Promise<AnotationType>;
+  put(data: AnotationType): Promise<AnotationType>;
+  delete(anotationId: string): Promise<AnotationType>;
 }

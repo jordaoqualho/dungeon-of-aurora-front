@@ -1,3 +1,4 @@
+export * from "./AnotationModal";
 export * from "./Attributes";
 export * from "./Capability";
 export * from "./CharacterInfo";
@@ -21,4 +22,3 @@ export * from "./RaceSelector";
 export * from "./SpellList";
 export * from "./SpellSlots";
 export * from "./SpellsFilters";
-

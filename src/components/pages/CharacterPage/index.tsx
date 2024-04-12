@@ -1,5 +1,6 @@
 import {
   Abilities,
+  AnotationList,
   CharacterInfo,
   Characteristics,
   EditingModal,
@@ -89,6 +90,7 @@ export function CharacterPage() {
         setCharacter={setCharacter}
         activeMenu={activeMenu}
       />
+      <AnotationList character={character} activeMenu={activeMenu} />
       <LoadingScreen isLoading={isLoading} />
     </Container>
   );
