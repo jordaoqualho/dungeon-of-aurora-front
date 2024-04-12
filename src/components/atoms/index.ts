@@ -2,6 +2,7 @@ export * from "./Anotation";
 export * from "./Attribute";
 export * from "./Button";
 export * from "./Checkbox";
+export * from "./Coins";
 export * from "./DeleteSwipe";
 export * from "./Dropdown";
 export * from "./Equipment";
@@ -13,3 +14,4 @@ export * from "./Skill";
 export * from "./SlotLevel";
 export * from "./Spell";
 export * from "./Tiltbox";
+
