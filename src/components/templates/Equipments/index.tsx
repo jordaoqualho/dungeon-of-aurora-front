@@ -1,4 +1,4 @@
-import { EquipmentAditionModal, EquipmentList } from "@/components";
+import { Coins, EquipmentAditionModal, EquipmentList } from "@/components";
 import { EquipmentDescritionModal } from "@/components/molecules";
 import { initialEquipment } from "@/constants/equipment";
 import { Character, EquipmentType } from "@/types";
@@ -68,6 +68,9 @@ export function Equipments(props: EquipmentsProps) {
         equipment={selectedEquipment}
         onClose={() => setDescriptionModal(false)}
       />
+
+      <Coins gold={character.gold} />
+
       <EquipmentList
         title="Armas"
         character={character}

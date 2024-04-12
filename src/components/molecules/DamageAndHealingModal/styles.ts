@@ -21,7 +21,7 @@ export const FastButtons = styled.div`
     color: var(--secundary);
     background-color: var(--background);
     font-weight: var(--semiBold);
-    padding: 4px 8px;
+    padding: 8px;
     width: 100%;
   }
 `;
