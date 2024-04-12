@@ -37,9 +37,9 @@ export const Container = styled.div<Props>`
 export const AnotationContainer = styled.div`
   background-color: var(--ground);
   border-radius: 16px;
+  max-height: 100px;
   padding: 16px;
   width: 100%;
-  gap: 8px;
 `;
 
 export const AnotationHeader = styled.div`
@@ -57,5 +57,10 @@ export const AnotationInfo = styled.div`
   .info {
     font-size: var(--small);
     color: var(--bright);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
 `;

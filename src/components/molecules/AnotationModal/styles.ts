@@ -4,6 +4,14 @@ type ContainerProps = {
   $show: boolean;
 };
 
+type HeaderProps = {
+  $isEditing: boolean;
+};
+
+type BodyProps = {
+  $isEditing: boolean;
+};
+
 export const FullModal = styled.div<ContainerProps>`
   scrollbar-color: transparent transparent;
   background-color: var(--ground);
@@ -51,5 +59,80 @@ export const Container = styled.div`
       background-color: var(--ground);
       color: var(--basic);
     }
+  }
+`;
+
+export const Header = styled.div<HeaderProps>`
+  width: 100%;
+  margin-bottom: 16px;
+
+  .arrow_btn {
+    background-color: var(--background);
+    color: var(--secundary);
+    border-radius: 10px;
+    padding: 8px 16px;
+    margin-right: 12px;
+
+    svg {
+      font-size: var(--large);
+    }
+  }
+
+  .action_btn {
+    background-color: var(--secundary);
+    color: var(--background);
+    font-weight: var(--semiBold);
+    border-radius: 10px;
+    height: 36px;
+    width: 80px;
+
+    ${(props) =>
+      props.$isEditing &&
+      `
+        background-color: var(--primary);
+      `}
+  }
+`;
+
+export const Body = styled.div<BodyProps>`
+  width: 100%;
+  height: 100%;
+
+  .title {
+    font-size: var(--big);
+    font-weight: var(--bold);
+    background-color: transparent;
+    width: 100%;
+    color: var(--secundary);
+    margin-bottom: 8px;
+    border-radius: 10px;
+    scrollbar-width: none;
+    resize: none;
+    height: 32px;
+
+    ${(props) =>
+      props.$isEditing &&
+      `
+      border: 1px solid var(--bright);   
+      padding: 16px;
+      height: 64px;
+      `}
+  }
+
+  .info_field {
+    background-color: transparent;
+    font-size: var(--medium);
+    height: calc(100vh - 350px);
+    color: var(--secundary);
+    border-radius: 10px;
+    width: 100%;
+    resize: none;
+
+    ${(props) =>
+      props.$isEditing &&
+      `
+      border: 1px solid var(--bright);   
+      padding: 16px;
+      `}
   }
 `;

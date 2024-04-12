@@ -12,18 +12,22 @@ import {
 
 type AnotationProps = {
   anotation: AnotationType;
-  removeAnotation: (anotationId: string) => void;
+  removeAnotation: (anotationId?: string) => void;
+  setSelectedAnotation: (anotation: AnotationType) => void;
+  openModal: () => void;
 };
 
-export function Anotation({ anotation, removeAnotation }: AnotationProps) {
+export function Anotation({
+  anotation,
+  removeAnotation,
+  setSelectedAnotation,
+  openModal,
+}: AnotationProps) {
   const [wasDeleted, setWasDeleted] = useState(false);
-
-  // const handleButtonClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
-  //   e.stopPropagation();
-  // };
 
   useEffect(() => {
     if (!wasDeleted) return;
+
     setTimeout(() => {
       removeAnotation(anotation._id);
     }, 500);
@@ -37,8 +41,14 @@ export function Anotation({ anotation, removeAnotation }: AnotationProps) {
         deleteComponent={<DeleteSwipe />}
         className="swiper"
       >
-        <AnotationContainer className="flex_csb">
-          <div className="flex_ssc" style={{ gap: 16, width: "100%" }}>
+        <AnotationContainer
+          className="flex_csb"
+          onClick={() => {
+            setSelectedAnotation(anotation);
+            openModal();
+          }}
+        >
+          <div className="flex_ssc" style={{ gap: 8, width: "100%" }}>
             <AnotationHeader className="flex_csb">
               <div className="flex_ccr" style={{ gap: 8 }}>
                 <h1 className="title">{anotation.title}</h1>
