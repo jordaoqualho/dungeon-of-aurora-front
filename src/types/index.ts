@@ -1,3 +1,4 @@
+export * from "./anotation";
 export * from "./character";
 export * from "./class";
 export * from "./components";
@@ -8,4 +9,3 @@ export * from "./fetcher";
 export * from "./login";
 export * from "./spell";
 export * from "./themes";
-

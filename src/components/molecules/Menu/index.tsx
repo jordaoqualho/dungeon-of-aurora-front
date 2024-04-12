@@ -25,6 +25,9 @@ export const Menu = ({ setActiveMenu, activeMenu }: MenuProps) => {
       case "Characteristics":
         return "Características";
 
+      case "Anotations":
+        return "Anotações";
+
       default:
         return "Atributos & Proeficiências";
     }

@@ -1,4 +1,4 @@
-import { Character, SpellSlotType, SpellType } from "@/types";
+import { AnotationType, Character, SpellSlotType, SpellType } from "@/types";
 
 export const defaultSpellSlot: SpellSlotType = {
   firstLevel: { available: 4, max: 4 },
@@ -26,6 +26,12 @@ export const defaultSpell: SpellType = {
   concentration: false,
   classes: "",
   originalName: "",
+};
+
+export const defaultAnotation: AnotationType = {
+  title: "",
+  information: "",
+  characterId: "",
 };
 
 export const defaultCharacter: Character = {

@@ -46,6 +46,13 @@ export const MenuDropdown = (props: MenuDropdownProps) => {
         >
           <p className="text">Características</p>
         </div>
+        <div
+          className="option flex_ccc"
+          id="Anotations"
+          onClick={(e) => handleOptionClick(e)}
+        >
+          <p className="text">Anotações</p>
+        </div>
       </Container>
     </Dropdown>
   );
