@@ -17,18 +17,20 @@ class AnotationService implements AnotationInterface {
     return response.data.data;
   }
 
-  async post(data: Partial<AnotationType>): Promise<AnotationType> {
+  async post(anotation: Partial<AnotationType>): Promise<AnotationType> {
     const response = await backend.post<ResponseAxios<AnotationType>>(
       `/anotation`,
-      data
+      anotation
     );
     return response.data.data;
   }
 
-  async put(data: AnotationType): Promise<AnotationType> {
+  async put(anotation: AnotationType): Promise<AnotationType> {
+    if (!anotation._id) throw new Error("No id for the anotation");
+    
     const response = await backend.put<ResponseAxios<AnotationType>>(
-      `/anotation/${data._id}`,
-      data
+      `/anotation/${anotation._id}`,
+      anotation
     );
     return response.data.data;
   }
