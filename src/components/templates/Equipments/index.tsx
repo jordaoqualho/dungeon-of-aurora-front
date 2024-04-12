@@ -69,7 +69,7 @@ export function Equipments(props: EquipmentsProps) {
         onClose={() => setDescriptionModal(false)}
       />
 
-      <Coins character={character} setCharacter={setCharacter} />
+      <Coins character={character} />
 
       <EquipmentList
         title="Armas"

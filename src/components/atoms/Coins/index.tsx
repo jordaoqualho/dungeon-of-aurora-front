@@ -14,7 +14,6 @@ export function Coins({ character }: CoinsProps) {
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value);
-    console.log("📌  value → ", value);
     setCharacterGold(value > 99999 ? 99999 : value);
 
     const newCharacterData = { ...character, gold: value };
