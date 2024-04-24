@@ -42,7 +42,7 @@ export const Container = styled.div<Props>`
     transition: var(--regular);
     transition: max-height 0.3s ease-in-out;
     overflow: hidden;
-    max-height: ${({ $isOpen }) => ($isOpen ? "100vh" : "0")};
+    max-height: ${({ $isOpen }) => ($isOpen ? "5000px" : "0")};
 
     ${({ $isOpen }) =>
       !$isOpen &&
