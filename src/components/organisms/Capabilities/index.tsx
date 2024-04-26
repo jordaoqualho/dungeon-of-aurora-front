@@ -1,4 +1,5 @@
 import { Capability } from "@/components";
+import { showToast } from "@/providers";
 import { Character } from "@/types";
 import { getAbilityModifier, getProficiencyBonus } from "@/utils";
 import { ChangeEvent } from "react";
@@ -15,7 +16,16 @@ export const Capabilities = (props: CapabilitiesProps) => {
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
-    setCharacter({ ...character, [name]: value });
+    const formatedValue = parseInt(value) || 0;
+    const inputValue = formatedValue > 99 ? 99 : formatedValue;
+
+    if (formatedValue > 99) showToast("Valor máximo atingido", "warning");
+
+    if (name === "armorClass") {
+      setCharacter({ ...character, armorClass: { value: inputValue } });
+    } else {
+      setCharacter({ ...character, [name]: inputValue });
+    }
   };
 
   return (
@@ -25,28 +35,30 @@ export const Capabilities = (props: CapabilitiesProps) => {
         inputValue={getProficiencyBonus(character.level)}
         isEditing={isEditing}
       />
+
       <Capability
         label={"CA"}
         inputName={"armorClass"}
         hexagonBorder
         inputValue={character.armorClass.value}
         onChange={handleInputChange}
-        readOnly={!isEditing}
         isEditing={isEditing}
+        readOnly={!isEditing}
       />
+
       <Capability
         label={"Iniciativa"}
         inputValue={getAbilityModifier(character.attributes.dexterity)}
-        onChange={handleInputChange}
         isEditing={isEditing}
       />
+
       <Capability
         label={"Desloc."}
         inputName={"speed"}
         inputValue={character.speed}
         onChange={handleInputChange}
-        readOnly={!isEditing}
         isEditing={isEditing}
+        readOnly={!isEditing}
       />
     </Container>
   );

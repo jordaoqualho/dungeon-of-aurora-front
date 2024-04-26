@@ -59,7 +59,7 @@ export const HitPoints = (props: HitPointsProps) => {
 
       setCharacter(updatedCharacter);
     } else {
-      showToast("Pontos de vida inválidos", "warning");
+    showToast("Pontos de vida inválidos", "warning");
     }
   };
   

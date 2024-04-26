@@ -59,6 +59,8 @@ export const Buttons = styled.div`
 
   .save {
     background-color: var(--primary);
+    color: var(--background);
+    font-weight: var(--semiBold);
   }
 
   .cancel {
