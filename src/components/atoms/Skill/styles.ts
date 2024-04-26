@@ -14,6 +14,7 @@ export const Container = styled.div<Props>`
 
   .type {
     width: 50px;
+    color: #575757;
   }
 
   .skill {
