@@ -11,21 +11,27 @@ export const RaceSelector = ({ isOpen, setSelection }: MenuSelectorProps) => {
   const races = [
     "Alto Elfo",
     "Anão",
+    "Anão da Montanha",
+    "Anão Cinzento",
+    "Draconato",
+    "Drow",
+    "Elfo da Floresta",
+    "Elfo Noturno",
+    "Genasi",
+    "Gnomo",
+    "Goliath",
     "Halfling",
     "Humano",
-    "Dragonborn",
-    "Gnomo",
     "Meio-Elfo",
     "Meio-Orc",
-    "Tiefling",
-    "Aarakocra",
-    "Genasi",
-    "Goliath",
-    "Kenku",
-    "Lizardfolk",
     "Tabaxi",
+    "Tiefling",
     "Tritão",
+    "Tortle",
+    "Sátiro",
+    "Shifter",
   ];
+
 
   return (
     <Selector isOpen={isOpen}>

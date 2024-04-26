@@ -14,6 +14,7 @@ export const Container = styled.div`
       padding: 8px 24px;
       min-width: 100px;
       width: 100%;
+      max-height: 32px;
     }
 
     .save {
@@ -25,4 +26,8 @@ export const Container = styled.div`
       background-color: var(--background);
     }
   }
+`;
+
+export const modalStyles = `
+  border: 1px solid var(--border);
 `;

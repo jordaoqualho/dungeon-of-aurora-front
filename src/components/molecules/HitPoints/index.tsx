@@ -31,24 +31,32 @@ export const HitPoints = (props: HitPointsProps) => {
   const { character, setCharacter, isEditing } = props;
   const lifeDices = new Array(character.level || 1).fill(0);
   const [damageAndHealingModal, setDamageAndHealingModal] = useState("closed");
+  const isFullLife = character.hitPoints === character.maxHitPoints;
+  const isDead = character.hitPoints === -character.maxHitPoints;
   const actionContext = useActionContext();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
-    const numberValue = parseInt(value) || 0;
+    const formatedNumber = parseInt(value) || 0;
 
-    if (!isNaN(numberValue)) {
+    if (formatedNumber > 999) {
+      showToast("Você não tem tanta vida assim", "warning");
+    }
+
+    const inputNumber = Math.min(formatedNumber, 999);
+
+    if (!isNaN(inputNumber)) {
       const updatedCharacter = {
         ...character,
-        [name]: value,
+        [name]: inputNumber,
       };
 
-      if (name === "hitPoints" && numberValue > character.maxHitPoints) {
-        updatedCharacter.maxHitPoints = numberValue;
+      if (name === "hitPoints" && inputNumber > character.maxHitPoints) {
+        updatedCharacter.maxHitPoints = inputNumber;
       }
 
-      if (name === "maxHitPoints" && numberValue < character.hitPoints) {
-        updatedCharacter.hitPoints = numberValue;
+      if (name === "maxHitPoints" && inputNumber < character.hitPoints) {
+        updatedCharacter.hitPoints = inputNumber;
       }
 
       setCharacter(updatedCharacter);
@@ -178,7 +186,11 @@ export const HitPoints = (props: HitPointsProps) => {
             <button
               className="damage"
               disabled={isEditing}
-              onClick={() => setDamageAndHealingModal("damage")}
+              onClick={() => {
+                if (isDead)
+                  return showToast("Não da mais, cria outra ficha...", "error");
+                setDamageAndHealingModal("damage");
+              }}
             >
               <img src={damage_icon} alt="damage_icon" />
             </button>
@@ -204,7 +216,14 @@ export const HitPoints = (props: HitPointsProps) => {
             <button
               className="healing"
               disabled={isEditing}
-              onClick={() => setDamageAndHealingModal("healing")}
+              onClick={() => {
+                if (isFullLife)
+                  return showToast(
+                    "Não dá pra curar mais que isso!",
+                    "warning"
+                  );
+                setDamageAndHealingModal("healing");
+              }}
             >
               <img src={healing_icon} alt="healing_icon" />
             </button>

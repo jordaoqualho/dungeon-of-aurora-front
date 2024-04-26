@@ -1,5 +1,6 @@
 import { Modal } from "@/components";
 import { useActionContext } from "@/contexts";
+import { showToast } from "@/providers";
 import { Character } from "@/types";
 import { useEffect, useState } from "react";
 import { Buttons, Container, FastButtons, modalStyles } from "./styles";
@@ -36,7 +37,16 @@ export const DamageAndHealingModal = (props: DamageAndHealingModalProps) => {
       newLifeValue += value;
     }
 
-    if (newLifeValue > maxHitPoints) newLifeValue = maxHitPoints;
+    newLifeValue = Math.min(
+      Math.max(newLifeValue, -maxHitPoints),
+      maxHitPoints
+    );
+
+    if (newLifeValue === -maxHitPoints) {
+      showToast("Tu morreu! Não culpe o mestre.", "error");
+    } else if (newLifeValue <= 0) {
+      showToast("Ta caiu, mas ainda tem esperança!", "warning");
+    }
 
     const newCharacterData = {
       ...character,

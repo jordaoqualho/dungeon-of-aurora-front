@@ -2,6 +2,7 @@ import { Attribute } from "@/components";
 import { Character } from "@/types";
 import { ChangeEvent } from "react";
 import { Container } from "./styles";
+import { showToast } from "@/providers";
 
 type AttributesProps = {
   character: Character;
@@ -14,11 +15,16 @@ export const Attributes = (props: AttributesProps) => {
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
+    const formatedValue = parseInt(value) || 0;
+    const inputValue = formatedValue > 20 ? 20 : formatedValue;
+
+    if (formatedValue > 20) showToast("Valor máximo atingido", "warning");
+
     setCharacter({
       ...character,
       attributes: {
         ...character.attributes,
-        [name]: value,
+        [name]: inputValue,
       },
     });
   };

@@ -1,4 +1,5 @@
 import { hexagon_border } from "@/assets";
+import { showToast } from "@/providers";
 import React, { ChangeEvent } from "react";
 import { Container } from "./styles";
 
@@ -21,9 +22,16 @@ export const Capability: React.FC<CapabilityProps> = ({
   onChange,
   label,
 }) => {
+  const handleContainerClick = (event: React.MouseEvent<HTMLInputElement>) => {
+    event.stopPropagation();
+    if (isEditing && readOnly)
+      showToast("Isso é calculado automaticamente", "warning");
+  };
+
   return (
     <Container
       className={`flex_ccc ${isEditing && readOnly ? "read_only" : ""}`}
+      onClick={handleContainerClick}
       $hexagonBorder={hexagonBorder}
     >
       <p>{label}</p>

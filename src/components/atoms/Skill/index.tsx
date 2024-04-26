@@ -70,8 +70,8 @@ export function Skill({
       onClick={() => toggleSkill()}
     >
       <Checkbox checked={isProficient} />
-      <p className="type">{attribute}</p>
       <div className="skill">{name}</div>
+      <p className="type">{`(${attribute})`}</p>
       <div className="bonus flex_ccc">
         <p>
           {calculateModifier(isProficient, abilityScoreModifier, proficiency)}

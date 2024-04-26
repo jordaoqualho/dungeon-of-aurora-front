@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 import { Modal } from "@/components";
-import { Container } from "./styles";
+import { Container, modalStyles } from "./styles";
 
 type EditingModalProps = {
   isOpen: boolean;
@@ -12,7 +12,12 @@ export const EditingModal = (props: EditingModalProps) => {
   const { isOpen, cancelEditing, onSave } = props;
 
   return (
-    <Modal isOpen={isOpen} overlay={false} lockScroll={false}>
+    <Modal
+      isOpen={isOpen}
+      overlay={false}
+      lockScroll={false}
+      customStyle={modalStyles}
+    >
       <Container className="flex_ccc">
         <h4>Modo Edição</h4>
         <div className="buttons flex_csr">

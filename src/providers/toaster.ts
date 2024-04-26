@@ -29,19 +29,21 @@ export const showToast = (message: string, type: TypeOptions = "error") => {
 };
 
 export const showPromiseToast = (
-  message: string,
-  type: TypeOptions = "error"
+  successText: string,
+  type: TypeOptions = "error",
+  pendingText?: string,
+  time?: number
 ) => {
-  const options = getToastOptions(message, type);
+  const options = getToastOptions(successText, type);
 
   const functionThatReturnsPromise = () =>
-    new Promise((resolve) => setTimeout(resolve, 1000));
+    new Promise((resolve) => setTimeout(resolve, time || 1000));
 
   return toast.promise(
     functionThatReturnsPromise,
     {
-      pending: "Rodando dados",
-      success: message,
+      pending: pendingText || "Rodando dados",
+      success: successText,
     },
     options
   );
