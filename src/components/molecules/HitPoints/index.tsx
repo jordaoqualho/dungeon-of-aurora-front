@@ -31,6 +31,8 @@ export const HitPoints = (props: HitPointsProps) => {
   const { character, setCharacter, isEditing } = props;
   const lifeDices = new Array(character.level || 1).fill(0);
   const [damageAndHealingModal, setDamageAndHealingModal] = useState("closed");
+  const isFullLife = character.hitPoints === character.maxHitPoints;
+  const isDead = character.hitPoints === -character.maxHitPoints;
   const actionContext = useActionContext();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -59,10 +61,9 @@ export const HitPoints = (props: HitPointsProps) => {
 
       setCharacter(updatedCharacter);
     } else {
-    showToast("Pontos de vida inválidos", "warning");
+      showToast("Pontos de vida inválidos", "warning");
     }
   };
-  
 
   const handleHitPointDice = () => {
     const { hitPoints, maxHitPoints, hitPointDices } = character;
@@ -185,7 +186,11 @@ export const HitPoints = (props: HitPointsProps) => {
             <button
               className="damage"
               disabled={isEditing}
-              onClick={() => setDamageAndHealingModal("damage")}
+              onClick={() => {
+                if (isDead)
+                  return showToast("Não da mais, cria outra ficha...", "error");
+                setDamageAndHealingModal("damage");
+              }}
             >
               <img src={damage_icon} alt="damage_icon" />
             </button>
@@ -211,7 +216,14 @@ export const HitPoints = (props: HitPointsProps) => {
             <button
               className="healing"
               disabled={isEditing}
-              onClick={() => setDamageAndHealingModal("healing")}
+              onClick={() => {
+                if (isFullLife)
+                  return showToast(
+                    "Não dá pra curar mais que isso!",
+                    "warning"
+                  );
+                setDamageAndHealingModal("healing");
+              }}
             >
               <img src={healing_icon} alt="healing_icon" />
             </button>
