@@ -35,20 +35,26 @@ export const HitPoints = (props: HitPointsProps) => {
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
-    const numberValue = parseInt(value) || 0;
+    const formatedNumber = parseInt(value) || 0;
 
-    if (!isNaN(numberValue)) {
+    if (formatedNumber > 999) {
+      showToast("Você não tem tanta vida assim", "warning");
+    }
+
+    const inputNumber = Math.min(formatedNumber, 999);
+
+    if (!isNaN(inputNumber)) {
       const updatedCharacter = {
         ...character,
-        [name]: value,
+        [name]: inputNumber,
       };
 
-      if (name === "hitPoints" && numberValue > character.maxHitPoints) {
-        updatedCharacter.maxHitPoints = numberValue;
+      if (name === "hitPoints" && inputNumber > character.maxHitPoints) {
+        updatedCharacter.maxHitPoints = inputNumber;
       }
 
-      if (name === "maxHitPoints" && numberValue < character.hitPoints) {
-        updatedCharacter.hitPoints = numberValue;
+      if (name === "maxHitPoints" && inputNumber < character.hitPoints) {
+        updatedCharacter.hitPoints = inputNumber;
       }
 
       setCharacter(updatedCharacter);
@@ -56,6 +62,7 @@ export const HitPoints = (props: HitPointsProps) => {
       showToast("Pontos de vida inválidos", "warning");
     }
   };
+  
 
   const handleHitPointDice = () => {
     const { hitPoints, maxHitPoints, hitPointDices } = character;
