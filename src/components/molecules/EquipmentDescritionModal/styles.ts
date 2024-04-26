@@ -63,5 +63,5 @@ export const Container = styled.div`
 export const modalStyles = `
   border-radius: 10px;
   padding: 30px 20px;
-  top: 20vh;
+  top: 50px;
 `;

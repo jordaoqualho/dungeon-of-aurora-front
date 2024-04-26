@@ -70,5 +70,5 @@ export const Buttons = styled.div`
 
 export const modalStyles = `
   border-radius: 10px;
-  top: 30vh;
+  top: 100px;
 `;
