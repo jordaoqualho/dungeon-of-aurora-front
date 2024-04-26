@@ -12,7 +12,7 @@ import {
 import { characterService } from "@/connection";
 import { defaultCharacter } from "@/constants";
 import { useCharacter } from "@/hooks/useCharacter";
-import { showToast } from "@/providers";
+import { showPromiseToast } from "@/providers";
 import { Character, User } from "@/types";
 import { useEffect, useState } from "react";
 import { useReadLocalStorage } from "usehooks-ts";
@@ -28,13 +28,24 @@ export function CharacterPage() {
   const { isLoading, data } = useCharacter(user?._id);
 
   const saveCharacterData = async () => {
-    try {
-      setIsEditing(false);
-      await characterService.put(character);
-      showToast("Alterações Salvas", "success");
-    } catch (error) {
-      console.error(error);
-    }
+    setIsEditing(false);
+    await characterService
+      .put(character)
+      .then(async () => {
+        await showPromiseToast(
+          "Alterações Salvas",
+          "success",
+          "Salvando alterações"
+        );
+      })
+      .catch(async (error) => {
+        console.error(error);
+        await showPromiseToast(
+          "Deu ruim, chama o Jordão 🤯",
+          "error",
+          "Salvando alterações"
+        );
+      });
   };
 
   const cancelEditing = () => {
