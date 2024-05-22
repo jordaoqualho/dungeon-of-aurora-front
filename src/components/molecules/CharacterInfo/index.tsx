@@ -1,14 +1,22 @@
 import { male_character } from "@/assets";
-import { ClassSelector, PictureModal, RaceSelector } from "@/components";
+import {
+  CharacterItem,
+  ClassSelector,
+  PictureModal,
+  RaceSelector,
+} from "@/components";
+import { characterService } from "@/connection";
+import { defaultCharacter } from "@/constants";
 import { Character, User, defaultUser } from "@/types";
 import { DiceType } from "@/utils";
 import CloseIcon from "@mui/icons-material/Close";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "usehooks-ts";
 import { LevelSelector } from "../LevelSelector";
 import {
+  CharactersList,
   Container,
   ManageButton,
   ManageOptions,
@@ -18,8 +26,6 @@ import {
 
 type CharacterInfoProps = {
   isEditing: boolean;
-  character: Character;
-  setCharacter: (char: Character) => void;
   setIsEditing: (value: boolean) => void;
 };
 
@@ -30,8 +36,14 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
   const [showLevelSelector, setShowLevelSelector] = useState(false);
   const [showPictureModal, setShowPictureModal] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
-  const { character, setCharacter, isEditing, setIsEditing } = props;
+  const [showCharacterList, setShowCharacterList] = useState(false);
+  const [characterList, setCharacterList] = useState<Character[]>();
+  const { isEditing, setIsEditing } = props;
   const navigate = useNavigate();
+  const [character, setCharacter] = useLocalStorage<Character>(
+    "character",
+    defaultCharacter
+  );
 
   const handleExit = () => {
     if (user) {
@@ -40,63 +52,81 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
     navigate("/");
   };
 
+  const closeAll = () => {
+    setShowOptions(false);
+    setShowCharacterList(false);
+  };
+
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
     setCharacter({ ...character, [name]: value });
   };
 
+  useEffect(() => {
+    if (user._id)
+      characterService
+        .getByUserId(user._id)
+        .then((allCharacters: Character[]) => {
+          setCharacterList(
+            allCharacters.filter((char) => char._id !== character._id)
+          );
+        })
+        .catch((error) => console.error(error));
+  }, [character]);
+
   return (
     <Container className="flex_ccc">
       <div className="flex_csr">
-        <PhotoAndLevel className="flex_ccr">
-          <img
-            className={`photo ${isEditing ? "editing" : ""}`}
-            src={character?.picture || male_character}
-            alt="photo"
-            onClick={() => isEditing && setShowPictureModal(true)}
-          />
-          <div
-            className="level flex_ccr"
-            onClick={() => isEditing && setShowLevelSelector(true)}
-          >
-            <p>{character.level}</p>
-          </div>
-        </PhotoAndLevel>
-        <NameAndInfo className="flex_scc">
-          <input
-            className={`name ${isEditing ? "editing" : ""}`}
-            name="name"
-            value={character.name || ""}
-            placeholder="Nome do Personagem"
-            onChange={handleInputChange}
-            readOnly={!isEditing}
-          />
-          <div className="info flex_ccr">
-            <button
-              className={`race ${isEditing ? "editing" : ""}`}
-              onClick={() =>
-                isEditing && setShowRaceSelector(!showRaceSelector)
-              }
+        <div className="flex_csr">
+          <PhotoAndLevel className="flex_ccr">
+            <img
+              className={`photo ${isEditing ? "editing" : ""}`}
+              src={character?.picture || male_character}
+              alt="photo"
+              onClick={() => isEditing && setShowPictureModal(true)}
+            />
+            <div
+              className="level flex_ccr"
+              onClick={() => isEditing && setShowLevelSelector(true)}
             >
-              {character.race || "Raça"}
-            </button>
-            <p>/</p>
-            <button
-              className={`class ${isEditing ? "editing" : ""}`}
-              onClick={() =>
-                isEditing && setShowClassSelector(!showClassSelector)
-              }
-            >
-              {character.class || "Classe"}
-            </button>
-          </div>
-        </NameAndInfo>
+              <p>{character.level}</p>
+            </div>
+          </PhotoAndLevel>
+          <NameAndInfo className="flex_scc">
+            <input
+              className={`name ${isEditing ? "editing" : ""}`}
+              name="name"
+              value={character.name || ""}
+              placeholder="Nome do Personagem"
+              onChange={handleInputChange}
+              readOnly={!isEditing}
+            />
+            <div className="info flex_ccr">
+              <button
+                className={`race ${isEditing ? "editing" : ""}`}
+                onClick={() => isEditing && setShowRaceSelector(true)}
+              >
+                {character.race || "Raça"}
+              </button>
+              <p>/</p>
+              <button
+                className={`class ${isEditing ? "editing" : ""}`}
+                onClick={() => isEditing && setShowClassSelector(true)}
+              >
+                {character.class || "Classe"}
+              </button>
+            </div>
+          </NameAndInfo>
+        </div>
 
         <ManageButton
           className="flex_ccc"
-          onClick={() => setShowOptions(!showOptions)}
+          onClick={() => {
+            setShowOptions(!showOptions);
+            setShowCharacterList(false);
+          }}
         >
-          {showOptions ? (
+          {showOptions || showCharacterList ? (
             <CloseIcon className="icon" />
           ) : (
             <MoreVertIcon className="icon" />
@@ -111,10 +141,41 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
             setShowOptions(false);
           }}
         >
-          Editar Personagem
+          Editar {character.name.split(" ")[0]}
         </button>
-        <button onClick={() => handleExit()}>Sair da Conta</button>
+        <button
+          onClick={() => {
+            setShowOptions(false);
+            setShowCharacterList(true);
+          }}
+        >
+          Meus Personagens
+        </button>
+        <button onClick={() => handleExit()}>Sair</button>
       </ManageOptions>
+
+      <CharactersList
+        className="flex_ccc"
+        $showCharacterList={showCharacterList}
+      >
+        {characterList?.map((char) => (
+          <CharacterItem
+            key={char._id}
+            character={char}
+            closeAll={closeAll}
+            isEditing={isEditing}
+            setShowPictureModal={setShowPictureModal}
+            setShowLevelSelector={setShowLevelSelector}
+            setShowClassSelector={setShowClassSelector}
+            setShowRaceSelector={setShowRaceSelector}
+          />
+        ))}
+
+        <button className="create_btn flex_csr">
+          <div className="icon">+</div>
+          <p>Novo personagem</p>
+        </button>
+      </CharactersList>
 
       <RaceSelector
         isOpen={showRaceSelector}
@@ -123,6 +184,7 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
           setShowRaceSelector(false);
         }}
       />
+
       <ClassSelector
         isOpen={showClassSelector}
         setSelection={(className: string, hitDice: DiceType) => {
@@ -134,6 +196,7 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
           setShowClassSelector(false);
         }}
       />
+
       <LevelSelector
         isOpen={showLevelSelector}
         setSelection={(newLevel: number) => {
@@ -145,6 +208,7 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
           setShowLevelSelector(false);
         }}
       />
+
       <PictureModal
         isOpen={showPictureModal}
         setCharacter={setCharacter}

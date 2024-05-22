@@ -15,17 +15,20 @@ import { useCharacter } from "@/hooks/useCharacter";
 import { showPromiseToast } from "@/providers";
 import { Character, User } from "@/types";
 import { useEffect, useState } from "react";
-import { useReadLocalStorage } from "usehooks-ts";
+import { useLocalStorage, useReadLocalStorage } from "usehooks-ts";
 import { Container } from "./styles";
 
 export function CharacterPage() {
-  const [character, setCharacter] = useState<Character>(defaultCharacter);
   const [activeMenu, setActiveMenu] = useState("Abilities");
   const [initialCharacter, setInitialCharacter] =
     useState<Character>(defaultCharacter);
   const [isEditing, setIsEditing] = useState(false);
   const user = useReadLocalStorage<User>("user");
   const { isLoading, data } = useCharacter(user?._id);
+  const [character, setCharacter] = useLocalStorage<Character>(
+    "character",
+    defaultCharacter
+  );
 
   const saveCharacterData = async () => {
     setIsEditing(false);
@@ -54,7 +57,7 @@ export function CharacterPage() {
   };
 
   useEffect(() => {
-    if (!data || !data[0]) return;
+    if (!data || !data[0] || character._id !== "") return;
     setCharacter(data[0]);
     if (data[0].name === "") setIsEditing(true);
   }, [data]);
@@ -66,12 +69,7 @@ export function CharacterPage() {
 
   return (
     <Container className="flex_ssc">
-      <CharacterInfo
-        character={character}
-        setCharacter={setCharacter}
-        isEditing={isEditing}
-        setIsEditing={setIsEditing}
-      />
+      <CharacterInfo isEditing={isEditing} setIsEditing={setIsEditing} />
       <EditingModal
         isOpen={isEditing}
         onSave={saveCharacterData}

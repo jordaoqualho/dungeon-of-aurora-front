@@ -1,6 +1,7 @@
 export * from "./Anotation";
 export * from "./Attribute";
 export * from "./Button";
+export * from "./CharacterItem";
 export * from "./Checkbox";
 export * from "./Coins";
 export * from "./DeleteSwipe";
