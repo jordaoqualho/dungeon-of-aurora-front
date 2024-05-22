@@ -1,5 +1,14 @@
 import styled, { css } from "styled-components";
 
+
+type OptionProps = {
+  $showOptions: boolean;
+};
+
+type CharactersListProps = {
+  $showCharacterList: boolean;
+};
+
 export const Container = styled.div`
   background-color: var(--ground);
   border-radius: 10px;
@@ -75,10 +84,6 @@ export const ManageButton = styled.section`
   }
 `;
 
-type OptionProps = {
-  $showOptions: boolean;
-};
-
 export const ManageOptions = styled.div<OptionProps>`
   box-shadow: -1px 16px 7px 0px #00000030;
   transition: transform 0.15s ease;
@@ -107,5 +112,50 @@ export const ManageOptions = styled.div<OptionProps>`
     color: var(--primary);
     padding: 4px 20px;
     width: 200px;
+  }
+`;
+
+export const CharactersList = styled.div<CharactersListProps>`
+  box-shadow: -1px 16px 7px 0px #00000030;
+  transition: transform 0.15s ease;
+  transform-origin: top;
+  transform: scaleY(0);
+  background-color: #191919;
+  border-radius: 0 0 20px 20px;
+  margin-bottom: 16px;
+  position: absolute;
+  z-index: 200;
+  padding: 16px;
+  width: 100%;
+  top: 65px;
+  gap: 8px;
+
+  ${({ $showCharacterList }) =>
+    $showCharacterList &&
+    css`
+      transform: scaleY(1);
+    `}
+
+  .create_btn {
+    background-color: var(--background);
+    color: var(--basic);
+    border-radius: 20px;
+    width: 100%;
+    padding: 8px 20px 8px 8px;
+    gap: 30px;
+
+    font-family: var(--main);
+    font-size: var(--medium);
+    margin-bottom: 4px;
+    font-weight: 400;
+
+    .icon {
+      padding: 8px 12px;
+      background-color: #191919;
+      border-radius: 20px;
+      font-size: 18px;
+      width: 40px;
+      height: 40px;
+    }
   }
 `;
