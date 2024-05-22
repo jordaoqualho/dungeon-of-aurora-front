@@ -7,7 +7,6 @@ import { Container, NameAndInfo, PhotoAndLevel } from "./styles";
 
 type CharacterItemProps = {
   character: Character;
-  isEditing: boolean;
   closeAll: () => void;
   setShowPictureModal: (value: boolean) => void;
   setShowRaceSelector: (value: boolean) => void;
@@ -16,7 +15,7 @@ type CharacterItemProps = {
 };
 
 export function CharacterItem(props: CharacterItemProps) {
-  const { isEditing, character, closeAll } = props;
+  const { character, closeAll } = props;
   const [, setStorageCharacter] = useLocalStorage<Character>(
     "character",
     defaultCharacter
@@ -40,17 +39,11 @@ export function CharacterItem(props: CharacterItemProps) {
         </div>
       </PhotoAndLevel>
       <NameAndInfo className="flex_scc">
-        <input
-          className={`name`}
-          name="name"
-          value={character.name || ""}
-          placeholder="Nome do Personagem"
-          readOnly={!isEditing}
-        />
+        <p className="name">{character.name || "Sem Nome"}</p>
         <div className="info flex_ccr">
-          <button className={`race`}>{character.race || "Raça"}</button>
+          <p className="race">{character.race || "Raça"}</p>
           <p>/</p>
-          <button className={`class`}>{character.class || "Classe"}</button>
+          <p className="class">{character.class || "Classe"}</p>
         </div>
       </NameAndInfo>
     </Container>

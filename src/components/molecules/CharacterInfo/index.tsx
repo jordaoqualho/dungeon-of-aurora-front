@@ -62,6 +62,24 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
     setCharacter({ ...character, [name]: value });
   };
 
+  const createNewCharacter = async () => {
+    try {
+      if (!user || !user._id) {
+        throw new Error("User is not authenticated");
+      }
+
+      const response = await characterService.post({
+        userId: user._id,
+      });
+
+      setCharacter(response);
+      setIsEditing(true);
+      closeAll();
+    } catch (error) {
+      console.error("Error creating character:", error);
+    }
+  };
+
   useEffect(() => {
     if (user._id)
       characterService
@@ -141,7 +159,7 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
             setShowOptions(false);
           }}
         >
-          Editar {character.name.split(" ")[0]}
+          Editar {character.name?.split(" ")[0]}
         </button>
         <button
           onClick={() => {
@@ -163,7 +181,6 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
             key={char._id}
             character={char}
             closeAll={closeAll}
-            isEditing={isEditing}
             setShowPictureModal={setShowPictureModal}
             setShowLevelSelector={setShowLevelSelector}
             setShowClassSelector={setShowClassSelector}
@@ -171,7 +188,11 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
           />
         ))}
 
-        <button className="create_btn flex_csr">
+        <button
+          className="create_btn flex_csr"
+          // eslint-disable-next-line @typescript-eslint/no-misused-promises
+          onClick={() => createNewCharacter()}
+        >
           <div className="icon">+</div>
           <p>Novo personagem</p>
         </button>

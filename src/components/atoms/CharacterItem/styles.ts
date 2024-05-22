@@ -42,6 +42,11 @@ export const NameAndInfo = styled.section`
     padding: 0;
   }
 
+  .race,
+  .class {
+    font-weight: var(--normal);
+  }
+
   .info {
     font-size: var(--small);
     font-weight: 200;
