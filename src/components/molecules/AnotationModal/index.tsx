@@ -35,37 +35,32 @@ export const AnotationModal = ({
     }
   };
 
-  const handleSavingAnotation = () => {
-    if (!isEditing) return setIsEditing(true);
-    const updatedAnotation = { ...currentAnotation, characterId: characterId };
-
-    if (updatedAnotation._id) {
-      anotationService
-        .put(updatedAnotation)
-        .then(() => {
-          showToast("Anotação alterada com sucesso!", "success");
-          updateAnotations(currentAnotation);
-        })
-        .catch((error) => {
-          console.error(error);
-          showToast("Falha ao alterar a anotação");
-        });
-    } else {
-      anotationService
-        .post(updatedAnotation)
-        .then(() => {
-          showToast("Anotação criada com sucesso!", "success");
-          updateAnotations(currentAnotation);
-        })
-        .catch((error) => {
-          console.error(error);
-          showToast("Falha ao criar a anotação");
-        });
+  const handleSavingAnotation = async () => {
+    if (!isEditing) {
+      setIsEditing(true);
+      return;
     }
-    setIsEditing(false);
 
-    if (titleAreaRef.current) {
-      titleAreaRef.current.style.height = "auto";
+    const updatedAnotation = { ...currentAnotation, characterId };
+
+    try {
+      if (updatedAnotation._id) {
+        await anotationService.put(updatedAnotation);
+        updateAnotations(updatedAnotation);
+      } else {
+        const newAnotation = await anotationService.post(updatedAnotation);
+        updateAnotations(newAnotation);
+      }
+    } catch (error) {
+      console.error(error);
+      const action = updatedAnotation._id ? "alterar" : "criar";
+      showToast(`Falha ao ${action} a anotação`);
+    } finally {
+      if (titleAreaRef.current) {
+        titleAreaRef.current.style.height = "auto";
+      }
+      setIsEditing(false);
+      closeModal();
     }
   };
 
@@ -86,6 +81,7 @@ export const AnotationModal = ({
           </div>
           <button
             className="action_btn"
+            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onClick={() => handleSavingAnotation()}
           >
             {isEditing ? "Salvar" : "Editar"}
