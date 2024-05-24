@@ -5,7 +5,7 @@ import { defaultAnotation } from "@/constants";
 import { showToast } from "@/providers";
 import { AnotationType, Character } from "@/types";
 import { useEffect, useState } from "react";
-import { AddButton, Container } from "./styles";
+import { AddButton, Container, NoAnotation } from "./styles";
 
 type AnotationListProps = {
   character: Character;
@@ -21,6 +21,7 @@ export function AnotationList(props: AnotationListProps) {
 
   const removeAnotation = (deletedAnotationId?: string) => {
     if (!deletedAnotationId) return;
+
     const newAnotationList = anotationList.filter(
       (anotation) => anotation._id !== deletedAnotationId
     );
@@ -29,7 +30,7 @@ export function AnotationList(props: AnotationListProps) {
       .delete(deletedAnotationId)
       .then(() => {
         showToast("dismissAll");
-        showToast("Anotação deletada com sucesso!", 'success');
+        showToast("Anotação deletada com sucesso!", "success");
         setAnotationList(newAnotationList);
       })
       .catch((error) => console.error(error));
@@ -60,6 +61,10 @@ export function AnotationList(props: AnotationListProps) {
         .catch((error) => console.error(error));
   }, [character]);
 
+  useEffect(() => {
+    console.log(anotationList);
+  }, [anotationList]);
+
   if (activeMenu !== "Anotations") return <></>;
 
   return (
@@ -72,6 +77,7 @@ export function AnotationList(props: AnotationListProps) {
       >
         +
       </AddButton>
+
       <AnotationModal
         anotation={selectedAnotation}
         isOpen={showAnotationModal}
@@ -79,9 +85,19 @@ export function AnotationList(props: AnotationListProps) {
         updateAnotations={updateAnotations}
         characterId={character._id}
       />
-      {anotationList.map((anotation, index) => (
+
+      {anotationList.length === 0 && (
+        <NoAnotation className="flex_ccc">
+          <h1>Ainda não tem nada aqui...</h1>
+          <p>
+            clique no botão<span>(+)</span>para fazer uma nova anotação
+          </p>
+        </NoAnotation>
+      )}
+
+      {anotationList.map((anotation) => (
         <Anotation
-          key={index}
+          key={anotation._id}
           anotation={anotation}
           removeAnotation={removeAnotation}
           setSelectedAnotation={setSelectedAnotation}

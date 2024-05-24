@@ -25,3 +25,25 @@ export const AddButton = styled.button`
   z-index: 10;
   padding: 0;
 `;
+
+export const NoAnotation = styled.div`
+  text-align: center;
+  height: 100%;
+
+  h1 {
+    font-size: var(--big);
+    font-weight: var(--normal);
+  }
+
+  p {
+    color: var(--bright);
+    font-size: var(--small);
+    margin-top: 4px;
+  }
+
+  span {
+    color: var(--primary);
+    font-size: var(--small);
+    padding: 0 4px;
+  }
+`;
