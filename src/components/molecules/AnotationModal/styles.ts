@@ -69,9 +69,10 @@ export const Header = styled.div<HeaderProps>`
   .arrow_btn {
     background-color: var(--background);
     color: var(--secundary);
-    border-radius: 10px;
-    padding: 8px 16px;
+    border-radius: 20px;
+    padding: 8px 24px;
     margin-right: 12px;
+    height: 36px;
 
     svg {
       font-size: var(--large);
@@ -82,9 +83,9 @@ export const Header = styled.div<HeaderProps>`
     background-color: var(--secundary);
     color: var(--background);
     font-weight: var(--semiBold);
-    border-radius: 10px;
+    border-radius: 20px;
     height: 36px;
-    width: 80px;
+    width: 90px;
 
     ${(props) =>
       props.$isEditing &&
@@ -122,7 +123,7 @@ export const Body = styled.div<BodyProps>`
   .info_field {
     background-color: transparent;
     font-size: var(--medium);
-    height: calc(100vh - 350px);
+    height: calc(100vh - 200px);
     color: var(--secundary);
     border-radius: 10px;
     width: 100%;
