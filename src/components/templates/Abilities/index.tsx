@@ -26,11 +26,13 @@ export function Abilities(props: AbilitiesProps) {
         setCharacter={setCharacter}
         isEditing={isEditing}
       />
+
       <Attributes
         character={character}
         setCharacter={setCharacter}
         isEditing={isEditing}
       />
+
       <Proficiency
         character={character}
         setCharacter={setCharacter}

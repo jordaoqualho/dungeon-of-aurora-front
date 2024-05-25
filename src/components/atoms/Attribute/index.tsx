@@ -1,5 +1,6 @@
 import { hexagon_primary } from "@/assets";
-import { getAbilityModifier } from "@/utils";
+import { showPromiseToast } from "@/providers";
+import { getAbilityModifier, rollDice } from "@/utils";
 import { ChangeEvent } from "react";
 import { Container } from "./styles";
 
@@ -15,8 +16,23 @@ export function Attribute(props: AttributeProps) {
   const { label, value, name, handeChange, isEditing } = props;
   const modifier: string = getAbilityModifier(value);
 
+  const rollAttribute = async () => {
+    if (isEditing) return;
+
+    const d20Roll: number = rollDice("d20").total;
+    const modifierNumber: number = parseInt(modifier);
+
+    const modifierSign: string = modifierNumber >= 0 ? "+" : "-";
+    const formattedModifier = `${modifierSign} ${Math.abs(modifierNumber)}`;
+
+    const text = `${d20Roll} ${formattedModifier}`;
+    const total = d20Roll + modifierNumber;
+
+    await showPromiseToast(`Rolou ${total} (${text}) em ${label}`, "success");
+  };
+
   return (
-    <Container className="flex_ccc">
+    <Container className="flex_ccc" onClick={rollAttribute}>
       <div className={`mod flex_ccc ${isEditing ? "editing" : ""}`}>
         <p>{label}</p>
         <input
