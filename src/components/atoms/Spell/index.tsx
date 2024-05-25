@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { d20 } from "@/assets";
 import { showPromiseToast } from "@/providers";
 import { SpellType } from "@/types";

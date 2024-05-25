@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { male_character } from "@/assets";
 import { defaultCharacter } from "@/constants";
 import { Character } from "@/types";

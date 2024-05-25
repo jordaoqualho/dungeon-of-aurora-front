@@ -30,7 +30,6 @@ export const ActionProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   return (
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <ActionContext.Provider value={{ dispatchAction }}>
       {children}
     </ActionContext.Provider>

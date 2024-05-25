@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { useActionContext } from "@/contexts";
 import { Character } from "@/types";
 import { useState } from "react";

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { showPromiseToast } from "@/providers";
 import { Character } from "@/types";
 import { calculateModifier, getAbilityScoreModifier } from "@/utils";

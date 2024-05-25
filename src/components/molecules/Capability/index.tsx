@@ -49,7 +49,6 @@ export const Capability: React.FC<CapabilityProps> = ({
   return (
     <Container
       className={`flex_ccc ${isEditing && readOnly ? "read_only" : ""}`}
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onClick={handleContainerClick}
       $hexagonBorder={hexagonBorder}
     >

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import {
   d10_dice_dark_icon,
   d10_dice_icon,

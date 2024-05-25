@@ -81,7 +81,6 @@ export const AnotationModal = ({
           </div>
           <button
             className="action_btn"
-            // eslint-disable-next-line @typescript-eslint/no-misused-promises
             onClick={() => handleSavingAnotation()}
           >
             {isEditing ? "Salvar" : "Editar"}

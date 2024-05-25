@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { AnotationType } from "@/types";
 import { useEffect, useState } from "react";
 import SwipeToDelete from "react-swipe-to-delete-ios";

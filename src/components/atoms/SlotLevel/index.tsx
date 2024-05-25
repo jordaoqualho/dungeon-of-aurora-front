@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { Slot } from "@/types";
 import { Container } from "./styles";
 
