@@ -61,10 +61,6 @@ export function AnotationList(props: AnotationListProps) {
         .catch((error) => console.error(error));
   }, [character]);
 
-  useEffect(() => {
-    console.log(anotationList);
-  }, [anotationList]);
-
   if (activeMenu !== "Anotations") return <></>;
 
   return (
