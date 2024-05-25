@@ -1,5 +1,6 @@
 import { hexagon_border } from "@/assets";
-import { showToast } from "@/providers";
+import { showPromiseToast, showToast } from "@/providers";
+import { rollDice } from "@/utils";
 import React, { ChangeEvent } from "react";
 import { Container } from "./styles";
 
@@ -22,10 +23,27 @@ export const Capability: React.FC<CapabilityProps> = ({
   onChange,
   label,
 }) => {
-  const handleContainerClick = (event: React.MouseEvent<HTMLInputElement>) => {
+  const rollIniciative = async () => {
+    const d20Roll: number = rollDice("d20").total;
+    const modifierNumber: number = parseInt(inputValue as string);
+
+    const modifierSign: string = modifierNumber >= 0 ? "+" : "-";
+    const formattedModifier = `${modifierSign} ${Math.abs(modifierNumber)}`;
+
+    const text = `${d20Roll} ${formattedModifier}`;
+    const total = d20Roll + modifierNumber;
+
+    await showPromiseToast(`Rolou ${total} (${text}) em ${label}`, "success");
+  };
+
+  const handleContainerClick = async (
+    event: React.MouseEvent<HTMLInputElement>
+  ) => {
     event.stopPropagation();
     if (isEditing && readOnly)
       showToast("Isso é calculado automaticamente", "warning");
+
+    if (label === "Iniciativa" && !isEditing) await rollIniciative();
   };
 
   return (
@@ -50,3 +68,4 @@ export const Capability: React.FC<CapabilityProps> = ({
     </Container>
   );
 };
+ 

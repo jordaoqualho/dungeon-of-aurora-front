@@ -20,9 +20,12 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
-    "@typescript-eslint/no-misused-promises": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "react-hooks/exhaustive-deps": "off",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      { checksVoidReturn: false },
+    ],
   },
   overrides: [
     {

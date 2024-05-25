@@ -190,7 +190,6 @@ export const CharacterInfo = (props: CharacterInfoProps) => {
 
         <button
           className="create_btn flex_csr"
-          // eslint-disable-next-line @typescript-eslint/no-misused-promises
           onClick={() => createNewCharacter()}
         >
           <div className="icon">+</div>

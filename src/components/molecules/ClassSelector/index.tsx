@@ -31,7 +31,6 @@ export const ClassSelector = ({ isOpen, setSelection }: ClassSelectorProps) => {
             key={index}
             className="option flex_csr"
             onClick={() => {
-              console.log(`d${cls.hitDice}`);
               setSelection(cls.name, `d${cls.hitDice}` as DiceType);
             }}
           >

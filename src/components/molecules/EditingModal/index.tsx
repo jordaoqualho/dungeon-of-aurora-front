@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { Modal } from "@/components";
 import { Container, modalStyles } from "./styles";
 

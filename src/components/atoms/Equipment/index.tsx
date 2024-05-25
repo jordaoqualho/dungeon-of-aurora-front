@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
 import { d20 } from "@/assets";
 import { useActionContext } from "@/contexts";
 import { showPromiseToast, showToast } from "@/providers";
