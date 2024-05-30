@@ -15,4 +15,5 @@ export * from "./Skill";
 export * from "./SlotLevel";
 export * from "./Spell";
 export * from "./Tiltbox";
+export * from "./Feature";
 

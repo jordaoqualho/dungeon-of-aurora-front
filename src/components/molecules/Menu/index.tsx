@@ -23,7 +23,7 @@ export const Menu = ({ setActiveMenu, activeMenu }: MenuProps) => {
         return "Equipamentos";
 
       case "Characteristics":
-        return "Características";
+        return "Características & Talentos";
 
       case "Anotations":
         return "Anotações";

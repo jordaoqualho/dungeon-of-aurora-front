@@ -1,17 +1,19 @@
-import { Character, Class } from "@/types";
+import { Feature } from "@/components/atoms";
+import { Character, Class, FeatureType } from "@/types";
 import KeyboardArrowDownRoundedIcon from "@mui/icons-material/KeyboardArrowDownRounded";
 import { useState } from "react";
 import { ClassInfo, Container } from "./styles";
 
-type LevelCharacteristicsProps = {
+type ClassCharacteristicsProps = {
   setCharacter: (value: Character) => void;
   character: Character;
   title: string;
   charClass?: Class;
+  classFeatures: FeatureType[];
 };
 
-export const ClassCharacteristics = (props: LevelCharacteristicsProps) => {
-  const { title, charClass } = props;
+export const ClassCharacteristics = (props: ClassCharacteristicsProps) => {
+  const { title, charClass, classFeatures, character } = props;
   const [isOpen, setIsOpen] = useState(true);
 
   if (!charClass) return <></>;
@@ -25,7 +27,10 @@ export const ClassCharacteristics = (props: LevelCharacteristicsProps) => {
       <div className="class_container">
         <ClassInfo>
           <div className="info">
-            <h4>Proficiências</h4>
+            <div className="title flex_csb">
+              <h4>Proficiências</h4>
+              <div className="level">Nv. 1</div>
+            </div>
             <p>
               <b>Pode usar</b> {charClass.proficiencies.join(", ")}
             </p>
@@ -38,6 +43,9 @@ export const ClassCharacteristics = (props: LevelCharacteristicsProps) => {
             </p>
           </div>
         </ClassInfo>
+        {classFeatures.map((feature) => (
+          <Feature key={feature._id} feature={feature} character={character} />
+        ))}
       </div>
     </Container>
   );
