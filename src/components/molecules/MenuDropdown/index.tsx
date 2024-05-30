@@ -44,7 +44,7 @@ export const MenuDropdown = (props: MenuDropdownProps) => {
           id="Characteristics"
           onClick={(e) => handleOptionClick(e)}
         >
-          <p className="text">Características</p>
+          <p className="text">Características & Talentos</p>
         </div>
         <div
           className="option flex_ccc"

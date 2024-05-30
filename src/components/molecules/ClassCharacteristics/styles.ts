@@ -42,7 +42,8 @@ export const Container = styled.div<Props>`
     transition: var(--regular);
     transition: max-height 0.3s ease-in-out;
     overflow: hidden;
-    max-height: ${({ $isOpen }) => ($isOpen ? "100vh" : "0")};
+    max-height: ${({ $isOpen }) => ($isOpen ? "5000px" : "0")};
+    gap: 8px;
 
     ${({ $isOpen }) =>
       !$isOpen &&
@@ -73,6 +74,26 @@ export const ClassInfo = styled.div`
       b {
         color: var(--secundary);
       }
+    }
+  }
+
+  .title {
+    padding: 0;
+    margin-bottom: 4px;
+
+    h4 {
+      font-size: var(--medium);
+      color: var(--secundary);
+    }
+
+    .level {
+      background-color: var(--primary);
+      margin-left: 12px;
+      color: var(--background);
+      font-weight: var(--bold);
+      font-size: var(--small);
+      border-radius: 12px;
+      padding: 4px 12px;
     }
   }
 `;
