@@ -5,7 +5,6 @@ import { useState } from "react";
 import { ClassInfo, Container } from "./styles";
 
 type ClassCharacteristicsProps = {
-  setCharacter: (value: Character) => void;
   character: Character;
   title: string;
   charClass?: Class;
@@ -44,7 +43,11 @@ export const ClassCharacteristics = (props: ClassCharacteristicsProps) => {
           </div>
         </ClassInfo>
         {classFeatures.map((feature) => (
-          <Feature key={feature._id} feature={feature} character={character} />
+          <Feature
+            key={Math.floor(Math.random() * 1000000) + 1}
+            feature={feature}
+            character={character}
+          />
         ))}
       </div>
     </Container>

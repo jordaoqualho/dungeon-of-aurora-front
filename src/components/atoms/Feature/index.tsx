@@ -21,22 +21,22 @@ export function Feature(props: FeatureProps) {
     const sections = description.map((section, index) => {
       const lines = section.split("\n");
 
-      const formattedLines = lines.map((line, idx) => {
+      const formattedLines = lines.map((line, formatedIndex) => {
         const parts = line.split(/\*{2,}/g);
 
         const formattedParts = parts.map((part, partIndex) => {
           return partIndex % 2 === 0 ? (
             <React.Fragment key={partIndex}>{part}</React.Fragment>
           ) : (
-            <>
+            <React.Fragment key={partIndex}>
               <br />
-              <strong key={partIndex}>{part}</strong>
-            </>
+              <strong>{part}</strong>
+            </React.Fragment>
           );
         });
 
         return (
-          <React.Fragment key={idx}>
+          <React.Fragment key={formatedIndex}>
             {formattedParts}
             <br />
           </React.Fragment>
@@ -58,7 +58,7 @@ export function Feature(props: FeatureProps) {
             Nv. {feature.level}
           </div>
         </div>
-        <p>{renderFeatureDescription(feature.description)}</p>
+        <div>{renderFeatureDescription(feature.description)}</div>
       </div>
     </Container>
   );

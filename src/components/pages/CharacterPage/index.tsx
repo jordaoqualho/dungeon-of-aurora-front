@@ -94,11 +94,7 @@ export function CharacterPage() {
         isEditing={isEditing}
         activeMenu={activeMenu}
       />
-      <Characteristics
-        character={character}
-        setCharacter={setCharacter}
-        activeMenu={activeMenu}
-      />
+      <Characteristics character={character} activeMenu={activeMenu} />
       <AnotationList character={character} activeMenu={activeMenu} />
       <LoadingScreen isLoading={isLoading} />
     </Container>

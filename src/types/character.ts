@@ -10,6 +10,7 @@ export type Character = {
   spellSlots: SpellSlotType;
   race: string;
   class: string;
+  subClass: string;
   speed: number;
   level: number;
   experience: number;

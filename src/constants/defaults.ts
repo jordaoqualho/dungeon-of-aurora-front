@@ -63,6 +63,7 @@ export const defaultCharacter: Character = {
   spells: [],
   userId: "",
   class: "",
+  subClass: "",
   race: "",
   skills: [],
   equipments: [],

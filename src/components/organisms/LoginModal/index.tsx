@@ -1,7 +1,8 @@
 import { Button, Checkbox, GoogleButton, Input } from "@/components";
 import { authService } from "@/connection";
+import { defaultCharacter } from "@/constants";
 import { showToast } from "@/providers";
-import { LoginData, LoginError, User, defaultUser } from "@/types";
+import { Character, LoginData, LoginError, User, defaultUser } from "@/types";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "usehooks-ts";
@@ -21,6 +22,10 @@ type LoginModalProps = {
 export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
   const initialCredentials = { email: "", password: "" };
   const [credentials, setCredentials] = useState<LoginData>(initialCredentials);
+  const [, setCharacter] = useLocalStorage<Character>(
+    "character",
+    defaultCharacter
+  );
   const [, setUser] = useLocalStorage<User>("user", defaultUser);
   const [error, setError] = useState<LoginError>({
     email: false,
@@ -51,6 +56,7 @@ export default function LoginModal({ setShowLoginModal }: LoginModalProps) {
       .login(credentials)
       .then((response) => {
         setUser({ ...response.user, isAuthenticated: true });
+        setCharacter(defaultCharacter);
         navigate("/character");
       })
       .catch(() => {

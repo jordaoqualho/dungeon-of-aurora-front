@@ -22,3 +22,6 @@ export * from "./RaceSelector";
 export * from "./SpellList";
 export * from "./SpellSlots";
 export * from "./SpellsFilters";
+export * from "./SubClassCharacteristics";
+export * from "./SubClassDropdown";
+
