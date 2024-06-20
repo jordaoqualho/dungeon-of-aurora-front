@@ -153,6 +153,7 @@ export function Equipment({
                 {getSubInfo()}
                 {getCategory()}
               </div>
+
               {equipment?.damage && (
                 <button
                   className="roll_btn flex_ccr"
@@ -165,6 +166,7 @@ export function Equipment({
                   </p>
                 </button>
               )}
+
               {equipment?.category === "Armadura" && (
                 <button
                   className="equip_btn flex_ccr"

@@ -1,4 +1,5 @@
 import {
+  accessories_icon,
   adventure_icon,
   armor_icon,
   mount_icon,
@@ -49,6 +50,7 @@ export type EquipmentIconMap = {
 export const equipmentIcons: EquipmentIconMap = {
   Poção: potion_icon,
   ArmaADistancia: ranged_weapon_icon,
+  Acessório: accessories_icon,
   Ferramentas: tool_icon,
   Tesouros: valuable_icon,
   Armas: weapon_icon,
