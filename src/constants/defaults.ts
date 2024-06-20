@@ -69,6 +69,6 @@ export const defaultCharacter: Character = {
   equipments: [],
   gold: 0,
   quests: [],
-  inspiration: 0,
+  inspiration: false,
   features: [],
 };

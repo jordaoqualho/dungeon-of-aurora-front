@@ -24,7 +24,7 @@ export type Character = {
   equipments: EquipmentType[];
   gold: number;
   quests: Quest[];
-  inspiration: number;
+  inspiration: boolean;
   features: Feature[];
   picture?: string;
 };
