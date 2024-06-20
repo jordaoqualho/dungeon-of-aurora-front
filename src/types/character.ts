@@ -64,6 +64,7 @@ export type Skill = {
 type CharacterArmorClass = {
   value: number;
   equipedArmor?: string;
+  equipedShield?: string;
 };
 
 export type Slot = {

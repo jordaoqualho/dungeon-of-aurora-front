@@ -35,7 +35,7 @@ export function Equipments(props: EquipmentsProps) {
 
   const organizeEquipments = (equipmentsList: EquipmentType[]) => {
     const armors = equipmentsList.filter(
-      (equipment) => equipment.category !== "Arma"
+      (equipment) => equipment.category === "Armadura"
     );
 
     const weapons = equipmentsList.filter(
@@ -124,7 +124,7 @@ export function Equipments(props: EquipmentsProps) {
         setIsOpen={() =>
           setAccordionControl({
             ...accordionControl,
-            armors: !accordionControl.accessories,
+            accessories: !accordionControl.accessories,
           })
         }
       />

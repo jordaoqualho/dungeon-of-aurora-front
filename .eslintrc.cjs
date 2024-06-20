@@ -22,6 +22,7 @@ module.exports = {
     ],
     "@typescript-eslint/no-non-null-assertion": "off",
     "react-hooks/exhaustive-deps": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-misused-promises": [
       "error",
       { checksVoidReturn: false },

@@ -87,7 +87,7 @@ export const EquipmentInfo = styled.div`
     gap: 4px;
   }
 
-  .equip_btn:disabled {
+  .equiped {
     background-color: var(--secundary);
     color: var(--background);
     cursor: not-allowed;
