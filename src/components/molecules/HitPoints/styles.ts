@@ -29,6 +29,24 @@ export const Container = styled.div`
     }
   }
 
+  .inspiration_button {
+    background-color: var(--bright);
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    border-radius: 50%;
+    padding: 2px 4px;
+
+    img {
+      margin-bottom: -1px;
+      margin-top: 2px;
+    }
+  }
+
+  .inspired {
+    background-color: var(--primary);
+  }
+
   input {
     width: 20px;
     min-width: 60px;
