@@ -37,7 +37,7 @@ type Content = {
   quantity: number;
 };
 
-type ArmorClass = {
+export type ArmorClass = {
   base: number;
   dex_bonus: boolean;
   max_bonus?: number;

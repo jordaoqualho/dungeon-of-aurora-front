@@ -1,7 +1,7 @@
 import { d20 } from "@/assets";
 import { useActionContext } from "@/contexts";
 import { showPromiseToast, showToast } from "@/providers";
-import { Character, EquipmentType } from "@/types";
+import { ArmorClass, Character, EquipmentType } from "@/types";
 import {
   DiceType,
   getAbilityModifier,
@@ -35,7 +35,10 @@ export function Equipment({
   setCharacter,
 }: EquipmentProps) {
   const [wasDeleted, setWasDeleted] = useState(false);
-  const isEquiped = character.armorClass?.equipedArmor === equipment._id;
+  const isEquiped = [
+    character.armorClass?.equipedArmor,
+    character.armorClass?.equipedShield,
+  ].includes(equipment._id);
   const actionContext = useActionContext();
 
   const handleButtonClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -51,28 +54,44 @@ export function Equipment({
     );
   };
 
-  const equipArmor = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleArmorClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
+    if (isEquiped) {
+      unequipArmorOrShield();
+    } else {
+      const { armorCategory, armorClass } = equipment;
+      if (!armorClass) return console.error("This is not an armor");
 
-    if (!equipment?.armorClass) return console.error("This is not an armor");
+      if (armorCategory === "Escudo") {
+        handleShield(armorClass.base);
+      } else {
+        handleArmor(armorClass);
+      }
+    }
+  };
 
-    const { attributes } = character;
-    const { base, dex_bonus, max_bonus } = equipment.armorClass;
-
-    const dexMod = parseInt(getAbilityModifier(attributes.dexterity));
-    const dexBonus = Math.min(dexMod, max_bonus || dexMod);
-    const newArmorClass = base + (dex_bonus ? dexBonus : 0);
-
+  const updateCharacterArmorClass = (
+    newArmorClass: number,
+    equipmentId: string | undefined,
+    type: "armor" | "shield"
+  ) => {
     const newCharacterData = {
       ...character,
       armorClass: {
+        ...character.armorClass,
         value: newArmorClass,
-        equipedArmor: equipment._id,
+        equipedArmor:
+          type === "armor" ? equipmentId : character.armorClass.equipedArmor,
+        equipedShield:
+          type === "shield" ? equipmentId : character.armorClass.equipedShield,
       },
     };
 
-    showToast(`dismissAll`);
-    showToast(`${equipment.name} Equipada`, "success");
+    showToast("dismissAll");
+    showToast(
+      `${equipment.name} ${equipmentId ? "equipado" : "desequipado"}`,
+      "success"
+    );
     showToast(`CA atualizada para ${newArmorClass}`, "success");
     setCharacter(newCharacterData);
     actionContext?.dispatchAction({
@@ -81,16 +100,59 @@ export function Equipment({
     });
   };
 
+  const handleArmor = (armorInfo: ArmorClass) => {
+    const { attributes } = character;
+    const { base, dex_bonus, max_bonus } = armorInfo;
+
+    const dexMod = parseInt(getAbilityModifier(attributes.dexterity));
+    const dexBonus = Math.min(dexMod, max_bonus || dexMod);
+    const totalArmorClass = base + (dex_bonus ? dexBonus : 0);
+    const newArmorClass = isEquiped
+      ? character.armorClass.value - (totalArmorClass - 10)
+      : totalArmorClass;
+
+    updateCharacterArmorClass(
+      newArmorClass,
+      isEquiped ? undefined : equipment._id,
+      "armor"
+    );
+  };
+
+  const handleShield = (shieldValue: number) => {
+    const newArmorClass = isEquiped
+      ? character.armorClass.value - shieldValue
+      : character.armorClass.value + shieldValue;
+
+    updateCharacterArmorClass(
+      newArmorClass,
+      isEquiped ? undefined : equipment._id,
+      "shield"
+    );
+  };
+
+  const unequipArmorOrShield = () => {
+    if (character.armorClass.equipedArmor === equipment._id) {
+      const { armorClass } = equipment;
+      const { base, dex_bonus, max_bonus } = armorClass!;
+      const dexMod = parseInt(
+        getAbilityModifier(character.attributes.dexterity)
+      );
+      const dexBonus = Math.min(dexMod, max_bonus || dexMod);
+      const totalArmorClass = base + (dex_bonus ? dexBonus : 0);
+      const newArmorClass = character.armorClass.value - (totalArmorClass - 10);
+      updateCharacterArmorClass(newArmorClass, undefined, "armor");
+    } else if (character.armorClass.equipedShield === equipment._id) {
+      const newArmorClass =
+        character.armorClass.value - equipment.armorClass!.base;
+      updateCharacterArmorClass(newArmorClass, undefined, "shield");
+    }
+  };
+
   const getCategory = () => {
     const { category, armorCategory, weaponCategory } = equipment;
-
     let categoryString = category;
-    if (armorCategory) {
-      categoryString += ` ${armorCategory}`;
-    } else if (weaponCategory) {
-      categoryString += ` ${weaponCategory}`;
-    }
-
+    if (armorCategory) categoryString += ` ${armorCategory}`;
+    if (weaponCategory) categoryString += ` ${weaponCategory}`;
     return <p className="subinfo">{categoryString}</p>;
   };
 
@@ -102,7 +164,6 @@ export function Equipment({
       const damageString = twoHandedDamage
         ? `${quantity}${type}/${twoHandedDamage.dice.quantity}${twoHandedDamage.dice.type}`
         : `${quantity}${type}`;
-
       return (
         <p className="subinfo">
           {damageString} ({damage.type})
@@ -115,22 +176,22 @@ export function Equipment({
       const dexBonusString = dex_bonus
         ? `+ Mod. Dextreza ${max_bonus ? `(Máx. +${max_bonus})` : ""}`
         : "";
-
       return (
         <p className="subinfo">
           CA: {base} {dexBonusString}
         </p>
       );
     }
+
     return null;
   };
 
   useEffect(() => {
-    if (!wasDeleted) return;
-    setTimeout(() => {
-      removeEquipment(equipment._id);
-    }, 500);
-  }, [wasDeleted]);
+    if (wasDeleted) {
+      const timer = setTimeout(() => removeEquipment(equipment._id), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [wasDeleted, removeEquipment, equipment._id]);
 
   return (
     <Container $wasDeleted={wasDeleted}>
@@ -169,11 +230,10 @@ export function Equipment({
 
               {equipment?.category === "Armadura" && (
                 <button
-                  className="equip_btn flex_ccr"
-                  disabled={isEquiped}
-                  onClick={equipArmor}
+                  className={`equip_btn flex_ccr ${isEquiped ? "equiped" : ""}`}
+                  onClick={handleArmorClick}
                 >
-                  <p>{isEquiped ? "Equipado" : "Equipar"}</p>
+                  <p>{isEquiped ? "Desequipar" : "Equipar"}</p>
                 </button>
               )}
             </EquipmentInfo>
