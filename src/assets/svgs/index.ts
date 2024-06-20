@@ -22,6 +22,7 @@ import healing_icon from "./healing_icon.svg";
 import hexagon_border from "./hexagon_border.svg";
 import hexagon_primary from "./hexagon_primary.svg";
 import ilusion_icon from "./ilusion_icon.svg";
+import inspiration_icon from "./inspiration_icon.svg";
 import mount_icon from "./mount_icon.svg";
 import necromancy_icon from "./necromancy_icon.svg";
 import potion_icon from "./potion_icon.svg";
@@ -58,6 +59,7 @@ export {
   hexagon_border,
   hexagon_primary,
   ilusion_icon,
+  inspiration_icon,
   mount_icon,
   necromancy_icon,
   potion_icon,

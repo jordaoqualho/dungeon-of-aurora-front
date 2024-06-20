@@ -4,9 +4,6 @@ export type User = {
   password: string;
   email: string;
   avatarUrl?: string;
-  totalGamesPlayed?: number;
-  quests?: string[];
-  inspiration?: number;
   isAuthenticated?: boolean;
 };
 

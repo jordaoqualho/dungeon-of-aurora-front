@@ -9,6 +9,7 @@ import {
   d8_dice_icon,
   damage_icon,
   healing_icon,
+  inspiration_icon,
   sleep_icon,
 } from "@/assets";
 import { defaultSpellSlot } from "@/constants";
@@ -32,6 +33,7 @@ export const HitPoints = (props: HitPointsProps) => {
   const [damageAndHealingModal, setDamageAndHealingModal] = useState("closed");
   const isFullLife = character.hitPoints === character.maxHitPoints;
   const isDead = character.hitPoints === -character.maxHitPoints;
+  const isInspired = character.inspiration;
   const actionContext = useActionContext();
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -173,12 +175,32 @@ export const HitPoints = (props: HitPointsProps) => {
     });
   };
 
+  const handleInspiration = () => {
+    const newCharacterData = {
+      ...character,
+      inspiration: !isInspired,
+    };
+
+    !isInspired && showToast(`Seu personagem está inspirado!`, "success");
+    setCharacter(newCharacterData);
+    actionContext?.dispatchAction({
+      action: "saveCharacter",
+      content: newCharacterData,
+    });
+  };
+
   return (
     <>
       <Container className="flex_ccc">
         <p className="title">PV Atual / PV Máximo</p>
         <button className="sleep_button" onClick={() => restoreResources()}>
           <img src={sleep_icon} alt="sleep_icon" />
+        </button>
+        <button
+          className={`inspiration_button ${isInspired ? "inspired" : ""}`}
+          onClick={() => handleInspiration()}
+        >
+          <img src={inspiration_icon} alt="inspiration_icon" />
         </button>
         <div className="points flex_csr">
           <div className="flex_ccr">
