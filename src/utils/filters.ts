@@ -49,27 +49,25 @@ export const filterEquipments = (
   equipments: EquipmentType[],
   search: string | undefined
 ): EquipmentType[] => {
+  const validCategories = ["Arma", "Armadura", "Acessório"];
+
   const equipables = equipments
-    .filter(
-      (equip) => equip.category === "Arma" || equip.category === "Armadura"
-    )
+    .filter((equip) => validCategories.includes(equip.category))
     .sort((a, b) => a.name.localeCompare(b.name));
 
-  if (!search) {
-    return equipables;
-  }
+  if (!search) return equipables;
 
   const normalizedSearchTerm = removeAccents(search.toLowerCase());
 
-  const matchesSearchTerm = (equipment: EquipmentType) =>
-    removeAccents(equipment.name.toLowerCase()).includes(
-      normalizedSearchTerm
-    ) ||
-    removeAccents(equipment?.originalName?.toLowerCase() ?? "").includes(
-      normalizedSearchTerm
+  return equipables.filter((equip) => {
+    const normalizedEquipName = removeAccents(equip.name.toLowerCase());
+    const normalizedOriginalName = removeAccents(
+      equip?.originalName?.toLowerCase() ?? ""
     );
 
-  const filtered = equipables.filter(matchesSearchTerm);
-
-  return filtered;
+    return (
+      normalizedEquipName.includes(normalizedSearchTerm) ||
+      normalizedOriginalName.includes(normalizedSearchTerm)
+    );
+  });
 };

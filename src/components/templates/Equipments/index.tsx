@@ -21,10 +21,12 @@ export function Equipments(props: EquipmentsProps) {
   const [accordionControl, setAccordionControl] = useState({
     weapons: true,
     armors: true,
+    accessories: true,
   });
   const [organizedEquipmentList, setOrganizedEquipmentList] = useState({
     weapons: character.equipments,
     armors: character.equipments,
+    accessories: character.equipments,
   });
 
   const closeEquipmentAditionModal = () => {
@@ -35,11 +37,16 @@ export function Equipments(props: EquipmentsProps) {
     const armors = equipmentsList.filter(
       (equipment) => equipment.category !== "Arma"
     );
+
     const weapons = equipmentsList.filter(
       (equipment) => equipment.category === "Arma"
     );
 
-    return { armors, weapons };
+    const accessories = equipmentsList.filter(
+      (equipment) => equipment.category === "Acessório"
+    );
+
+    return { armors, weapons, accessories };
   };
 
   useEffect(() => {
@@ -101,6 +108,23 @@ export function Equipments(props: EquipmentsProps) {
           setAccordionControl({
             ...accordionControl,
             armors: !accordionControl.armors,
+          })
+        }
+      />
+
+      <EquipmentList
+        title="Acessórios"
+        character={character}
+        setCharacter={setCharacter}
+        setDescriptionModal={setDescriptionModal}
+        setSelectedEquipment={setSelectedEquipment}
+        equipmentList={organizedEquipmentList.accessories}
+        isOpen={accordionControl.accessories}
+        characterLevel={character.level}
+        setIsOpen={() =>
+          setAccordionControl({
+            ...accordionControl,
+            armors: !accordionControl.accessories,
           })
         }
       />

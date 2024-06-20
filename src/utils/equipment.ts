@@ -8,36 +8,33 @@ type IconProps = {
 
 export const getEquipmentIcon = (equipment: EquipmentType): IconProps => {
   const { category, name } = equipment;
-  let src = "",
-    alt = "";
 
   if (!category || !name) {
-    return { src, alt };
+    return { src: "", alt: "" };
   }
 
-  if (name.includes("armadura") || category.includes("Armadura")) {
-    src = equipmentIcons["Armaduras"];
-    alt = "Armadura";
+  const categoryToIconMap: { [key: string]: { src: string; alt: string } } = {
+    Armadura: { src: equipmentIcons["Armaduras"], alt: "Armadura" },
+    Poção: { src: equipmentIcons["Poção"], alt: "Poção" },
+    Arma: { src: equipmentIcons["Armas"], alt: "Arma" },
+    Ferramenta: { src: equipmentIcons["Ferramentas"], alt: "Ferramenta" },
+    Aventura: { src: equipmentIcons["Aventura"], alt: "Aventura" },
+    Montaria: { src: equipmentIcons["Montaria"], alt: "Montaria" },
+    Acessório: { src: equipmentIcons["Acessório"], alt: "Acessório" },
+  };
+
+  if (name.toLowerCase().includes("armadura")) {
+    return categoryToIconMap["Armadura"];
   }
-  if (name.includes("poção") || category.includes("poção")) {
-    src = equipmentIcons["Poção"];
-    alt = "Poção";
+  if (name.toLowerCase().includes("poção")) {
+    return categoryToIconMap["Poção"];
   }
-  if (category === "Arma") {
-    src = equipmentIcons["Armas"];
-    alt = "Arma";
+
+  for (const [key, value] of Object.entries(categoryToIconMap)) {
+    if (category.includes(key)) {
+      return value;
+    }
   }
-  if (category.includes("Ferramenta")) {
-    src = equipmentIcons["Ferramentas"];
-    alt = "Ferramenta";
-  }
-  if (category.includes("Aventura")) {
-    src = equipmentIcons["Aventura"];
-    alt = "Aventura";
-  }
-  if (category.includes("Montaria")) {
-    src = equipmentIcons["Montaria"];
-    alt = "Montaria";
-  }
-  return { src, alt };
+
+  return { src: "", alt: "" };
 };

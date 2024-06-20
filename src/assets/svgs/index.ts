@@ -1,4 +1,5 @@
 import abjuration_icon from "./abjuration_icon.svg";
+import accessories_icon from "./accessories_icon.svg";
 import adventure_icon from "./adventure_icon.svg";
 import armor_icon from "./armor_icon.svg";
 import conjuration_icon from "./conjuration_icon.svg";
@@ -34,6 +35,7 @@ import weapon_icon from "./weapon_icon.svg";
 
 export {
   abjuration_icon,
+  accessories_icon,
   adventure_icon,
   armor_icon,
   conjuration_icon,
