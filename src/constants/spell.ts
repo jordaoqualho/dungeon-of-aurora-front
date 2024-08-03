@@ -50,7 +50,7 @@ export const spellIcons: SpellIconMap = {
 export const schoolsOfMagic: string[] = [
   "Abjuração",
   "Conjuração",
-  "Divinação",
+  "Adivinhação",
   "Encantamento",
   "Evocação",
   "Ilusão",
