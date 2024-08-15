@@ -2,7 +2,7 @@ import { SpellAditionModal, SpellList, SpellSlots } from "@/components";
 import { SpellDescritionModal } from "@/components/molecules/SpellDescritionModal";
 import { defaultSpell } from "@/constants";
 import { Character, SpellType } from "@/types";
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import { AddButton, Container } from "./styles";
 
 type SpellsAndTricksProps = {
@@ -12,39 +12,154 @@ type SpellsAndTricksProps = {
   activeMenu: string;
 };
 
-export function SpellsAndTricks(props: SpellsAndTricksProps) {
-  const { character, setCharacter, activeMenu } = props;
+type SpellLevelKey =
+  | "cantrips"
+  | "firstLevel"
+  | "secondLevel"
+  | "thirdLevel"
+  | "fourthLevel"
+  | "fifthLevel"
+  | "sixthLevel"
+  | "seventhLevel"
+  | "eighthLevel"
+  | "ninthLevel";
+
+const initialAccordionControl = {
+  cantrips: true,
+  firstLevel: true,
+  secondLevel: true,
+  thirdLevel: true,
+  fourthLevel: true,
+  fifthLevel: true,
+  sixthLevel: true,
+  seventhLevel: true,
+  eighthLevel: true,
+  ninthLevel: true,
+};
+
+export function SpellsAndTricks({
+  character,
+  setCharacter,
+  activeMenu,
+}: SpellsAndTricksProps) {
   const [showSpellAditionModal, setShowSpellAditionModal] = useState(false);
   const [descriptionModal, setDescriptionModal] = useState(false);
   const [selectedSpell, setSelectedSpell] = useState(defaultSpell);
-  const [accordionControl, setAccordionControl] = useState({
-    cantrips: true,
-    spells: true,
-  });
-  const [organizedSpellList, setOrganizedSpellList] = useState({
-    cantrips: character.spells,
-    spells: character.spells,
-  });
+  const [accordionControl, setAccordionControl] = useState(
+    initialAccordionControl
+  );
+
+  const organizeSpells = useMemo(() => {
+    const spellLevels = {
+      cantrips: [] as SpellType[],
+      firstLevel: [] as SpellType[],
+      secondLevel: [] as SpellType[],
+      thirdLevel: [] as SpellType[],
+      fourthLevel: [] as SpellType[],
+      fifthLevel: [] as SpellType[],
+      sixthLevel: [] as SpellType[],
+      seventhLevel: [] as SpellType[],
+      eighthLevel: [] as SpellType[],
+      ninthLevel: [] as SpellType[],
+    };
+
+    character.spells.forEach((spell) => {
+      switch (spell.level) {
+        case 0:
+          spellLevels.cantrips.push(spell);
+          break;
+        case 1:
+          spellLevels.firstLevel.push(spell);
+          break;
+        case 2:
+          spellLevels.secondLevel.push(spell);
+          break;
+        case 3:
+          spellLevels.thirdLevel.push(spell);
+          break;
+        case 4:
+          spellLevels.fourthLevel.push(spell);
+          break;
+        case 5:
+          spellLevels.fifthLevel.push(spell);
+          break;
+        case 6:
+          spellLevels.sixthLevel.push(spell);
+          break;
+        case 7:
+          spellLevels.seventhLevel.push(spell);
+          break;
+        case 8:
+          spellLevels.eighthLevel.push(spell);
+          break;
+        case 9:
+          spellLevels.ninthLevel.push(spell);
+          break;
+        default:
+          console.warn(`Spell level ${spell.level} is not supported`);
+          break;
+      }
+    });
+
+    return spellLevels;
+  }, [character.spells]);
+
+  const spellLevels = useMemo(
+    () => [
+      {
+        title: "Primeiro Nível",
+        key: "firstLevel" as SpellLevelKey,
+        list: organizeSpells.firstLevel,
+      },
+      {
+        title: "Segundo Nível",
+        key: "secondLevel" as SpellLevelKey,
+        list: organizeSpells.secondLevel,
+      },
+      {
+        title: "Terceiro Nível",
+        key: "thirdLevel" as SpellLevelKey,
+        list: organizeSpells.thirdLevel,
+      },
+      {
+        title: "Quarto Nível",
+        key: "fourthLevel" as SpellLevelKey,
+        list: organizeSpells.fourthLevel,
+      },
+      {
+        title: "Quinto Nível",
+        key: "fifthLevel" as SpellLevelKey,
+        list: organizeSpells.fifthLevel,
+      },
+      {
+        title: "Sexto Nível",
+        key: "sixthLevel" as SpellLevelKey,
+        list: organizeSpells.sixthLevel,
+      },
+      {
+        title: "Sétimo Nível",
+        key: "seventhLevel" as SpellLevelKey,
+        list: organizeSpells.seventhLevel,
+      },
+      {
+        title: "Oitavo Nível",
+        key: "eighthLevel" as SpellLevelKey,
+        list: organizeSpells.eighthLevel,
+      },
+      {
+        title: "Nono Nível",
+        key: "ninthLevel" as SpellLevelKey,
+        list: organizeSpells.ninthLevel,
+      },
+    ],
+    [organizeSpells]
+  );
 
   const closeSpellAditionModal = () => {
     setShowSpellAditionModal(false);
   };
 
-  const organizeSpells = (spellsList: SpellType[]) => {
-    const cantrips = spellsList.filter((spell) => spell.level === 0);
-    const spells = spellsList
-      .filter((spell) => spell.level !== 0)
-      .sort((a, b) => a.level - b.level);
-
-    return { cantrips, spells };
-  };
-
-  useEffect(() => {
-    const organizedSpells = organizeSpells(character.spells);
-    setOrganizedSpellList(organizedSpells);
-  }, [character.spells]);
-
-  if (activeMenu !== "SpellsAndTricks") return <></>;
+  if (activeMenu !== "SpellsAndTricks") return null;
 
   return (
     <Container>
@@ -62,14 +177,13 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
         spell={selectedSpell}
         onClose={() => setDescriptionModal(false)}
       />
-
       <SpellSlots character={character} setCharacter={setCharacter} />
 
       <SpellList
         title="Truques"
         setDescriptionModal={setDescriptionModal}
         setSelectedSpell={setSelectedSpell}
-        spellList={organizedSpellList.cantrips}
+        spellList={organizeSpells.cantrips}
         isOpen={accordionControl.cantrips}
         characterLevel={character.level}
         character={character}
@@ -82,22 +196,25 @@ export function SpellsAndTricks(props: SpellsAndTricksProps) {
         }
       />
 
-      <SpellList
-        title="Magias"
-        setDescriptionModal={setDescriptionModal}
-        setSelectedSpell={setSelectedSpell}
-        spellList={organizedSpellList.spells}
-        isOpen={accordionControl.spells}
-        characterLevel={character.level}
-        character={character}
-        setCharacter={setCharacter}
-        setIsOpen={() =>
-          setAccordionControl({
-            ...accordionControl,
-            spells: !accordionControl.spells,
-          })
-        }
-      />
+      {spellLevels.map((spellLevel) => (
+        <SpellList
+          key={spellLevel.key}
+          title={spellLevel.title}
+          setDescriptionModal={setDescriptionModal}
+          setSelectedSpell={setSelectedSpell}
+          spellList={spellLevel.list}
+          isOpen={accordionControl[spellLevel.key]}
+          characterLevel={character.level}
+          character={character}
+          setCharacter={setCharacter}
+          setIsOpen={() =>
+            setAccordionControl({
+              ...accordionControl,
+              [spellLevel.key]: !accordionControl[spellLevel.key],
+            })
+          }
+        />
+      ))}
     </Container>
   );
 }
